@@ -796,18 +796,32 @@ function escapeQuotes(str) {
    - Oraciones (Definición, Partes, Características)
    ========================================================================== */
 
-window.openBasicModuleModal = function (targetTab) {
-  const modal = document.getElementById('basic-module-modal');
-  if (!modal) {
-    console.error('Modal #basic-module-modal not found');
+window.toggleBasicModule = function (targetTab) {
+  const sec = document.getElementById('modulo-basico');
+  if (!sec) {
+    console.error('Section #modulo-basico not found');
     return;
   }
-  modal.classList.remove('hidden');
-  modal.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
 
-  const tabToOpen = targetTab || 'tab-alphabet';
-  window.switchBasicTab(tabToOpen);
+  const isHidden = (sec.style.display === 'none' || sec.classList.contains('hidden'));
+
+  if (isHidden) {
+    sec.style.display = 'block';
+    sec.classList.remove('hidden');
+    const tabToOpen = targetTab || 'tab-alphabet';
+    window.switchBasicTab(tabToOpen);
+    setTimeout(function () {
+      sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 60);
+  } else {
+    if (targetTab && targetTab !== 'toggle') {
+      window.switchBasicTab(targetTab);
+      sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      sec.style.display = 'none';
+      sec.classList.add('hidden');
+    }
+  }
 
   if (window.lucide) {
     try {
@@ -818,12 +832,16 @@ window.openBasicModuleModal = function (targetTab) {
   }
 };
 
+window.openBasicModuleModal = function (targetTab) {
+  window.toggleBasicModule(targetTab);
+};
+
 window.closeBasicModuleModal = function () {
-  const modal = document.getElementById('basic-module-modal');
-  if (!modal) return;
-  modal.classList.add('hidden');
-  modal.style.display = 'none';
-  document.body.style.overflow = '';
+  const sec = document.getElementById('modulo-basico');
+  if (sec) {
+    sec.style.display = 'none';
+    sec.classList.add('hidden');
+  }
 };
 
 window.switchBasicTab = function (tabId) {

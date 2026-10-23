@@ -67,7 +67,7 @@
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=2.1">
 </head>
 <body class="bg-[#0b0f19] text-slate-100 antialiased selection:bg-cyan-500 selection:text-slate-950">
 
@@ -124,7 +124,7 @@
           <button 
             id="btn-open-basic-module" 
             type="button"
-            onclick="openBasicModuleModal('tab-alphabet')"
+            onclick="toggleBasicModule('tab-alphabet')"
             class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-emerald-500/20 to-teal-500/20 hover:from-emerald-500/30 hover:to-teal-500/30 border border-emerald-400/40 text-emerald-300 text-xs font-bold transition-all shadow-sm cursor-pointer"
             title="Abrir Módulo Básico (Alfabeto, Números, Verbo To-Be, Oraciones)"
           >
@@ -164,7 +164,7 @@
       <button 
         id="btn-open-basic-mobile" 
         type="button" 
-        onclick="openBasicModuleModal('tab-alphabet')"
+        onclick="toggleBasicModule('tab-alphabet')"
         class="w-full text-left px-3 py-2.5 rounded-xl text-sm font-bold text-emerald-300 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-400/20 transition-colors flex items-center justify-between cursor-pointer"
       >
         <span class="flex items-center gap-2"><span>🔤</span> Módulo Básico (Alfabeto, Números, To-Be, Oraciones)</span>
@@ -225,7 +225,7 @@
           <button 
             id="btn-open-basic-hero" 
             type="button" 
-            onclick="openBasicModuleModal('tab-alphabet')"
+            onclick="toggleBasicModule('tab-alphabet')"
             class="px-6 py-3.5 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-400/40 text-emerald-300 font-bold text-sm md:text-base backdrop-blur-md transition-all flex items-center gap-2 shadow-sm cursor-pointer"
           >
             <i data-lucide="sparkles" class="w-4 h-4 text-emerald-400"></i>
@@ -263,6 +263,935 @@
 
       </div>
     </section>
+
+    
+    <!-- ======================================================================
+         MÓDULO BÁSICO DE FUNDAMENTOS (Visible Únicamente al hacer clic en el botón)
+         - Alfabeto
+         - Números
+         - Verbo To-Be
+         - Oraciones (definición, partes, características)
+         ====================================================================== -->
+    <section id="modulo-basico" class="py-12 md:py-20 border-y border-emerald-500/30 bg-gradient-to-b from-emerald-950/20 via-slate-900/50 to-slate-950 relative scroll-mt-24 transition-all duration-300" style="display: none;">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Module Header Card -->
+        <div class="glass-panel rounded-3xl p-6 sm:p-8 mb-8 border border-emerald-500/30 relative overflow-hidden bg-gradient-to-r from-emerald-950/30 to-slate-900/60 shadow-xl shadow-emerald-950/20">
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold mb-3">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                <span>Nivelación de Fundamentos</span> • <span>VI Cohorte Maestría UBV</span>
+              </div>
+              <h2 class="font-heading font-extrabold text-2xl sm:text-4xl text-white tracking-tight flex items-center gap-3">
+                <span>Módulo Básico de Inglés</span>
+                <span class="text-3xl">🔤</span>
+              </h2>
+              <p class="text-slate-300 text-sm sm:text-base mt-2 max-w-2xl">
+                Bases lingüísticas fundamentales: Alfabeto (A-Z), Números cardinales y ordinales, Conjugación del Verbo To-Be y Estructura de Oraciones.
+              </p>
+            </div>
+
+            <!-- Botón Ocultar Módulo -->
+            <button 
+              type="button" 
+              onclick="toggleBasicModule()"
+              class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/10 hover:bg-rose-500/20 hover:text-rose-300 hover:border-rose-400/40 text-slate-200 border border-white/15 text-xs sm:text-sm font-bold transition-all shrink-0 cursor-pointer shadow-sm"
+              title="Ocultar este módulo básico"
+            >
+              <i data-lucide="eye-off" class="w-4 h-4"></i>
+              <span>Ocultar Módulo ✕</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Module Tab Bar -->
+        <div class="flex items-center gap-2 overflow-x-auto pb-3 mb-8 border-b border-white/10" role="tablist">
+          <button 
+            type="button" 
+            onclick="switchBasicTab('tab-alphabet')"
+            class="basic-tab-btn px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-cyan-500 text-slate-950 transition-all shrink-0 flex items-center gap-2 cursor-pointer shadow-md"
+            data-tab="tab-alphabet"
+          >
+            <span>🔤</span>
+            <span>Alfabeto (Alphabet)</span>
+          </button>
+
+          <button 
+            type="button" 
+            onclick="switchBasicTab('tab-numbers')"
+            class="basic-tab-btn px-5 py-2.5 rounded-xl text-xs sm:text-sm font-medium bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 transition-all shrink-0 flex items-center gap-2 cursor-pointer"
+            data-tab="tab-numbers"
+          >
+            <span>🔢</span>
+            <span>Números (Numbers)</span>
+          </button>
+
+          <button 
+            type="button" 
+            onclick="switchBasicTab('tab-tobe')"
+            class="basic-tab-btn px-5 py-2.5 rounded-xl text-xs sm:text-sm font-medium bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 transition-all shrink-0 flex items-center gap-2 cursor-pointer"
+            data-tab="tab-tobe"
+          >
+            <span>👤</span>
+            <span>Verbo To-Be</span>
+          </button>
+
+          <button 
+            type="button" 
+            onclick="switchBasicTab('tab-sentences')"
+            class="basic-tab-btn px-5 py-2.5 rounded-xl text-xs sm:text-sm font-medium bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 transition-all shrink-0 flex items-center gap-2 cursor-pointer"
+            data-tab="tab-sentences"
+          >
+            <span>📝</span>
+            <span>Oraciones (Sentences)</span>
+          </button>
+        </div>
+
+        <!-- Tab Panes Content -->
+        <div class="space-y-6">
+          <div id="tab-alphabet" class="basic-tab-pane space-y-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-2xl bg-cyan-950/30 border border-cyan-500/20">
+            <div>
+              <h3 class="font-heading font-bold text-lg text-white flex items-center gap-2">
+                <span>The English Alphabet</span>
+                <span class="text-xs px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">26 Letters</span>
+              </h3>
+              <p class="text-xs text-slate-300 mt-1">
+                El alfabeto en inglés consta de 26 letras (5 vocales y 21 consonantes). Haz clic en el altavoz de cada letra para escuchar su pronunciación fonética y palabra de ejemplo.
+              </p>
+            </div>
+
+            <button 
+              type="button"
+              class="audio-btn inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-cyan-500 text-slate-950 text-xs font-bold hover:bg-cyan-400 transition-all shrink-0"
+              onclick="speakPhrase('A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z.', this)"
+            >
+              <i data-lucide="volume-2" class="w-4 h-4"></i>
+              <span>Escuchar A - Z Completo</span>
+            </button>
+          </div>
+
+          <!-- Letters Grid (A to Z) -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+            
+            <!-- A -->
+            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
+              <div class="flex items-center justify-between">
+                <span class="font-heading font-extrabold text-2xl text-cyan-300">A a</span>
+                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('A. /eɪ/. Algorithm.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="my-1.5">
+                <span class="text-xs font-mono text-cyan-200">/eɪ/</span>
+                <p class="text-xs font-semibold text-white truncate">Algorithm</p>
+                <p class="text-[11px] text-slate-400 truncate">Algoritmo</p>
+              </div>
+            </div>
+
+            <!-- B -->
+            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
+              <div class="flex items-center justify-between">
+                <span class="font-heading font-extrabold text-2xl text-cyan-300">B b</span>
+                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('B. /biː/. Byte.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="my-1.5">
+                <span class="text-xs font-mono text-cyan-200">/biː/</span>
+                <p class="text-xs font-semibold text-white truncate">Byte</p>
+                <p class="text-[11px] text-slate-400 truncate">Byte (Dato)</p>
+              </div>
+            </div>
+
+            <!-- C -->
+            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
+              <div class="flex items-center justify-between">
+                <span class="font-heading font-extrabold text-2xl text-cyan-300">C c</span>
+                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('C. /siː/. Computer.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="my-1.5">
+                <span class="text-xs font-mono text-cyan-200">/siː/</span>
+                <p class="text-xs font-semibold text-white truncate">Computer</p>
+                <p class="text-[11px] text-slate-400 truncate">Computador</p>
+              </div>
+            </div>
+
+            <!-- D -->
+            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
+              <div class="flex items-center justify-between">
+                <span class="font-heading font-extrabold text-2xl text-cyan-300">D d</span>
+                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('D. /diː/. Database.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="my-1.5">
+                <span class="text-xs font-mono text-cyan-200">/diː/</span>
+                <p class="text-xs font-semibold text-white truncate">Database</p>
+                <p class="text-[11px] text-slate-400 truncate">Base de datos</p>
+              </div>
+            </div>
+
+            <!-- E -->
+            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
+              <div class="flex items-center justify-between">
+                <span class="font-heading font-extrabold text-2xl text-cyan-300">E e</span>
+                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('E. /iː/. Email.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="my-1.5">
+                <span class="text-xs font-mono text-cyan-200">/iː/</span>
+                <p class="text-xs font-semibold text-white truncate">Email</p>
+                <p class="text-[11px] text-slate-400 truncate">Correo</p>
+              </div>
+            </div>
+
+            <!-- F -->
+            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
+              <div class="flex items-center justify-between">
+                <span class="font-heading font-extrabold text-2xl text-cyan-300">F f</span>
+                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('F. /ef/. File.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="my-1.5">
+                <span class="text-xs font-mono text-cyan-200">/ef/</span>
+                <p class="text-xs font-semibold text-white truncate">File</p>
+                <p class="text-[11px] text-slate-400 truncate">Archivo</p>
+              </div>
+            </div>
+
+            <!-- G -->
+            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
+              <div class="flex items-center justify-between">
+                <span class="font-heading font-extrabold text-2xl text-cyan-300">G g</span>
+                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('G. /dʒiː/. Gigabit.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="my-1.5">
+                <span class="text-xs font-mono text-cyan-200">/dʒiː/</span>
+                <p class="text-xs font-semibold text-white truncate">Gigabit</p>
+                <p class="text-[11px] text-slate-400 truncate">Gigabit</p>
+              </div>
+            </div>
+
+            <!-- H -->
+            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
+              <div class="flex items-center justify-between">
+                <span class="font-heading font-extrabold text-2xl text-cyan-300">H h</span>
+                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('H. /eɪtʃ/. Hardware.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="my-1.5">
+                <span class="text-xs font-mono text-cyan-200">/eɪtʃ/</span>
+                <p class="text-xs font-semibold text-white truncate">Hardware</p>
+                <p class="text-[11px] text-slate-400 truncate">Hardware</p>
+              </div>
+            </div>
+
+            <!-- I -->
+            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
+              <div class="flex items-center justify-between">
+                <span class="font-heading font-extrabold text-2xl text-cyan-300">I i</span>
+                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('I. /aɪ/. Internet.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="my-1.5">
+                <span class="text-xs font-mono text-cyan-200">/aɪ/</span>
+                <p class="text-xs font-semibold text-white truncate">Internet</p>
+                <p class="text-[11px] text-slate-400 truncate">Internet</p>
+              </div>
+            </div>
+
+            <!-- J -->
+            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
+              <div class="flex items-center justify-between">
+                <span class="font-heading font-extrabold text-2xl text-cyan-300">J j</span>
+                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('J. /dʒeɪ/. Java.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="my-1.5">
+                <span class="text-xs font-mono text-cyan-200">/dʒeɪ/</span>
+                <p class="text-xs font-semibold text-white truncate">Java</p>
+                <p class="text-[11px] text-slate-400 truncate">Java</p>
+              </div>
+            </div>
+
+            <!-- K -->
+            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
+              <div class="flex items-center justify-between">
+                <span class="font-heading font-extrabold text-2xl text-cyan-300">K k</span>
+                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('K. /keɪ/. Keyboard.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="my-1.5">
+                <span class="text-xs font-mono text-cyan-200">/keɪ/</span>
+                <p class="text-xs font-semibold text-white truncate">Keyboard</p>
+                <p class="text-[11px] text-slate-400 truncate">Teclado</p>
+              </div>
+            </div>
+
+            <!-- L -->
+            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
+              <div class="flex items-center justify-between">
+                <span class="font-heading font-extrabold text-2xl text-cyan-300">L l</span>
+                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('L. /el/. Link.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="my-1.5">
+                <span class="text-xs font-mono text-cyan-200">/el/</span>
+                <p class="text-xs font-semibold text-white truncate">Link</p>
+                <p class="text-[11px] text-slate-400 truncate">Enlace</p>
+              </div>
+            </div>
+
+            <!-- M -->
+            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
+              <div class="flex items-center justify-between">
+                <span class="font-heading font-extrabold text-2xl text-cyan-300">M m</span>
+                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('M. /em/. Memory.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="my-1.5">
+                <span class="text-xs font-mono text-cyan-200">/em/</span>
+                <p class="text-xs font-semibold text-white truncate">Memory</p>
+                <p class="text-[11px] text-slate-400 truncate">Memoria</p>
+              </div>
+            </div>
+
+            <!-- N -->
+            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
+              <div class="flex items-center justify-between">
+                <span class="font-heading font-extrabold text-2xl text-cyan-300">N n</span>
+                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('N. /en/. Network.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="my-1.5">
+                <span class="text-xs font-mono text-cyan-200">/en/</span>
+                <p class="text-xs font-semibold text-white truncate">Network</p>
+                <p class="text-[11px] text-slate-400 truncate">Red</p>
+              </div>
+            </div>
+
+            <!-- O -->
+            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
+              <div class="flex items-center justify-between">
+                <span class="font-heading font-extrabold text-2xl text-cyan-300">O o</span>
+                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('O. /oʊ/. Output.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="my-1.5">
+                <span class="text-xs font-mono text-cyan-200">/oʊ/</span>
+                <p class="text-xs font-semibold text-white truncate">Output</p>
+                <p class="text-[11px] text-slate-400 truncate">Salida</p>
+              </div>
+            </div>
+
+            <!-- P -->
+            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
+              <div class="flex items-center justify-between">
+                <span class="font-heading font-extrabold text-2xl text-cyan-300">P p</span>
+                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('P. /piː/. Password.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="my-1.5">
+                <span class="text-xs font-mono text-cyan-200">/piː/</span>
+                <p class="text-xs font-semibold text-white truncate">Password</p>
+                <p class="text-[11px] text-slate-400 truncate">Contraseña</p>
+              </div>
+            </div>
+
+            <!-- Q -->
+            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
+              <div class="flex items-center justify-between">
+                <span class="font-heading font-extrabold text-2xl text-cyan-300">Q q</span>
+                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Q. /kjuː/. Query.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="my-1.5">
+                <span class="text-xs font-mono text-cyan-200">/kjuː/</span>
+                <p class="text-xs font-semibold text-white truncate">Query</p>
+                <p class="text-[11px] text-slate-400 truncate">Consulta</p>
+              </div>
+            </div>
+
+            <!-- R -->
+            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
+              <div class="flex items-center justify-between">
+                <span class="font-heading font-extrabold text-2xl text-cyan-300">R r</span>
+                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('R. /ɑːr/. Router.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="my-1.5">
+                <span class="text-xs font-mono text-cyan-200">/ɑːr/</span>
+                <p class="text-xs font-semibold text-white truncate">Router</p>
+                <p class="text-[11px] text-slate-400 truncate">Enrutador</p>
+              </div>
+            </div>
+
+            <!-- S -->
+            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
+              <div class="flex items-center justify-between">
+                <span class="font-heading font-extrabold text-2xl text-cyan-300">S s</span>
+                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('S. /es/. Software.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="my-1.5">
+                <span class="text-xs font-mono text-cyan-200">/es/</span>
+                <p class="text-xs font-semibold text-white truncate">Software</p>
+                <p class="text-[11px] text-slate-400 truncate">Software</p>
+              </div>
+            </div>
+
+            <!-- T -->
+            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
+              <div class="flex items-center justify-between">
+                <span class="font-heading font-extrabold text-2xl text-cyan-300">T t</span>
+                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('T. /tiː/. Terminal.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="my-1.5">
+                <span class="text-xs font-mono text-cyan-200">/tiː/</span>
+                <p class="text-xs font-semibold text-white truncate">Terminal</p>
+                <p class="text-[11px] text-slate-400 truncate">Terminal</p>
+              </div>
+            </div>
+
+            <!-- U -->
+            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
+              <div class="flex items-center justify-between">
+                <span class="font-heading font-extrabold text-2xl text-cyan-300">U u</span>
+                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('U. /juː/. User.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="my-1.5">
+                <span class="text-xs font-mono text-cyan-200">/juː/</span>
+                <p class="text-xs font-semibold text-white truncate">User</p>
+                <p class="text-[11px] text-slate-400 truncate">Usuario</p>
+              </div>
+            </div>
+
+            <!-- V -->
+            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
+              <div class="flex items-center justify-between">
+                <span class="font-heading font-extrabold text-2xl text-cyan-300">V v</span>
+                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('V. /viː/. Virtual.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="my-1.5">
+                <span class="text-xs font-mono text-cyan-200">/viː/</span>
+                <p class="text-xs font-semibold text-white truncate">Virtual</p>
+                <p class="text-[11px] text-slate-400 truncate">Virtual</p>
+              </div>
+            </div>
+
+            <!-- W -->
+            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
+              <div class="flex items-center justify-between">
+                <span class="font-heading font-extrabold text-2xl text-cyan-300">W w</span>
+                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('W. /ˈdʌbəl.juː/. Web.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="my-1.5">
+                <span class="text-xs font-mono text-cyan-200">/ˈdʌbəl.juː/</span>
+                <p class="text-xs font-semibold text-white truncate">Web</p>
+                <p class="text-[11px] text-slate-400 truncate">Web</p>
+              </div>
+            </div>
+
+            <!-- X -->
+            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
+              <div class="flex items-center justify-between">
+                <span class="font-heading font-extrabold text-2xl text-cyan-300">X x</span>
+                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('X. /eks/. XML.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="my-1.5">
+                <span class="text-xs font-mono text-cyan-200">/eks/</span>
+                <p class="text-xs font-semibold text-white truncate">XML</p>
+                <p class="text-[11px] text-slate-400 truncate">Lenguaje XML</p>
+              </div>
+            </div>
+
+            <!-- Y -->
+            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
+              <div class="flex items-center justify-between">
+                <span class="font-heading font-extrabold text-2xl text-cyan-300">Y y</span>
+                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Y. /waɪ/. Yield.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="my-1.5">
+                <span class="text-xs font-mono text-cyan-200">/waɪ/</span>
+                <p class="text-xs font-semibold text-white truncate">Yield</p>
+                <p class="text-[11px] text-slate-400 truncate">Rendimiento</p>
+              </div>
+            </div>
+
+            <!-- Z -->
+            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
+              <div class="flex items-center justify-between">
+                <span class="font-heading font-extrabold text-2xl text-cyan-300">Z z</span>
+                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Z. /zed/. Zip file.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="my-1.5">
+                <span class="text-xs font-mono text-cyan-200">/zed/ - /ziː/</span>
+                <p class="text-xs font-semibold text-white truncate">Zip</p>
+                <p class="text-[11px] text-slate-400 truncate">Comprimido</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ================================================================
+             TAB 2: NÚMEROS 🔢
+             ================================================================ -->
+        <div id="tab-numbers" class="basic-tab-pane hidden space-y-6">
+          
+          <!-- Cardinal Numbers -->
+          <div>
+            <div class="flex items-center justify-between gap-3 mb-4">
+              <div>
+                <h3 class="font-heading font-bold text-lg text-white flex items-center gap-2">
+                  <span>Cardinal Numbers (Cantidades)</span>
+                  <span class="text-xs px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">1 - 1,000,000</span>
+                </h3>
+                <p class="text-xs text-slate-400">Usados para contar, medir y expresar cantidades exactas.</p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-2.5">
+              <div class="number-card glass-card p-2.5 rounded-xl border border-white/10 flex items-center justify-between">
+                <div><span class="font-mono text-cyan-300 text-sm font-bold">1</span> <span class="text-xs font-semibold text-white">One</span></div>
+                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('One', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="number-card glass-card p-2.5 rounded-xl border border-white/10 flex items-center justify-between">
+                <div><span class="font-mono text-cyan-300 text-sm font-bold">2</span> <span class="text-xs font-semibold text-white">Two</span></div>
+                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Two', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="number-card glass-card p-2.5 rounded-xl border border-white/10 flex items-center justify-between">
+                <div><span class="font-mono text-cyan-300 text-sm font-bold">3</span> <span class="text-xs font-semibold text-white">Three</span></div>
+                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Three', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="number-card glass-card p-2.5 rounded-xl border border-white/10 flex items-center justify-between">
+                <div><span class="font-mono text-cyan-300 text-sm font-bold">4</span> <span class="text-xs font-semibold text-white">Four</span></div>
+                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Four', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="number-card glass-card p-2.5 rounded-xl border border-white/10 flex items-center justify-between">
+                <div><span class="font-mono text-cyan-300 text-sm font-bold">5</span> <span class="text-xs font-semibold text-white">Five</span></div>
+                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Five', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="number-card glass-card p-2.5 rounded-xl border border-white/10 flex items-center justify-between">
+                <div><span class="font-mono text-cyan-300 text-sm font-bold">6</span> <span class="text-xs font-semibold text-white">Six</span></div>
+                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Six', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="number-card glass-card p-2.5 rounded-xl border border-white/10 flex items-center justify-between">
+                <div><span class="font-mono text-cyan-300 text-sm font-bold">7</span> <span class="text-xs font-semibold text-white">Seven</span></div>
+                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Seven', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="number-card glass-card p-2.5 rounded-xl border border-white/10 flex items-center justify-between">
+                <div><span class="font-mono text-cyan-300 text-sm font-bold">8</span> <span class="text-xs font-semibold text-white">Eight</span></div>
+                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Eight', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="number-card glass-card p-2.5 rounded-xl border border-white/10 flex items-center justify-between">
+                <div><span class="font-mono text-cyan-300 text-sm font-bold">9</span> <span class="text-xs font-semibold text-white">Nine</span></div>
+                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Nine', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="number-card glass-card p-2.5 rounded-xl border border-white/10 flex items-center justify-between">
+                <div><span class="font-mono text-cyan-300 text-sm font-bold">10</span> <span class="text-xs font-semibold text-white">Ten</span></div>
+                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Ten', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="number-card glass-card p-2.5 rounded-xl border border-white/10 flex items-center justify-between">
+                <div><span class="font-mono text-cyan-300 text-sm font-bold">11</span> <span class="text-xs font-semibold text-white">Eleven</span></div>
+                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Eleven', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="number-card glass-card p-2.5 rounded-xl border border-white/10 flex items-center justify-between">
+                <div><span class="font-mono text-cyan-300 text-sm font-bold">12</span> <span class="text-xs font-semibold text-white">Twelve</span></div>
+                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Twelve', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="number-card glass-card p-2.5 rounded-xl border border-white/10 flex items-center justify-between">
+                <div><span class="font-mono text-cyan-300 text-sm font-bold">13</span> <span class="text-xs font-semibold text-white">Thirteen</span></div>
+                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Thirteen', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="number-card glass-card p-2.5 rounded-xl border border-white/10 flex items-center justify-between">
+                <div><span class="font-mono text-cyan-300 text-sm font-bold">14</span> <span class="text-xs font-semibold text-white">Fourteen</span></div>
+                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Fourteen', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="number-card glass-card p-2.5 rounded-xl border border-white/10 flex items-center justify-between">
+                <div><span class="font-mono text-cyan-300 text-sm font-bold">15</span> <span class="text-xs font-semibold text-white">Fifteen</span></div>
+                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Fifteen', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="number-card glass-card p-2.5 rounded-xl border border-white/10 flex items-center justify-between">
+                <div><span class="font-mono text-cyan-300 text-sm font-bold">20</span> <span class="text-xs font-semibold text-white">Twenty</span></div>
+                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Twenty', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="number-card glass-card p-2.5 rounded-xl border border-white/10 flex items-center justify-between">
+                <div><span class="font-mono text-cyan-300 text-sm font-bold">30</span> <span class="text-xs font-semibold text-white">Thirty</span></div>
+                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Thirty', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="number-card glass-card p-2.5 rounded-xl border border-white/10 flex items-center justify-between">
+                <div><span class="font-mono text-cyan-300 text-sm font-bold">50</span> <span class="text-xs font-semibold text-white">Fifty</span></div>
+                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Fifty', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="number-card glass-card p-2.5 rounded-xl border border-white/10 flex items-center justify-between">
+                <div><span class="font-mono text-cyan-300 text-sm font-bold">100</span> <span class="text-xs font-semibold text-white">Hundred</span></div>
+                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('One hundred', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="number-card glass-card p-2.5 rounded-xl border border-white/10 flex items-center justify-between">
+                <div><span class="font-mono text-cyan-300 text-sm font-bold">1k</span> <span class="text-xs font-semibold text-white">Thousand</span></div>
+                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('One thousand', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ordinal Numbers -->
+          <div class="pt-4 border-t border-white/10">
+            <div class="mb-4">
+              <h3 class="font-heading font-bold text-lg text-white flex items-center gap-2">
+                <span>Ordinal Numbers (Orden y Jerarquía)</span>
+                <span class="text-xs px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">1st - 21st</span>
+              </h3>
+              <p class="text-xs text-slate-400">Indican posición, pasos de procesos o cohortes académicas (e.g., <em>VI Cohorte = 6th Cohort</em>).</p>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+              <div class="glass-card p-3 rounded-xl border border-white/10 flex items-center justify-between">
+                <div><span class="font-mono text-purple-300 font-bold text-sm">1st</span> <span class="text-xs font-semibold text-white ml-1">First</span></div>
+                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-purple-300" onclick="speakPhrase('First', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+
+              <div class="glass-card p-3 rounded-xl border border-white/10 flex items-center justify-between">
+                <div><span class="font-mono text-purple-300 font-bold text-sm">2nd</span> <span class="text-xs font-semibold text-white ml-1">Second</span></div>
+                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-purple-300" onclick="speakPhrase('Second', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+
+              <div class="glass-card p-3 rounded-xl border border-white/10 flex items-center justify-between">
+                <div><span class="font-mono text-purple-300 font-bold text-sm">3rd</span> <span class="text-xs font-semibold text-white ml-1">Third</span></div>
+                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-purple-300" onclick="speakPhrase('Third', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+
+              <!-- 6th Highlighted for VI Cohorte -->
+              <div class="glass-card p-3 rounded-xl border border-amber-400/40 bg-amber-500/10 flex items-center justify-between shadow-sm">
+                <div>
+                  <span class="font-mono text-amber-300 font-bold text-sm">6th</span>
+                  <span class="text-xs font-bold text-white ml-1">Sixth</span>
+                  <span class="block text-[10px] text-amber-300">VI Cohorte</span>
+                </div>
+                <button type="button" class="audio-btn p-1 text-amber-300 hover:text-white" onclick="speakPhrase('Sixth Cohort of the Strategic Development Master', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+
+              <div class="glass-card p-3 rounded-xl border border-white/10 flex items-center justify-between">
+                <div><span class="font-mono text-purple-300 font-bold text-sm">7th</span> <span class="text-xs font-semibold text-white ml-1">Seventh</span></div>
+                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-purple-300" onclick="speakPhrase('Seventh', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+
+              <div class="glass-card p-3 rounded-xl border border-white/10 flex items-center justify-between">
+                <div><span class="font-mono text-purple-300 font-bold text-sm">10th</span> <span class="text-xs font-semibold text-white ml-1">Tenth</span></div>
+                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-purple-300" onclick="speakPhrase('Tenth', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+
+              <div class="glass-card p-3 rounded-xl border border-white/10 flex items-center justify-between">
+                <div><span class="font-mono text-purple-300 font-bold text-sm">20th</span> <span class="text-xs font-semibold text-white ml-1">Twentieth</span></div>
+                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-purple-300" onclick="speakPhrase('Twentieth', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+
+              <div class="glass-card p-3 rounded-xl border border-white/10 flex items-center justify-between">
+                <div><span class="font-mono text-purple-300 font-bold text-sm">21st</span> <span class="text-xs font-semibold text-white ml-1">Twenty-first</span></div>
+                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-purple-300" onclick="speakPhrase('Twenty-first', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ================================================================
+             TAB 3: VERBO TO-BE 👤
+             ================================================================ -->
+        <div id="tab-tobe" class="basic-tab-pane hidden space-y-6">
+          
+          <div class="p-4 rounded-2xl bg-gradient-to-r from-cyan-950/40 to-slate-900/60 border border-cyan-500/20">
+            <h3 class="font-heading font-bold text-lg text-white flex items-center gap-2">
+              <span>El Verbo To-Be (Ser o Estar)</span>
+              <span class="text-xs px-2.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">Pilar Fundamental</span>
+            </h3>
+            <p class="text-xs text-slate-300 mt-1">
+              En inglés, el verbo <strong>To Be</strong> equivale tanto a <em>"Ser"</em> como a <em>"Estar"</em> según el contexto de la oración.
+            </p>
+          </div>
+
+          <!-- Conjugation Table -->
+          <div class="overflow-x-auto rounded-2xl border border-white/10">
+            <table class="w-full text-left text-xs sm:text-sm">
+              <thead class="bg-slate-900/90 text-cyan-300 border-b border-white/10 uppercase text-[11px] tracking-wider">
+                <tr>
+                  <th class="p-3">Sujeto</th>
+                  <th class="p-3">Afirmativo</th>
+                  <th class="p-3">Negativo</th>
+                  <th class="p-3">Interrogativo</th>
+                  <th class="p-3">Ejemplo</th>
+                  <th class="p-3 text-center">Audio</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-white/5 bg-slate-950/40 text-slate-200">
+                <tr class="hover:bg-white/5 transition-colors">
+                  <td class="p-3 font-bold text-white">I (Yo)</td>
+                  <td class="p-3"><strong class="text-emerald-400">am</strong> <span class="text-slate-400">('m)</span></td>
+                  <td class="p-3 text-rose-300">am not ('m not)</td>
+                  <td class="p-3 text-sky-300">Am I...?</td>
+                  <td class="p-3 text-slate-300">I am a postgraduate researcher.</td>
+                  <td class="p-3 text-center"><button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('I am a postgraduate researcher at UBV.', this)"><i data-lucide="volume-2" class="w-4 h-4"></i></button></td>
+                </tr>
+
+                <tr class="hover:bg-white/5 transition-colors">
+                  <td class="p-3 font-bold text-white">You (Tú / Usted)</td>
+                  <td class="p-3"><strong class="text-emerald-400">are</strong> <span class="text-slate-400">('re)</span></td>
+                  <td class="p-3 text-rose-300">are not (aren't)</td>
+                  <td class="p-3 text-sky-300">Are you...?</td>
+                  <td class="p-3 text-slate-300">You are an expert engineer.</td>
+                  <td class="p-3 text-center"><button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('You are an expert engineer.', this)"><i data-lucide="volume-2" class="w-4 h-4"></i></button></td>
+                </tr>
+
+                <tr class="hover:bg-white/5 transition-colors">
+                  <td class="p-3 font-bold text-white">He (Él)</td>
+                  <td class="p-3"><strong class="text-emerald-400">is</strong> <span class="text-slate-400">('s)</span></td>
+                  <td class="p-3 text-rose-300">is not (isn't)</td>
+                  <td class="p-3 text-sky-300">Is he...?</td>
+                  <td class="p-3 text-slate-300">He is the project coordinator.</td>
+                  <td class="p-3 text-center"><button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('He is the project coordinator.', this)"><i data-lucide="volume-2" class="w-4 h-4"></i></button></td>
+                </tr>
+
+                <tr class="hover:bg-white/5 transition-colors">
+                  <td class="p-3 font-bold text-white">She (Ella)</td>
+                  <td class="p-3"><strong class="text-emerald-400">is</strong> <span class="text-slate-400">('s)</span></td>
+                  <td class="p-3 text-rose-300">is not (isn't)</td>
+                  <td class="p-3 text-sky-300">Is she...?</td>
+                  <td class="p-3 text-slate-300">She is the lead scientist.</td>
+                  <td class="p-3 text-center"><button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('She is the lead scientist.', this)"><i data-lucide="volume-2" class="w-4 h-4"></i></button></td>
+                </tr>
+
+                <tr class="hover:bg-white/5 transition-colors">
+                  <td class="p-3 font-bold text-white">It (Eso/Objeto)</td>
+                  <td class="p-3"><strong class="text-emerald-400">is</strong> <span class="text-slate-400">('s)</span></td>
+                  <td class="p-3 text-rose-300">is not (isn't)</td>
+                  <td class="p-3 text-sky-300">Is it...?</td>
+                  <td class="p-3 text-slate-300">It is an essential software file.</td>
+                  <td class="p-3 text-center"><button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('It is an essential software file.', this)"><i data-lucide="volume-2" class="w-4 h-4"></i></button></td>
+                </tr>
+
+                <tr class="hover:bg-white/5 transition-colors">
+                  <td class="p-3 font-bold text-white">We (Nosotros)</td>
+                  <td class="p-3"><strong class="text-emerald-400">are</strong> <span class="text-slate-400">('re)</span></td>
+                  <td class="p-3 text-rose-300">are not (aren't)</td>
+                  <td class="p-3 text-sky-300">Are we...?</td>
+                  <td class="p-3 text-slate-300">We are in the VI Cohort in Lara.</td>
+                  <td class="p-3 text-center"><button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('We are in the sixth cohort in Lara.', this)"><i data-lucide="volume-2" class="w-4 h-4"></i></button></td>
+                </tr>
+
+                <tr class="hover:bg-white/5 transition-colors">
+                  <td class="p-3 font-bold text-white">They (Ellos)</td>
+                  <td class="p-3"><strong class="text-emerald-400">are</strong> <span class="text-slate-400">('re)</span></td>
+                  <td class="p-3 text-rose-300">are not (aren't)</td>
+                  <td class="p-3 text-sky-300">Are they...?</td>
+                  <td class="p-3 text-slate-300">They are connected to the network.</td>
+                  <td class="p-3 text-center"><button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('They are connected to the network.', this)"><i data-lucide="volume-2" class="w-4 h-4"></i></button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Interactive Quick Check for To-Be -->
+          <div class="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-3">
+            <h4 class="font-heading font-bold text-sm text-white flex items-center gap-2">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>
+              <span>Autoevaluación Rápida del Verbo To-Be</span>
+            </h4>
+            <p class="text-xs text-slate-400">Selecciona la forma correcta para completar la oración:</p>
+
+            <div class="space-y-3">
+              <!-- Item 1 -->
+              <div class="tobe-quiz-item p-3 rounded-xl bg-slate-900/60 border border-white/5" data-answer="am" data-sentence="I am a researcher in the strategic program.">
+                <p class="text-xs sm:text-sm text-slate-200 font-medium">1. "I <span class="text-cyan-400 font-bold underline">_____</span> a researcher in the strategic program."</p>
+                <div class="flex items-center gap-2 mt-2">
+                  <button type="button" class="tobe-opt-btn px-3 py-1 rounded-lg text-xs bg-white/5 border border-white/10 text-slate-300 hover:text-white" data-value="am">am</button>
+                  <button type="button" class="tobe-opt-btn px-3 py-1 rounded-lg text-xs bg-white/5 border border-white/10 text-slate-300 hover:text-white" data-value="is">is</button>
+                  <button type="button" class="tobe-opt-btn px-3 py-1 rounded-lg text-xs bg-white/5 border border-white/10 text-slate-300 hover:text-white" data-value="are">are</button>
+                </div>
+                <div class="tobe-feedback text-xs mt-1.5 min-h-[16px]"></div>
+              </div>
+
+              <!-- Item 2 -->
+              <div class="tobe-quiz-item p-3 rounded-xl bg-slate-900/60 border border-white/5" data-answer="is" data-sentence="The database server is online and secure.">
+                <p class="text-xs sm:text-sm text-slate-200 font-medium">2. "The database server <span class="text-cyan-400 font-bold underline">_____</span> online and secure."</p>
+                <div class="flex items-center gap-2 mt-2">
+                  <button type="button" class="tobe-opt-btn px-3 py-1 rounded-lg text-xs bg-white/5 border border-white/10 text-slate-300 hover:text-white" data-value="am">am</button>
+                  <button type="button" class="tobe-opt-btn px-3 py-1 rounded-lg text-xs bg-white/5 border border-white/10 text-slate-300 hover:text-white" data-value="is">is</button>
+                  <button type="button" class="tobe-opt-btn px-3 py-1 rounded-lg text-xs bg-white/5 border border-white/10 text-slate-300 hover:text-white" data-value="are">are</button>
+                </div>
+                <div class="tobe-feedback text-xs mt-1.5 min-h-[16px]"></div>
+              </div>
+
+              <!-- Item 3 -->
+              <div class="tobe-quiz-item p-3 rounded-xl bg-slate-900/60 border border-white/5" data-answer="are" data-sentence="We are students of the UBV Sixth Cohort.">
+                <p class="text-xs sm:text-sm text-slate-200 font-medium">3. "We <span class="text-cyan-400 font-bold underline">_____</span> students of the UBV Sixth Cohort."</p>
+                <div class="flex items-center gap-2 mt-2">
+                  <button type="button" class="tobe-opt-btn px-3 py-1 rounded-lg text-xs bg-white/5 border border-white/10 text-slate-300 hover:text-white" data-value="am">am</button>
+                  <button type="button" class="tobe-opt-btn px-3 py-1 rounded-lg text-xs bg-white/5 border border-white/10 text-slate-300 hover:text-white" data-value="is">is</button>
+                  <button type="button" class="tobe-opt-btn px-3 py-1 rounded-lg text-xs bg-white/5 border border-white/10 text-slate-300 hover:text-white" data-value="are">are</button>
+                </div>
+                <div class="tobe-feedback text-xs mt-1.5 min-h-[16px]"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ================================================================
+             TAB 4: ORACIONES (SENTENCES) 📝
+             ================================================================ -->
+        <div id="tab-sentences" class="basic-tab-pane hidden space-y-6">
+          
+          <!-- Definición -->
+          <div class="p-4 rounded-2xl bg-cyan-950/30 border border-cyan-500/20">
+            <h3 class="font-heading font-bold text-lg text-white flex items-center gap-2">
+              <i data-lucide="bookmark" class="w-5 h-5 text-cyan-400"></i>
+              <span>Definición de Oración (Sentence Definition)</span>
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-200 mt-2 leading-relaxed">
+              En inglés, una oración (<em>Sentence</em>) es la <strong>unidad gramatical básica que expresa un pensamiento completo</strong>. A diferencia del español, donde el sujeto puede ser tácito, en inglés la regla general exige que el sujeto sea <strong>explícito</strong> y cuente con al menos un verbo conjugado.
+            </p>
+          </div>
+
+          <!-- Partes de la Oración (Fórmula S-V-C) -->
+          <div>
+            <h4 class="font-heading font-bold text-base text-white mb-3 flex items-center gap-2">
+              <i data-lucide="layers" class="w-4 h-4 text-cyan-400"></i>
+              <span>Partes Fundamentales: Estructura S + V + C</span>
+            </h4>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
+              <!-- Sujeto -->
+              <div class="p-3.5 rounded-2xl bg-sky-950/30 border border-sky-500/30">
+                <span class="badge-subject text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-md">1. Subject (Sujeto)</span>
+                <p class="text-xs text-slate-300 mt-2">
+                  Quién o qué realiza la acción o sobre quién se afirma algo. Puede ser un pronombre (<em>I, You, They</em>) o un sustantivo (<em>The engineer, The software</em>).
+                </p>
+              </div>
+
+              <!-- Verbo -->
+              <div class="p-3.5 rounded-2xl bg-emerald-950/30 border border-emerald-500/30">
+                <span class="badge-verb text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-md">2. Verb (Verbo)</span>
+                <p class="text-xs text-slate-300 mt-2">
+                  La acción, estado de ser o proceso que realiza el sujeto. Es el núcleo motor indispensable de toda oración.
+                </p>
+              </div>
+
+              <!-- Complemento -->
+              <div class="p-3.5 rounded-2xl bg-purple-950/30 border border-purple-500/30">
+                <span class="badge-complement text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-md">3. Complement (Complemento)</span>
+                <p class="text-xs text-slate-300 mt-2">
+                  Información adicional que completa el sentido: objetos directos, indirectos, lugar, tiempo o modo.
+                </p>
+              </div>
+            </div>
+
+            <!-- Ejemplos Desglosados con Audio -->
+            <div class="space-y-2.5">
+              <div class="p-3 rounded-xl bg-slate-900/60 border border-white/10 flex items-center justify-between gap-3">
+                <div class="text-xs sm:text-sm">
+                  <span class="badge-subject px-2 py-0.5 rounded font-bold">The engineer</span>
+                  <span class="badge-verb px-2 py-0.5 rounded font-bold ml-1">configures</span>
+                  <span class="badge-complement px-2 py-0.5 rounded font-bold ml-1">the network router.</span>
+                  <p class="text-[11px] text-slate-400 mt-1 italic">El ingeniero configura el enrutador de red.</p>
+                </div>
+                <button type="button" class="audio-btn p-1.5 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('The engineer configures the network router.', this)"><i data-lucide="volume-2" class="w-4 h-4"></i></button>
+              </div>
+
+              <div class="p-3 rounded-xl bg-slate-900/60 border border-white/10 flex items-center justify-between gap-3">
+                <div class="text-xs sm:text-sm">
+                  <span class="badge-subject px-2 py-0.5 rounded font-bold">Postgraduate students</span>
+                  <span class="badge-verb px-2 py-0.5 rounded font-bold ml-1">present</span>
+                  <span class="badge-complement px-2 py-0.5 rounded font-bold ml-1">their research thesis.</span>
+                  <p class="text-[11px] text-slate-400 mt-1 italic">Los estudiantes de postgrado presentan su tesis de investigación.</p>
+                </div>
+                <button type="button" class="audio-btn p-1.5 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Postgraduate students present their research thesis.', this)"><i data-lucide="volume-2" class="w-4 h-4"></i></button>
+              </div>
+
+              <div class="p-3 rounded-xl bg-slate-900/60 border border-white/10 flex items-center justify-between gap-3">
+                <div class="text-xs sm:text-sm">
+                  <span class="badge-subject px-2 py-0.5 rounded font-bold">Technical English</span>
+                  <span class="badge-verb px-2 py-0.5 rounded font-bold ml-1">facilitates</span>
+                  <span class="badge-complement px-2 py-0.5 rounded font-bold ml-1">scientific reading.</span>
+                  <p class="text-[11px] text-slate-400 mt-1 italic">El inglés técnico facilita la lectura científica.</p>
+                </div>
+                <button type="button" class="audio-btn p-1.5 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Technical English facilitates scientific reading.', this)"><i data-lucide="volume-2" class="w-4 h-4"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Características Clave & Tipos -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-white/10">
+            
+            <!-- Características -->
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/10">
+              <h5 class="font-heading font-bold text-sm text-cyan-300 mb-2.5 flex items-center gap-1.5">
+                <i data-lucide="check-square" class="w-4 h-4"></i>
+                <span>Características Principales</span>
+              </h5>
+              <ul class="space-y-2 text-xs text-slate-300">
+                <li class="flex items-start gap-2">
+                  <span class="text-emerald-400">✓</span>
+                  <span><strong>Mayúscula inicial:</strong> Toda oración inicia obligatoriamente con letra mayúscula (<em>Capital Letter</em>).</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-emerald-400">✓</span>
+                  <span><strong>Puntuación final:</strong> Termina en punto (<code>.</code>), interrogación (<code>?</code>) o exclamación (<code>!</code>). En inglés no existe el signo de apertura (<code>¿</code> ni <code>¡</code>).</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-emerald-400">✓</span>
+                  <span><strong>Concordancia:</strong> El verbo concuerda en persona y número con el sujeto (<em>He works</em> vs. <em>They work</em>).</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-emerald-400">✓</span>
+                  <span><strong>Sujeto explícito:</strong> En inglés afirmativo el pronombre no se omite (ejemplo: <em>"It is true"</em>, nunca <em>"Is true"</em>).</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Tipos de Oraciones -->
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/10">
+              <h5 class="font-heading font-bold text-sm text-purple-300 mb-2.5 flex items-center gap-1.5">
+                <i data-lucide="help-circle" class="w-4 h-4"></i>
+                <span>Los 4 Tipos de Oraciones</span>
+              </h5>
+              <ul class="space-y-2 text-xs text-slate-300">
+                <li>
+                  <strong class="text-white">Declarativa (Declarative):</strong> Afirma un hecho.
+                  <span class="block text-[11px] text-slate-400 italic">"The database stores information."</span>
+                </li>
+                <li>
+                  <strong class="text-white">Interrogativa (Interrogative):</strong> Hace una pregunta.
+                  <span class="block text-[11px] text-slate-400 italic">"Is the network system active?"</span>
+                </li>
+                <li>
+                  <strong class="text-white">Imperativa (Imperative):</strong> Instrucción o mandato técnico.
+                  <span class="block text-[11px] text-slate-400 italic">"Save the file before rebooting."</span>
+                </li>
+                <li>
+                  <strong class="text-white">Exclamativa (Exclamatory):</strong> Expresa sorpresa o énfasis.
+                  <span class="block text-[11px] text-slate-400 italic">"What a successful presentation!"</span>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+        </div>
+
+        <!-- Bottom Actions -->
+        <div class="mt-12 p-6 rounded-2xl bg-white/5 border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div class="flex items-center gap-2 text-xs sm:text-sm text-cyan-300">
+            <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
+            <span>¿Completaste el repaso de fundamentos? Continúa con la Clase #1.</span>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <button 
+              type="button" 
+              onclick="toggleBasicModule()"
+              class="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 text-xs font-semibold transition-all cursor-pointer"
+            >
+              Ocultar Módulo ✕
+            </button>
+
+            <a 
+              href="#technical-english" 
+              class="px-5 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 text-xs font-bold transition-all flex items-center gap-1.5 shadow-sm"
+            >
+              <span>Continuar a Tema 1 🛠️</span>
+              <i data-lucide="arrow-down" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
 
     <!-- ======================================================================
          Tema 1: Technical English 🛠️
@@ -1641,922 +2570,6 @@
   </footer>
 
   <!-- ======================================================================
-       MÓDULO BÁSICO DE FUNDAMENTOS (Visible Únicamente al hacer clic en el botón)
-       - Alfabeto
-       - Números
-       - Verbo To-Be
-       - Oraciones (definición, partes, características)
-       ====================================================================== -->
-  <div id="basic-module-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="basic-module-title">
-    <!-- Backdrop -->
-    <div id="basic-module-backdrop" class="modal-backdrop fixed inset-0 z-0 cursor-pointer" onclick="closeBasicModuleModal()"></div>
-
-    <!-- Modal Panel -->
-    <div class="modal-content-glass relative w-full max-w-5xl max-h-[90vh] rounded-3xl overflow-hidden flex flex-col z-20 my-auto">
-      
-      <!-- Modal Header -->
-      <div class="p-5 sm:p-6 border-b border-white/10 flex items-start justify-between gap-4 bg-slate-900/80">
-        <div>
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold mb-2">
-            <span>Nivelación de Fundamentos</span> • <span>VI Cohorte Maestría UBV</span>
-          </div>
-          <h2 id="basic-module-title" class="font-heading font-extrabold text-xl sm:text-2xl text-white flex items-center gap-2">
-            <span>Módulo Básico de Inglés</span>
-            <span class="text-2xl">🔤</span>
-          </h2>
-          <p class="text-xs sm:text-sm text-slate-400 mt-1">
-            Revisión fundamental de las bases lingüísticas: Alfabeto, Números, Verbo To-Be y Construcción de Oraciones.
-          </p>
-        </div>
-
-        <button 
-          id="btn-close-basic-module" 
-          type="button" 
-          onclick="closeBasicModuleModal()"
-          class="p-2.5 rounded-xl bg-white/5 hover:bg-white/15 text-slate-300 hover:text-white border border-white/10 transition-colors shrink-0 cursor-pointer"
-          aria-label="Cerrar módulo básico"
-          title="Cerrar ventana"
-        >
-          <i data-lucide="x" class="w-5 h-5"></i>
-        </button>
-      </div>
-
-      <!-- Module Tab Bar -->
-      <div class="px-5 sm:px-6 pt-3 pb-2 border-b border-white/10 bg-slate-950/60 flex items-center gap-2 overflow-x-auto" role="tablist">
-        <button 
-          type="button" 
-          onclick="switchBasicTab('tab-alphabet')"
-          class="basic-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-cyan-500 text-slate-950 transition-all shrink-0 flex items-center gap-2 cursor-pointer"
-          data-tab="tab-alphabet"
-        >
-          <span>🔤</span>
-          <span>Alfabeto (Alphabet)</span>
-        </button>
-
-        <button 
-          type="button" 
-          onclick="switchBasicTab('tab-numbers')"
-          class="basic-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 transition-all shrink-0 flex items-center gap-2 cursor-pointer"
-          data-tab="tab-numbers"
-        >
-          <span>🔢</span>
-          <span>Números (Numbers)</span>
-        </button>
-
-        <button 
-          type="button" 
-          onclick="switchBasicTab('tab-tobe')"
-          class="basic-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 transition-all shrink-0 flex items-center gap-2 cursor-pointer"
-          data-tab="tab-tobe"
-        >
-          <span>👤</span>
-          <span>Verbo To-Be</span>
-        </button>
-
-        <button 
-          type="button" 
-          onclick="switchBasicTab('tab-sentences')"
-          class="basic-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 transition-all shrink-0 flex items-center gap-2 cursor-pointer"
-          data-tab="tab-sentences"
-        >
-          <span>📝</span>
-          <span>Oraciones (Sentences)</span>
-        </button>
-      </div>
-
-      <!-- Modal Body (Scrollable) -->
-      <div class="p-5 sm:p-6 overflow-y-auto space-y-6">
-
-        <!-- ================================================================
-             TAB 1: ALFABETO 🔤
-             ================================================================ -->
-        <div id="tab-alphabet" class="basic-tab-pane space-y-6">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-2xl bg-cyan-950/30 border border-cyan-500/20">
-            <div>
-              <h3 class="font-heading font-bold text-lg text-white flex items-center gap-2">
-                <span>The English Alphabet</span>
-                <span class="text-xs px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">26 Letters</span>
-              </h3>
-              <p class="text-xs text-slate-300 mt-1">
-                El alfabeto en inglés consta de 26 letras (5 vocales y 21 consonantes). Haz clic en el altavoz de cada letra para escuchar su pronunciación fonética y palabra de ejemplo.
-              </p>
-            </div>
-
-            <button 
-              type="button"
-              class="audio-btn inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-cyan-500 text-slate-950 text-xs font-bold hover:bg-cyan-400 transition-all shrink-0"
-              onclick="speakPhrase('A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z.', this)"
-            >
-              <i data-lucide="volume-2" class="w-4 h-4"></i>
-              <span>Escuchar A - Z Completo</span>
-            </button>
-          </div>
-
-          <!-- Letters Grid (A to Z) -->
-          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
-            
-            <!-- A -->
-            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
-              <div class="flex items-center justify-between">
-                <span class="font-heading font-extrabold text-2xl text-cyan-300">A a</span>
-                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('A. /eɪ/. Algorithm.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="my-1.5">
-                <span class="text-xs font-mono text-cyan-200">/eɪ/</span>
-                <p class="text-xs font-semibold text-white truncate">Algorithm</p>
-                <p class="text-[11px] text-slate-400 truncate">Algoritmo</p>
-              </div>
-            </div>
-
-            <!-- B -->
-            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
-              <div class="flex items-center justify-between">
-                <span class="font-heading font-extrabold text-2xl text-cyan-300">B b</span>
-                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('B. /biː/. Byte.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="my-1.5">
-                <span class="text-xs font-mono text-cyan-200">/biː/</span>
-                <p class="text-xs font-semibold text-white truncate">Byte</p>
-                <p class="text-[11px] text-slate-400 truncate">Byte (Dato)</p>
-              </div>
-            </div>
-
-            <!-- C -->
-            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
-              <div class="flex items-center justify-between">
-                <span class="font-heading font-extrabold text-2xl text-cyan-300">C c</span>
-                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('C. /siː/. Computer.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="my-1.5">
-                <span class="text-xs font-mono text-cyan-200">/siː/</span>
-                <p class="text-xs font-semibold text-white truncate">Computer</p>
-                <p class="text-[11px] text-slate-400 truncate">Computador</p>
-              </div>
-            </div>
-
-            <!-- D -->
-            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
-              <div class="flex items-center justify-between">
-                <span class="font-heading font-extrabold text-2xl text-cyan-300">D d</span>
-                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('D. /diː/. Database.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="my-1.5">
-                <span class="text-xs font-mono text-cyan-200">/diː/</span>
-                <p class="text-xs font-semibold text-white truncate">Database</p>
-                <p class="text-[11px] text-slate-400 truncate">Base de datos</p>
-              </div>
-            </div>
-
-            <!-- E -->
-            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
-              <div class="flex items-center justify-between">
-                <span class="font-heading font-extrabold text-2xl text-cyan-300">E e</span>
-                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('E. /iː/. Email.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="my-1.5">
-                <span class="text-xs font-mono text-cyan-200">/iː/</span>
-                <p class="text-xs font-semibold text-white truncate">Email</p>
-                <p class="text-[11px] text-slate-400 truncate">Correo</p>
-              </div>
-            </div>
-
-            <!-- F -->
-            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
-              <div class="flex items-center justify-between">
-                <span class="font-heading font-extrabold text-2xl text-cyan-300">F f</span>
-                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('F. /ef/. File.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="my-1.5">
-                <span class="text-xs font-mono text-cyan-200">/ef/</span>
-                <p class="text-xs font-semibold text-white truncate">File</p>
-                <p class="text-[11px] text-slate-400 truncate">Archivo</p>
-              </div>
-            </div>
-
-            <!-- G -->
-            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
-              <div class="flex items-center justify-between">
-                <span class="font-heading font-extrabold text-2xl text-cyan-300">G g</span>
-                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('G. /dʒiː/. Gigabit.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="my-1.5">
-                <span class="text-xs font-mono text-cyan-200">/dʒiː/</span>
-                <p class="text-xs font-semibold text-white truncate">Gigabit</p>
-                <p class="text-[11px] text-slate-400 truncate">Gigabit</p>
-              </div>
-            </div>
-
-            <!-- H -->
-            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
-              <div class="flex items-center justify-between">
-                <span class="font-heading font-extrabold text-2xl text-cyan-300">H h</span>
-                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('H. /eɪtʃ/. Hardware.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="my-1.5">
-                <span class="text-xs font-mono text-cyan-200">/eɪtʃ/</span>
-                <p class="text-xs font-semibold text-white truncate">Hardware</p>
-                <p class="text-[11px] text-slate-400 truncate">Hardware</p>
-              </div>
-            </div>
-
-            <!-- I -->
-            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
-              <div class="flex items-center justify-between">
-                <span class="font-heading font-extrabold text-2xl text-cyan-300">I i</span>
-                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('I. /aɪ/. Internet.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="my-1.5">
-                <span class="text-xs font-mono text-cyan-200">/aɪ/</span>
-                <p class="text-xs font-semibold text-white truncate">Internet</p>
-                <p class="text-[11px] text-slate-400 truncate">Internet</p>
-              </div>
-            </div>
-
-            <!-- J -->
-            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
-              <div class="flex items-center justify-between">
-                <span class="font-heading font-extrabold text-2xl text-cyan-300">J j</span>
-                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('J. /dʒeɪ/. Java.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="my-1.5">
-                <span class="text-xs font-mono text-cyan-200">/dʒeɪ/</span>
-                <p class="text-xs font-semibold text-white truncate">Java</p>
-                <p class="text-[11px] text-slate-400 truncate">Java</p>
-              </div>
-            </div>
-
-            <!-- K -->
-            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
-              <div class="flex items-center justify-between">
-                <span class="font-heading font-extrabold text-2xl text-cyan-300">K k</span>
-                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('K. /keɪ/. Keyboard.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="my-1.5">
-                <span class="text-xs font-mono text-cyan-200">/keɪ/</span>
-                <p class="text-xs font-semibold text-white truncate">Keyboard</p>
-                <p class="text-[11px] text-slate-400 truncate">Teclado</p>
-              </div>
-            </div>
-
-            <!-- L -->
-            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
-              <div class="flex items-center justify-between">
-                <span class="font-heading font-extrabold text-2xl text-cyan-300">L l</span>
-                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('L. /el/. Link.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="my-1.5">
-                <span class="text-xs font-mono text-cyan-200">/el/</span>
-                <p class="text-xs font-semibold text-white truncate">Link</p>
-                <p class="text-[11px] text-slate-400 truncate">Enlace</p>
-              </div>
-            </div>
-
-            <!-- M -->
-            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
-              <div class="flex items-center justify-between">
-                <span class="font-heading font-extrabold text-2xl text-cyan-300">M m</span>
-                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('M. /em/. Memory.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="my-1.5">
-                <span class="text-xs font-mono text-cyan-200">/em/</span>
-                <p class="text-xs font-semibold text-white truncate">Memory</p>
-                <p class="text-[11px] text-slate-400 truncate">Memoria</p>
-              </div>
-            </div>
-
-            <!-- N -->
-            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
-              <div class="flex items-center justify-between">
-                <span class="font-heading font-extrabold text-2xl text-cyan-300">N n</span>
-                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('N. /en/. Network.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="my-1.5">
-                <span class="text-xs font-mono text-cyan-200">/en/</span>
-                <p class="text-xs font-semibold text-white truncate">Network</p>
-                <p class="text-[11px] text-slate-400 truncate">Red</p>
-              </div>
-            </div>
-
-            <!-- O -->
-            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
-              <div class="flex items-center justify-between">
-                <span class="font-heading font-extrabold text-2xl text-cyan-300">O o</span>
-                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('O. /oʊ/. Output.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="my-1.5">
-                <span class="text-xs font-mono text-cyan-200">/oʊ/</span>
-                <p class="text-xs font-semibold text-white truncate">Output</p>
-                <p class="text-[11px] text-slate-400 truncate">Salida</p>
-              </div>
-            </div>
-
-            <!-- P -->
-            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
-              <div class="flex items-center justify-between">
-                <span class="font-heading font-extrabold text-2xl text-cyan-300">P p</span>
-                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('P. /piː/. Password.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="my-1.5">
-                <span class="text-xs font-mono text-cyan-200">/piː/</span>
-                <p class="text-xs font-semibold text-white truncate">Password</p>
-                <p class="text-[11px] text-slate-400 truncate">Contraseña</p>
-              </div>
-            </div>
-
-            <!-- Q -->
-            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
-              <div class="flex items-center justify-between">
-                <span class="font-heading font-extrabold text-2xl text-cyan-300">Q q</span>
-                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Q. /kjuː/. Query.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="my-1.5">
-                <span class="text-xs font-mono text-cyan-200">/kjuː/</span>
-                <p class="text-xs font-semibold text-white truncate">Query</p>
-                <p class="text-[11px] text-slate-400 truncate">Consulta</p>
-              </div>
-            </div>
-
-            <!-- R -->
-            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
-              <div class="flex items-center justify-between">
-                <span class="font-heading font-extrabold text-2xl text-cyan-300">R r</span>
-                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('R. /ɑːr/. Router.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="my-1.5">
-                <span class="text-xs font-mono text-cyan-200">/ɑːr/</span>
-                <p class="text-xs font-semibold text-white truncate">Router</p>
-                <p class="text-[11px] text-slate-400 truncate">Enrutador</p>
-              </div>
-            </div>
-
-            <!-- S -->
-            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
-              <div class="flex items-center justify-between">
-                <span class="font-heading font-extrabold text-2xl text-cyan-300">S s</span>
-                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('S. /es/. Software.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="my-1.5">
-                <span class="text-xs font-mono text-cyan-200">/es/</span>
-                <p class="text-xs font-semibold text-white truncate">Software</p>
-                <p class="text-[11px] text-slate-400 truncate">Software</p>
-              </div>
-            </div>
-
-            <!-- T -->
-            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
-              <div class="flex items-center justify-between">
-                <span class="font-heading font-extrabold text-2xl text-cyan-300">T t</span>
-                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('T. /tiː/. Terminal.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="my-1.5">
-                <span class="text-xs font-mono text-cyan-200">/tiː/</span>
-                <p class="text-xs font-semibold text-white truncate">Terminal</p>
-                <p class="text-[11px] text-slate-400 truncate">Terminal</p>
-              </div>
-            </div>
-
-            <!-- U -->
-            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
-              <div class="flex items-center justify-between">
-                <span class="font-heading font-extrabold text-2xl text-cyan-300">U u</span>
-                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('U. /juː/. User.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="my-1.5">
-                <span class="text-xs font-mono text-cyan-200">/juː/</span>
-                <p class="text-xs font-semibold text-white truncate">User</p>
-                <p class="text-[11px] text-slate-400 truncate">Usuario</p>
-              </div>
-            </div>
-
-            <!-- V -->
-            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
-              <div class="flex items-center justify-between">
-                <span class="font-heading font-extrabold text-2xl text-cyan-300">V v</span>
-                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('V. /viː/. Virtual.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="my-1.5">
-                <span class="text-xs font-mono text-cyan-200">/viː/</span>
-                <p class="text-xs font-semibold text-white truncate">Virtual</p>
-                <p class="text-[11px] text-slate-400 truncate">Virtual</p>
-              </div>
-            </div>
-
-            <!-- W -->
-            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
-              <div class="flex items-center justify-between">
-                <span class="font-heading font-extrabold text-2xl text-cyan-300">W w</span>
-                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('W. /ˈdʌbəl.juː/. Web.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="my-1.5">
-                <span class="text-xs font-mono text-cyan-200">/ˈdʌbəl.juː/</span>
-                <p class="text-xs font-semibold text-white truncate">Web</p>
-                <p class="text-[11px] text-slate-400 truncate">Web</p>
-              </div>
-            </div>
-
-            <!-- X -->
-            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
-              <div class="flex items-center justify-between">
-                <span class="font-heading font-extrabold text-2xl text-cyan-300">X x</span>
-                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('X. /eks/. XML.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="my-1.5">
-                <span class="text-xs font-mono text-cyan-200">/eks/</span>
-                <p class="text-xs font-semibold text-white truncate">XML</p>
-                <p class="text-[11px] text-slate-400 truncate">Lenguaje XML</p>
-              </div>
-            </div>
-
-            <!-- Y -->
-            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
-              <div class="flex items-center justify-between">
-                <span class="font-heading font-extrabold text-2xl text-cyan-300">Y y</span>
-                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Y. /waɪ/. Yield.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="my-1.5">
-                <span class="text-xs font-mono text-cyan-200">/waɪ/</span>
-                <p class="text-xs font-semibold text-white truncate">Yield</p>
-                <p class="text-[11px] text-slate-400 truncate">Rendimiento</p>
-              </div>
-            </div>
-
-            <!-- Z -->
-            <div class="letter-card glass-card p-3 rounded-2xl border border-white/10 flex flex-col justify-between">
-              <div class="flex items-center justify-between">
-                <span class="font-heading font-extrabold text-2xl text-cyan-300">Z z</span>
-                <button type="button" class="audio-btn p-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Z. /zed/. Zip file.', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="my-1.5">
-                <span class="text-xs font-mono text-cyan-200">/zed/ - /ziː/</span>
-                <p class="text-xs font-semibold text-white truncate">Zip</p>
-                <p class="text-[11px] text-slate-400 truncate">Comprimido</p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- ================================================================
-             TAB 2: NÚMEROS 🔢
-             ================================================================ -->
-        <div id="tab-numbers" class="basic-tab-pane hidden space-y-6">
-          
-          <!-- Cardinal Numbers -->
-          <div>
-            <div class="flex items-center justify-between gap-3 mb-4">
-              <div>
-                <h3 class="font-heading font-bold text-lg text-white flex items-center gap-2">
-                  <span>Cardinal Numbers (Cantidades)</span>
-                  <span class="text-xs px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">1 - 1,000,000</span>
-                </h3>
-                <p class="text-xs text-slate-400">Usados para contar, medir y expresar cantidades exactas.</p>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-2.5">
-              <div class="number-card glass-card p-2.5 rounded-xl border border-white/10 flex items-center justify-between">
-                <div><span class="font-mono text-cyan-300 text-sm font-bold">1</span> <span class="text-xs font-semibold text-white">One</span></div>
-                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('One', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="number-card glass-card p-2.5 rounded-xl border border-white/10 flex items-center justify-between">
-                <div><span class="font-mono text-cyan-300 text-sm font-bold">2</span> <span class="text-xs font-semibold text-white">Two</span></div>
-                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Two', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="number-card glass-card p-2.5 rounded-xl border border-white/10 flex items-center justify-between">
-                <div><span class="font-mono text-cyan-300 text-sm font-bold">3</span> <span class="text-xs font-semibold text-white">Three</span></div>
-                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Three', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="number-card glass-card p-2.5 rounded-xl border border-white/10 flex items-center justify-between">
-                <div><span class="font-mono text-cyan-300 text-sm font-bold">4</span> <span class="text-xs font-semibold text-white">Four</span></div>
-                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Four', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="number-card glass-card p-2.5 rounded-xl border border-white/10 flex items-center justify-between">
-                <div><span class="font-mono text-cyan-300 text-sm font-bold">5</span> <span class="text-xs font-semibold text-white">Five</span></div>
-                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Five', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="number-card glass-card p-2.5 rounded-xl border border-white/10 flex items-center justify-between">
-                <div><span class="font-mono text-cyan-300 text-sm font-bold">6</span> <span class="text-xs font-semibold text-white">Six</span></div>
-                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Six', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="number-card glass-card p-2.5 rounded-xl border border-white/10 flex items-center justify-between">
-                <div><span class="font-mono text-cyan-300 text-sm font-bold">7</span> <span class="text-xs font-semibold text-white">Seven</span></div>
-                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Seven', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="number-card glass-card p-2.5 rounded-xl border border-white/10 flex items-center justify-between">
-                <div><span class="font-mono text-cyan-300 text-sm font-bold">8</span> <span class="text-xs font-semibold text-white">Eight</span></div>
-                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Eight', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="number-card glass-card p-2.5 rounded-xl border border-white/10 flex items-center justify-between">
-                <div><span class="font-mono text-cyan-300 text-sm font-bold">9</span> <span class="text-xs font-semibold text-white">Nine</span></div>
-                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Nine', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="number-card glass-card p-2.5 rounded-xl border border-white/10 flex items-center justify-between">
-                <div><span class="font-mono text-cyan-300 text-sm font-bold">10</span> <span class="text-xs font-semibold text-white">Ten</span></div>
-                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Ten', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="number-card glass-card p-2.5 rounded-xl border border-white/10 flex items-center justify-between">
-                <div><span class="font-mono text-cyan-300 text-sm font-bold">11</span> <span class="text-xs font-semibold text-white">Eleven</span></div>
-                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Eleven', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="number-card glass-card p-2.5 rounded-xl border border-white/10 flex items-center justify-between">
-                <div><span class="font-mono text-cyan-300 text-sm font-bold">12</span> <span class="text-xs font-semibold text-white">Twelve</span></div>
-                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Twelve', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="number-card glass-card p-2.5 rounded-xl border border-white/10 flex items-center justify-between">
-                <div><span class="font-mono text-cyan-300 text-sm font-bold">13</span> <span class="text-xs font-semibold text-white">Thirteen</span></div>
-                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Thirteen', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="number-card glass-card p-2.5 rounded-xl border border-white/10 flex items-center justify-between">
-                <div><span class="font-mono text-cyan-300 text-sm font-bold">14</span> <span class="text-xs font-semibold text-white">Fourteen</span></div>
-                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Fourteen', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="number-card glass-card p-2.5 rounded-xl border border-white/10 flex items-center justify-between">
-                <div><span class="font-mono text-cyan-300 text-sm font-bold">15</span> <span class="text-xs font-semibold text-white">Fifteen</span></div>
-                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Fifteen', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="number-card glass-card p-2.5 rounded-xl border border-white/10 flex items-center justify-between">
-                <div><span class="font-mono text-cyan-300 text-sm font-bold">20</span> <span class="text-xs font-semibold text-white">Twenty</span></div>
-                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Twenty', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="number-card glass-card p-2.5 rounded-xl border border-white/10 flex items-center justify-between">
-                <div><span class="font-mono text-cyan-300 text-sm font-bold">30</span> <span class="text-xs font-semibold text-white">Thirty</span></div>
-                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Thirty', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="number-card glass-card p-2.5 rounded-xl border border-white/10 flex items-center justify-between">
-                <div><span class="font-mono text-cyan-300 text-sm font-bold">50</span> <span class="text-xs font-semibold text-white">Fifty</span></div>
-                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Fifty', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="number-card glass-card p-2.5 rounded-xl border border-white/10 flex items-center justify-between">
-                <div><span class="font-mono text-cyan-300 text-sm font-bold">100</span> <span class="text-xs font-semibold text-white">Hundred</span></div>
-                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('One hundred', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-              <div class="number-card glass-card p-2.5 rounded-xl border border-white/10 flex items-center justify-between">
-                <div><span class="font-mono text-cyan-300 text-sm font-bold">1k</span> <span class="text-xs font-semibold text-white">Thousand</span></div>
-                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('One thousand', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Ordinal Numbers -->
-          <div class="pt-4 border-t border-white/10">
-            <div class="mb-4">
-              <h3 class="font-heading font-bold text-lg text-white flex items-center gap-2">
-                <span>Ordinal Numbers (Orden y Jerarquía)</span>
-                <span class="text-xs px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">1st - 21st</span>
-              </h3>
-              <p class="text-xs text-slate-400">Indican posición, pasos de procesos o cohortes académicas (e.g., <em>VI Cohorte = 6th Cohort</em>).</p>
-            </div>
-
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-              <div class="glass-card p-3 rounded-xl border border-white/10 flex items-center justify-between">
-                <div><span class="font-mono text-purple-300 font-bold text-sm">1st</span> <span class="text-xs font-semibold text-white ml-1">First</span></div>
-                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-purple-300" onclick="speakPhrase('First', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-
-              <div class="glass-card p-3 rounded-xl border border-white/10 flex items-center justify-between">
-                <div><span class="font-mono text-purple-300 font-bold text-sm">2nd</span> <span class="text-xs font-semibold text-white ml-1">Second</span></div>
-                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-purple-300" onclick="speakPhrase('Second', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-
-              <div class="glass-card p-3 rounded-xl border border-white/10 flex items-center justify-between">
-                <div><span class="font-mono text-purple-300 font-bold text-sm">3rd</span> <span class="text-xs font-semibold text-white ml-1">Third</span></div>
-                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-purple-300" onclick="speakPhrase('Third', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-
-              <!-- 6th Highlighted for VI Cohorte -->
-              <div class="glass-card p-3 rounded-xl border border-amber-400/40 bg-amber-500/10 flex items-center justify-between shadow-sm">
-                <div>
-                  <span class="font-mono text-amber-300 font-bold text-sm">6th</span>
-                  <span class="text-xs font-bold text-white ml-1">Sixth</span>
-                  <span class="block text-[10px] text-amber-300">VI Cohorte</span>
-                </div>
-                <button type="button" class="audio-btn p-1 text-amber-300 hover:text-white" onclick="speakPhrase('Sixth Cohort of the Strategic Development Master', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-
-              <div class="glass-card p-3 rounded-xl border border-white/10 flex items-center justify-between">
-                <div><span class="font-mono text-purple-300 font-bold text-sm">7th</span> <span class="text-xs font-semibold text-white ml-1">Seventh</span></div>
-                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-purple-300" onclick="speakPhrase('Seventh', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-
-              <div class="glass-card p-3 rounded-xl border border-white/10 flex items-center justify-between">
-                <div><span class="font-mono text-purple-300 font-bold text-sm">10th</span> <span class="text-xs font-semibold text-white ml-1">Tenth</span></div>
-                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-purple-300" onclick="speakPhrase('Tenth', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-
-              <div class="glass-card p-3 rounded-xl border border-white/10 flex items-center justify-between">
-                <div><span class="font-mono text-purple-300 font-bold text-sm">20th</span> <span class="text-xs font-semibold text-white ml-1">Twentieth</span></div>
-                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-purple-300" onclick="speakPhrase('Twentieth', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-
-              <div class="glass-card p-3 rounded-xl border border-white/10 flex items-center justify-between">
-                <div><span class="font-mono text-purple-300 font-bold text-sm">21st</span> <span class="text-xs font-semibold text-white ml-1">Twenty-first</span></div>
-                <button type="button" class="audio-btn p-1 text-slate-400 hover:text-purple-300" onclick="speakPhrase('Twenty-first', this)"><i data-lucide="volume-2" class="w-3.5 h-3.5"></i></button>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- ================================================================
-             TAB 3: VERBO TO-BE 👤
-             ================================================================ -->
-        <div id="tab-tobe" class="basic-tab-pane hidden space-y-6">
-          
-          <div class="p-4 rounded-2xl bg-gradient-to-r from-cyan-950/40 to-slate-900/60 border border-cyan-500/20">
-            <h3 class="font-heading font-bold text-lg text-white flex items-center gap-2">
-              <span>El Verbo To-Be (Ser o Estar)</span>
-              <span class="text-xs px-2.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">Pilar Fundamental</span>
-            </h3>
-            <p class="text-xs text-slate-300 mt-1">
-              En inglés, el verbo <strong>To Be</strong> equivale tanto a <em>"Ser"</em> como a <em>"Estar"</em> según el contexto de la oración.
-            </p>
-          </div>
-
-          <!-- Conjugation Table -->
-          <div class="overflow-x-auto rounded-2xl border border-white/10">
-            <table class="w-full text-left text-xs sm:text-sm">
-              <thead class="bg-slate-900/90 text-cyan-300 border-b border-white/10 uppercase text-[11px] tracking-wider">
-                <tr>
-                  <th class="p-3">Sujeto</th>
-                  <th class="p-3">Afirmativo</th>
-                  <th class="p-3">Negativo</th>
-                  <th class="p-3">Interrogativo</th>
-                  <th class="p-3">Ejemplo</th>
-                  <th class="p-3 text-center">Audio</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-white/5 bg-slate-950/40 text-slate-200">
-                <tr class="hover:bg-white/5 transition-colors">
-                  <td class="p-3 font-bold text-white">I (Yo)</td>
-                  <td class="p-3"><strong class="text-emerald-400">am</strong> <span class="text-slate-400">('m)</span></td>
-                  <td class="p-3 text-rose-300">am not ('m not)</td>
-                  <td class="p-3 text-sky-300">Am I...?</td>
-                  <td class="p-3 text-slate-300">I am a postgraduate researcher.</td>
-                  <td class="p-3 text-center"><button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('I am a postgraduate researcher at UBV.', this)"><i data-lucide="volume-2" class="w-4 h-4"></i></button></td>
-                </tr>
-
-                <tr class="hover:bg-white/5 transition-colors">
-                  <td class="p-3 font-bold text-white">You (Tú / Usted)</td>
-                  <td class="p-3"><strong class="text-emerald-400">are</strong> <span class="text-slate-400">('re)</span></td>
-                  <td class="p-3 text-rose-300">are not (aren't)</td>
-                  <td class="p-3 text-sky-300">Are you...?</td>
-                  <td class="p-3 text-slate-300">You are an expert engineer.</td>
-                  <td class="p-3 text-center"><button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('You are an expert engineer.', this)"><i data-lucide="volume-2" class="w-4 h-4"></i></button></td>
-                </tr>
-
-                <tr class="hover:bg-white/5 transition-colors">
-                  <td class="p-3 font-bold text-white">He (Él)</td>
-                  <td class="p-3"><strong class="text-emerald-400">is</strong> <span class="text-slate-400">('s)</span></td>
-                  <td class="p-3 text-rose-300">is not (isn't)</td>
-                  <td class="p-3 text-sky-300">Is he...?</td>
-                  <td class="p-3 text-slate-300">He is the project coordinator.</td>
-                  <td class="p-3 text-center"><button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('He is the project coordinator.', this)"><i data-lucide="volume-2" class="w-4 h-4"></i></button></td>
-                </tr>
-
-                <tr class="hover:bg-white/5 transition-colors">
-                  <td class="p-3 font-bold text-white">She (Ella)</td>
-                  <td class="p-3"><strong class="text-emerald-400">is</strong> <span class="text-slate-400">('s)</span></td>
-                  <td class="p-3 text-rose-300">is not (isn't)</td>
-                  <td class="p-3 text-sky-300">Is she...?</td>
-                  <td class="p-3 text-slate-300">She is the lead scientist.</td>
-                  <td class="p-3 text-center"><button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('She is the lead scientist.', this)"><i data-lucide="volume-2" class="w-4 h-4"></i></button></td>
-                </tr>
-
-                <tr class="hover:bg-white/5 transition-colors">
-                  <td class="p-3 font-bold text-white">It (Eso/Objeto)</td>
-                  <td class="p-3"><strong class="text-emerald-400">is</strong> <span class="text-slate-400">('s)</span></td>
-                  <td class="p-3 text-rose-300">is not (isn't)</td>
-                  <td class="p-3 text-sky-300">Is it...?</td>
-                  <td class="p-3 text-slate-300">It is an essential software file.</td>
-                  <td class="p-3 text-center"><button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('It is an essential software file.', this)"><i data-lucide="volume-2" class="w-4 h-4"></i></button></td>
-                </tr>
-
-                <tr class="hover:bg-white/5 transition-colors">
-                  <td class="p-3 font-bold text-white">We (Nosotros)</td>
-                  <td class="p-3"><strong class="text-emerald-400">are</strong> <span class="text-slate-400">('re)</span></td>
-                  <td class="p-3 text-rose-300">are not (aren't)</td>
-                  <td class="p-3 text-sky-300">Are we...?</td>
-                  <td class="p-3 text-slate-300">We are in the VI Cohort in Lara.</td>
-                  <td class="p-3 text-center"><button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('We are in the sixth cohort in Lara.', this)"><i data-lucide="volume-2" class="w-4 h-4"></i></button></td>
-                </tr>
-
-                <tr class="hover:bg-white/5 transition-colors">
-                  <td class="p-3 font-bold text-white">They (Ellos)</td>
-                  <td class="p-3"><strong class="text-emerald-400">are</strong> <span class="text-slate-400">('re)</span></td>
-                  <td class="p-3 text-rose-300">are not (aren't)</td>
-                  <td class="p-3 text-sky-300">Are they...?</td>
-                  <td class="p-3 text-slate-300">They are connected to the network.</td>
-                  <td class="p-3 text-center"><button type="button" class="audio-btn p-1 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('They are connected to the network.', this)"><i data-lucide="volume-2" class="w-4 h-4"></i></button></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <!-- Interactive Quick Check for To-Be -->
-          <div class="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-3">
-            <h4 class="font-heading font-bold text-sm text-white flex items-center gap-2">
-              <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>
-              <span>Autoevaluación Rápida del Verbo To-Be</span>
-            </h4>
-            <p class="text-xs text-slate-400">Selecciona la forma correcta para completar la oración:</p>
-
-            <div class="space-y-3">
-              <!-- Item 1 -->
-              <div class="tobe-quiz-item p-3 rounded-xl bg-slate-900/60 border border-white/5" data-answer="am" data-sentence="I am a researcher in the strategic program.">
-                <p class="text-xs sm:text-sm text-slate-200 font-medium">1. "I <span class="text-cyan-400 font-bold underline">_____</span> a researcher in the strategic program."</p>
-                <div class="flex items-center gap-2 mt-2">
-                  <button type="button" class="tobe-opt-btn px-3 py-1 rounded-lg text-xs bg-white/5 border border-white/10 text-slate-300 hover:text-white" data-value="am">am</button>
-                  <button type="button" class="tobe-opt-btn px-3 py-1 rounded-lg text-xs bg-white/5 border border-white/10 text-slate-300 hover:text-white" data-value="is">is</button>
-                  <button type="button" class="tobe-opt-btn px-3 py-1 rounded-lg text-xs bg-white/5 border border-white/10 text-slate-300 hover:text-white" data-value="are">are</button>
-                </div>
-                <div class="tobe-feedback text-xs mt-1.5 min-h-[16px]"></div>
-              </div>
-
-              <!-- Item 2 -->
-              <div class="tobe-quiz-item p-3 rounded-xl bg-slate-900/60 border border-white/5" data-answer="is" data-sentence="The database server is online and secure.">
-                <p class="text-xs sm:text-sm text-slate-200 font-medium">2. "The database server <span class="text-cyan-400 font-bold underline">_____</span> online and secure."</p>
-                <div class="flex items-center gap-2 mt-2">
-                  <button type="button" class="tobe-opt-btn px-3 py-1 rounded-lg text-xs bg-white/5 border border-white/10 text-slate-300 hover:text-white" data-value="am">am</button>
-                  <button type="button" class="tobe-opt-btn px-3 py-1 rounded-lg text-xs bg-white/5 border border-white/10 text-slate-300 hover:text-white" data-value="is">is</button>
-                  <button type="button" class="tobe-opt-btn px-3 py-1 rounded-lg text-xs bg-white/5 border border-white/10 text-slate-300 hover:text-white" data-value="are">are</button>
-                </div>
-                <div class="tobe-feedback text-xs mt-1.5 min-h-[16px]"></div>
-              </div>
-
-              <!-- Item 3 -->
-              <div class="tobe-quiz-item p-3 rounded-xl bg-slate-900/60 border border-white/5" data-answer="are" data-sentence="We are students of the UBV Sixth Cohort.">
-                <p class="text-xs sm:text-sm text-slate-200 font-medium">3. "We <span class="text-cyan-400 font-bold underline">_____</span> students of the UBV Sixth Cohort."</p>
-                <div class="flex items-center gap-2 mt-2">
-                  <button type="button" class="tobe-opt-btn px-3 py-1 rounded-lg text-xs bg-white/5 border border-white/10 text-slate-300 hover:text-white" data-value="am">am</button>
-                  <button type="button" class="tobe-opt-btn px-3 py-1 rounded-lg text-xs bg-white/5 border border-white/10 text-slate-300 hover:text-white" data-value="is">is</button>
-                  <button type="button" class="tobe-opt-btn px-3 py-1 rounded-lg text-xs bg-white/5 border border-white/10 text-slate-300 hover:text-white" data-value="are">are</button>
-                </div>
-                <div class="tobe-feedback text-xs mt-1.5 min-h-[16px]"></div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- ================================================================
-             TAB 4: ORACIONES (SENTENCES) 📝
-             ================================================================ -->
-        <div id="tab-sentences" class="basic-tab-pane hidden space-y-6">
-          
-          <!-- Definición -->
-          <div class="p-4 rounded-2xl bg-cyan-950/30 border border-cyan-500/20">
-            <h3 class="font-heading font-bold text-lg text-white flex items-center gap-2">
-              <i data-lucide="bookmark" class="w-5 h-5 text-cyan-400"></i>
-              <span>Definición de Oración (Sentence Definition)</span>
-            </h3>
-            <p class="text-xs sm:text-sm text-slate-200 mt-2 leading-relaxed">
-              En inglés, una oración (<em>Sentence</em>) es la <strong>unidad gramatical básica que expresa un pensamiento completo</strong>. A diferencia del español, donde el sujeto puede ser tácito, en inglés la regla general exige que el sujeto sea <strong>explícito</strong> y cuente con al menos un verbo conjugado.
-            </p>
-          </div>
-
-          <!-- Partes de la Oración (Fórmula S-V-C) -->
-          <div>
-            <h4 class="font-heading font-bold text-base text-white mb-3 flex items-center gap-2">
-              <i data-lucide="layers" class="w-4 h-4 text-cyan-400"></i>
-              <span>Partes Fundamentales: Estructura S + V + C</span>
-            </h4>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
-              <!-- Sujeto -->
-              <div class="p-3.5 rounded-2xl bg-sky-950/30 border border-sky-500/30">
-                <span class="badge-subject text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-md">1. Subject (Sujeto)</span>
-                <p class="text-xs text-slate-300 mt-2">
-                  Quién o qué realiza la acción o sobre quién se afirma algo. Puede ser un pronombre (<em>I, You, They</em>) o un sustantivo (<em>The engineer, The software</em>).
-                </p>
-              </div>
-
-              <!-- Verbo -->
-              <div class="p-3.5 rounded-2xl bg-emerald-950/30 border border-emerald-500/30">
-                <span class="badge-verb text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-md">2. Verb (Verbo)</span>
-                <p class="text-xs text-slate-300 mt-2">
-                  La acción, estado de ser o proceso que realiza el sujeto. Es el núcleo motor indispensable de toda oración.
-                </p>
-              </div>
-
-              <!-- Complemento -->
-              <div class="p-3.5 rounded-2xl bg-purple-950/30 border border-purple-500/30">
-                <span class="badge-complement text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-md">3. Complement (Complemento)</span>
-                <p class="text-xs text-slate-300 mt-2">
-                  Información adicional que completa el sentido: objetos directos, indirectos, lugar, tiempo o modo.
-                </p>
-              </div>
-            </div>
-
-            <!-- Ejemplos Desglosados con Audio -->
-            <div class="space-y-2.5">
-              <div class="p-3 rounded-xl bg-slate-900/60 border border-white/10 flex items-center justify-between gap-3">
-                <div class="text-xs sm:text-sm">
-                  <span class="badge-subject px-2 py-0.5 rounded font-bold">The engineer</span>
-                  <span class="badge-verb px-2 py-0.5 rounded font-bold ml-1">configures</span>
-                  <span class="badge-complement px-2 py-0.5 rounded font-bold ml-1">the network router.</span>
-                  <p class="text-[11px] text-slate-400 mt-1 italic">El ingeniero configura el enrutador de red.</p>
-                </div>
-                <button type="button" class="audio-btn p-1.5 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('The engineer configures the network router.', this)"><i data-lucide="volume-2" class="w-4 h-4"></i></button>
-              </div>
-
-              <div class="p-3 rounded-xl bg-slate-900/60 border border-white/10 flex items-center justify-between gap-3">
-                <div class="text-xs sm:text-sm">
-                  <span class="badge-subject px-2 py-0.5 rounded font-bold">Postgraduate students</span>
-                  <span class="badge-verb px-2 py-0.5 rounded font-bold ml-1">present</span>
-                  <span class="badge-complement px-2 py-0.5 rounded font-bold ml-1">their research thesis.</span>
-                  <p class="text-[11px] text-slate-400 mt-1 italic">Los estudiantes de postgrado presentan su tesis de investigación.</p>
-                </div>
-                <button type="button" class="audio-btn p-1.5 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Postgraduate students present their research thesis.', this)"><i data-lucide="volume-2" class="w-4 h-4"></i></button>
-              </div>
-
-              <div class="p-3 rounded-xl bg-slate-900/60 border border-white/10 flex items-center justify-between gap-3">
-                <div class="text-xs sm:text-sm">
-                  <span class="badge-subject px-2 py-0.5 rounded font-bold">Technical English</span>
-                  <span class="badge-verb px-2 py-0.5 rounded font-bold ml-1">facilitates</span>
-                  <span class="badge-complement px-2 py-0.5 rounded font-bold ml-1">scientific reading.</span>
-                  <p class="text-[11px] text-slate-400 mt-1 italic">El inglés técnico facilita la lectura científica.</p>
-                </div>
-                <button type="button" class="audio-btn p-1.5 text-slate-400 hover:text-cyan-300" onclick="speakPhrase('Technical English facilitates scientific reading.', this)"><i data-lucide="volume-2" class="w-4 h-4"></i></button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Características Clave & Tipos -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-white/10">
-            
-            <!-- Características -->
-            <div class="p-4 rounded-2xl bg-white/5 border border-white/10">
-              <h5 class="font-heading font-bold text-sm text-cyan-300 mb-2.5 flex items-center gap-1.5">
-                <i data-lucide="check-square" class="w-4 h-4"></i>
-                <span>Características Principales</span>
-              </h5>
-              <ul class="space-y-2 text-xs text-slate-300">
-                <li class="flex items-start gap-2">
-                  <span class="text-emerald-400">✓</span>
-                  <span><strong>Mayúscula inicial:</strong> Toda oración inicia obligatoriamente con letra mayúscula (<em>Capital Letter</em>).</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-emerald-400">✓</span>
-                  <span><strong>Puntuación final:</strong> Termina en punto (<code>.</code>), interrogación (<code>?</code>) o exclamación (<code>!</code>). En inglés no existe el signo de apertura (<code>¿</code> ni <code>¡</code>).</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-emerald-400">✓</span>
-                  <span><strong>Concordancia:</strong> El verbo concuerda en persona y número con el sujeto (<em>He works</em> vs. <em>They work</em>).</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-emerald-400">✓</span>
-                  <span><strong>Sujeto explícito:</strong> En inglés afirmativo el pronombre no se omite (ejemplo: <em>"It is true"</em>, nunca <em>"Is true"</em>).</span>
-                </li>
-              </ul>
-            </div>
-
-            <!-- Tipos de Oraciones -->
-            <div class="p-4 rounded-2xl bg-white/5 border border-white/10">
-              <h5 class="font-heading font-bold text-sm text-purple-300 mb-2.5 flex items-center gap-1.5">
-                <i data-lucide="help-circle" class="w-4 h-4"></i>
-                <span>Los 4 Tipos de Oraciones</span>
-              </h5>
-              <ul class="space-y-2 text-xs text-slate-300">
-                <li>
-                  <strong class="text-white">Declarativa (Declarative):</strong> Afirma un hecho.
-                  <span class="block text-[11px] text-slate-400 italic">"The database stores information."</span>
-                </li>
-                <li>
-                  <strong class="text-white">Interrogativa (Interrogative):</strong> Hace una pregunta.
-                  <span class="block text-[11px] text-slate-400 italic">"Is the network system active?"</span>
-                </li>
-                <li>
-                  <strong class="text-white">Imperativa (Imperative):</strong> Instrucción o mandato técnico.
-                  <span class="block text-[11px] text-slate-400 italic">"Save the file before rebooting."</span>
-                </li>
-                <li>
-                  <strong class="text-white">Exclamativa (Exclamatory):</strong> Expresa sorpresa o énfasis.
-                  <span class="block text-[11px] text-slate-400 italic">"What a successful presentation!"</span>
-                </li>
-              </ul>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <!-- Modal Footer -->
-      <div class="p-4 px-6 border-t border-white/10 bg-slate-900/80 flex items-center justify-between text-xs text-slate-400">
-        <span class="flex items-center gap-1.5 text-cyan-300">
-          <i data-lucide="headphones" class="w-3.5 h-3.5"></i>
-          <span>Usa los iconos de audio para afinar tu fonética y ritmo en inglés.</span>
-        </span>
-        <button type="button" onclick="closeBasicModuleModal()" class="px-4 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold transition-colors cursor-pointer">
-          Cerrar Módulo
-        </button>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- ======================================================================
        MODAL LEGAL (Términos de Uso, Términos Legales y Política de Privacidad)
        ====================================================================== -->
   <div id="legal-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="legal-modal-title">
@@ -2693,6 +2706,143 @@
   </button>
 
   <!-- Main JavaScript File -->
-  <script src="script.js"></script>
+  <script src="script.js?v=2.1"></script>
+
+  <!-- Robust Inline Logic for Guaranteed Instant Interaction -->
+  <script>
+    window.toggleBasicModule = function(targetTab) {
+      const sec = document.getElementById('modulo-basico');
+      if (!sec) {
+        console.error('Section #modulo-basico not found');
+        return;
+      }
+      
+      const isHidden = (sec.style.display === 'none' || sec.classList.contains('hidden'));
+      
+      if (isHidden) {
+        sec.style.display = 'block';
+        sec.classList.remove('hidden');
+        if (targetTab) {
+          window.switchBasicTab(targetTab);
+        }
+        setTimeout(function() {
+          sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 50);
+      } else {
+        if (targetTab && targetTab !== 'toggle') {
+          window.switchBasicTab(targetTab);
+          sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          sec.style.display = 'none';
+          sec.classList.add('hidden');
+        }
+      }
+      
+      if (window.lucide) {
+        try { window.lucide.createIcons(); } catch(e){}
+      }
+    };
+
+    window.openBasicModuleModal = function(targetTab) {
+      window.toggleBasicModule(targetTab);
+    };
+
+    window.switchBasicTab = function(tabId) {
+      const tabBtns = document.querySelectorAll('.basic-tab-btn');
+      const tabPanes = document.querySelectorAll('.basic-tab-pane');
+
+      tabBtns.forEach(function(btn) {
+        const isTarget = btn.getAttribute('data-tab') === tabId;
+        if (isTarget) {
+          btn.classList.add('bg-cyan-500', 'text-slate-950', 'font-bold');
+          btn.classList.remove('bg-white/5', 'text-slate-300');
+        } else {
+          btn.classList.remove('bg-cyan-500', 'text-slate-950', 'font-bold');
+          btn.classList.add('bg-white/5', 'text-slate-300');
+        }
+      });
+
+      tabPanes.forEach(function(pane) {
+        if (pane.id === tabId) {
+          pane.classList.remove('hidden');
+          pane.style.display = 'block';
+        } else {
+          pane.classList.add('hidden');
+          pane.style.display = 'none';
+        }
+      });
+    };
+
+    // Text to Speech Helper
+    window.speakPhrase = function(text, buttonElement) {
+      if (!('speechSynthesis' in window)) {
+        alert('Síntesis de voz no disponible en este navegador.');
+        return;
+      }
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.9;
+      
+      const voices = window.speechSynthesis.getVoices();
+      const eng = voices.find(v => v.lang.startsWith('en')) || null;
+      if (eng) utterance.voice = eng;
+
+      if (buttonElement) {
+        buttonElement.classList.add('playing');
+        utterance.onend = function() { buttonElement.classList.remove('playing'); };
+        utterance.onerror = function() { buttonElement.classList.remove('playing'); };
+      }
+      window.speechSynthesis.speak(utterance);
+    };
+
+    // Legal Modal Handlers
+    window.openLegalModal = function(tabId) {
+      const modal = document.getElementById('legal-modal');
+      if (!modal) return;
+      modal.classList.remove('hidden');
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      window.switchLegalTab(tabId || 'legal-pane-terms');
+      if (window.lucide) {
+        try { window.lucide.createIcons(); } catch(e){}
+      }
+    };
+
+    window.closeLegalModal = function() {
+      const modal = document.getElementById('legal-modal');
+      if (!modal) return;
+      modal.classList.add('hidden');
+      modal.style.display = 'none';
+      document.body.style.overflow = '';
+    };
+
+    window.switchLegalTab = function(tabId) {
+      const tabBtns = document.querySelectorAll('.legal-tab-btn');
+      const tabPanes = document.querySelectorAll('.legal-tab-pane');
+
+      tabBtns.forEach(function(btn) {
+        const isTarget = btn.getAttribute('data-legal-tab') === tabId;
+        if (isTarget) {
+          btn.classList.add('bg-cyan-500', 'text-slate-950', 'font-bold');
+          btn.classList.remove('bg-white/5', 'text-slate-300');
+        } else {
+          btn.classList.remove('bg-cyan-500', 'text-slate-950', 'font-bold');
+          btn.classList.add('bg-white/5', 'text-slate-300');
+        }
+      });
+
+      tabPanes.forEach(function(pane) {
+        if (pane.id === tabId) {
+          pane.classList.remove('hidden');
+          pane.style.display = 'block';
+        } else {
+          pane.classList.add('hidden');
+          pane.style.display = 'none';
+        }
+      });
+    };
+  </script>
+
 </body>
 </html>
