@@ -5,20 +5,26 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize Lucide icons if available
-  if (window.lucide) {
-    window.lucide.createIcons();
-  }
+  const initTasks = [
+    () => window.lucide && window.lucide.createIcons(),
+    initNavigation,
+    initTextToSpeech,
+    initFlipCards,
+    initQuizModule,
+    initDialogueStudio,
+    initBilingualToggle,
+    initScrollTop,
+    initBasicModule,
+    initLegalModal
+  ];
 
-  initNavigation();
-  initTextToSpeech();
-  initFlipCards();
-  initQuizModule();
-  initDialogueStudio();
-  initBilingualToggle();
-  initScrollTop();
-  initBasicModule();
-  initLegalModal();
+  initTasks.forEach(task => {
+    try {
+      task();
+    } catch (err) {
+      console.warn('Initialization notice:', err);
+    }
+  });
 });
 
 /* ==========================================================================
@@ -790,12 +796,67 @@ function escapeQuotes(str) {
    - Oraciones (Definición, Partes, Características)
    ========================================================================== */
 
+window.openBasicModuleModal = function (targetTab) {
+  const modal = document.getElementById('basic-module-modal');
+  if (!modal) {
+    console.error('Modal #basic-module-modal not found');
+    return;
+  }
+  modal.classList.remove('hidden');
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+
+  const tabToOpen = targetTab || 'tab-alphabet';
+  window.switchBasicTab(tabToOpen);
+
+  if (window.lucide) {
+    try {
+      window.lucide.createIcons();
+    } catch (e) {
+      console.warn(e);
+    }
+  }
+};
+
+window.closeBasicModuleModal = function () {
+  const modal = document.getElementById('basic-module-modal');
+  if (!modal) return;
+  modal.classList.add('hidden');
+  modal.style.display = 'none';
+  document.body.style.overflow = '';
+};
+
+window.switchBasicTab = function (tabId) {
+  const tabBtns = document.querySelectorAll('.basic-tab-btn');
+  const tabPanes = document.querySelectorAll('.basic-tab-pane');
+
+  tabBtns.forEach(btn => {
+    const isTarget = btn.getAttribute('data-tab') === tabId;
+    if (isTarget) {
+      btn.classList.add('bg-cyan-500', 'text-slate-950', 'font-bold');
+      btn.classList.remove('bg-white/5', 'text-slate-300');
+    } else {
+      btn.classList.remove('bg-cyan-500', 'text-slate-950', 'font-bold');
+      btn.classList.add('bg-white/5', 'text-slate-300');
+    }
+  });
+
+  tabPanes.forEach(pane => {
+    if (pane.id === tabId) {
+      pane.classList.remove('hidden');
+      pane.style.display = 'block';
+    } else {
+      pane.classList.add('hidden');
+      pane.style.display = 'none';
+    }
+  });
+};
+
 function initBasicModule() {
   const modal = document.getElementById('basic-module-modal');
   const backdrop = document.getElementById('basic-module-backdrop');
   const closeBtn = document.getElementById('btn-close-basic-module');
   const tabBtns = document.querySelectorAll('.basic-tab-btn');
-  const tabPanes = document.querySelectorAll('.basic-tab-pane');
 
   const openTriggers = [
     document.getElementById('btn-open-basic-module'),
@@ -805,60 +866,21 @@ function initBasicModule() {
 
   if (!modal) return;
 
-  function openBasicModal(targetTab) {
-    modal.classList.remove('hidden');
-    document.body.style.overflow = 'hidden';
-
-    if (targetTab) {
-      switchTab(targetTab);
-    }
-
-    if (window.lucide) {
-      window.lucide.createIcons({ root: modal });
-    }
-  }
-
-  function closeBasicModal() {
-    modal.classList.add('hidden');
-    document.body.style.overflow = '';
-  }
-
-  function switchTab(tabId) {
-    tabBtns.forEach(btn => {
-      const isTarget = btn.getAttribute('data-tab') === tabId;
-      if (isTarget) {
-        btn.classList.add('bg-cyan-500', 'text-slate-950', 'font-bold');
-        btn.classList.remove('bg-white/5', 'text-slate-300');
-      } else {
-        btn.classList.remove('bg-cyan-500', 'text-slate-950', 'font-bold');
-        btn.classList.add('bg-white/5', 'text-slate-300');
-      }
-    });
-
-    tabPanes.forEach(pane => {
-      if (pane.id === tabId) {
-        pane.classList.remove('hidden');
-      } else {
-        pane.classList.add('hidden');
-      }
-    });
-  }
-
   openTriggers.forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       const initialTab = btn.getAttribute('data-target-tab') || 'tab-alphabet';
-      openBasicModal(initialTab);
+      window.openBasicModuleModal(initialTab);
     });
   });
 
-  if (closeBtn) closeBtn.addEventListener('click', closeBasicModal);
-  if (backdrop) backdrop.addEventListener('click', closeBasicModal);
+  if (closeBtn) closeBtn.addEventListener('click', window.closeBasicModuleModal);
+  if (backdrop) backdrop.addEventListener('click', window.closeBasicModuleModal);
 
   // Close on Escape key
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
-      closeBasicModal();
+      window.closeBasicModuleModal();
     }
   });
 
@@ -866,7 +888,7 @@ function initBasicModule() {
   tabBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       const tabId = btn.getAttribute('data-tab');
-      switchTab(tabId);
+      window.switchBasicTab(tabId);
     });
   });
 
@@ -908,7 +930,9 @@ function initBasicModule() {
         }
 
         if (window.lucide) {
-          window.lucide.createIcons({ root: feedback });
+          try {
+            window.lucide.createIcons();
+          } catch (e) {}
         }
       });
     });
@@ -919,12 +943,60 @@ function initBasicModule() {
    Legal Modal (Términos de Uso, Términos Legales y Política de Privacidad)
    ========================================================================== */
 
+window.openLegalModal = function (tabId) {
+  const modal = document.getElementById('legal-modal');
+  if (!modal) return;
+  modal.classList.remove('hidden');
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  window.switchLegalTab(tabId || 'legal-pane-terms');
+
+  if (window.lucide) {
+    try {
+      window.lucide.createIcons();
+    } catch (e) {}
+  }
+};
+
+window.closeLegalModal = function () {
+  const modal = document.getElementById('legal-modal');
+  if (!modal) return;
+  modal.classList.add('hidden');
+  modal.style.display = 'none';
+  document.body.style.overflow = '';
+};
+
+window.switchLegalTab = function (tabId) {
+  const tabBtns = document.querySelectorAll('.legal-tab-btn');
+  const tabPanes = document.querySelectorAll('.legal-tab-pane');
+
+  tabBtns.forEach(btn => {
+    const isTarget = btn.getAttribute('data-legal-tab') === tabId;
+    if (isTarget) {
+      btn.classList.add('bg-cyan-500', 'text-slate-950', 'font-bold');
+      btn.classList.remove('bg-white/5', 'text-slate-300');
+    } else {
+      btn.classList.remove('bg-cyan-500', 'text-slate-950', 'font-bold');
+      btn.classList.add('bg-white/5', 'text-slate-300');
+    }
+  });
+
+  tabPanes.forEach(pane => {
+    if (pane.id === tabId) {
+      pane.classList.remove('hidden');
+      pane.style.display = 'block';
+    } else {
+      pane.classList.add('hidden');
+      pane.style.display = 'none';
+    }
+  });
+};
+
 function initLegalModal() {
   const modal = document.getElementById('legal-modal');
   const backdrop = document.getElementById('legal-modal-backdrop');
   const closeBtn = document.getElementById('btn-close-legal-modal');
   const tabBtns = document.querySelectorAll('.legal-tab-btn');
-  const tabPanes = document.querySelectorAll('.legal-tab-pane');
 
   const openTriggers = [
     { btn: document.getElementById('btn-open-legal-terms'), tab: 'legal-pane-terms' },
@@ -934,64 +1006,28 @@ function initLegalModal() {
 
   if (!modal) return;
 
-  function openLegalModal(tabId) {
-    modal.classList.remove('hidden');
-    document.body.style.overflow = 'hidden';
-    switchLegalTab(tabId || 'legal-pane-terms');
-
-    if (window.lucide) {
-      window.lucide.createIcons({ root: modal });
-    }
-  }
-
-  function closeLegalModal() {
-    modal.classList.add('hidden');
-    document.body.style.overflow = '';
-  }
-
-  function switchLegalTab(tabId) {
-    tabBtns.forEach(btn => {
-      const isTarget = btn.getAttribute('data-legal-tab') === tabId;
-      if (isTarget) {
-        btn.classList.add('bg-cyan-500', 'text-slate-950', 'font-bold');
-        btn.classList.remove('bg-white/5', 'text-slate-300');
-      } else {
-        btn.classList.remove('bg-cyan-500', 'text-slate-950', 'font-bold');
-        btn.classList.add('bg-white/5', 'text-slate-300');
-      }
-    });
-
-    tabPanes.forEach(pane => {
-      if (pane.id === tabId) {
-        pane.classList.remove('hidden');
-      } else {
-        pane.classList.add('hidden');
-      }
-    });
-  }
-
   openTriggers.forEach(({ btn, tab }) => {
     if (btn) {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
-        openLegalModal(tab);
+        window.openLegalModal(tab);
       });
     }
   });
 
-  if (closeBtn) closeBtn.addEventListener('click', closeLegalModal);
-  if (backdrop) backdrop.addEventListener('click', closeLegalModal);
+  if (closeBtn) closeBtn.addEventListener('click', window.closeLegalModal);
+  if (backdrop) backdrop.addEventListener('click', window.closeLegalModal);
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
-      closeLegalModal();
+      window.closeLegalModal();
     }
   });
 
   tabBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       const tabId = btn.getAttribute('data-legal-tab');
-      switchLegalTab(tabId);
+      window.switchLegalTab(tabId);
     });
   });
 }

@@ -124,7 +124,8 @@
           <button 
             id="btn-open-basic-module" 
             type="button"
-            class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-emerald-500/20 to-teal-500/20 hover:from-emerald-500/30 hover:to-teal-500/30 border border-emerald-400/40 text-emerald-300 text-xs font-bold transition-all shadow-sm"
+            onclick="openBasicModuleModal('tab-alphabet')"
+            class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-emerald-500/20 to-teal-500/20 hover:from-emerald-500/30 hover:to-teal-500/30 border border-emerald-400/40 text-emerald-300 text-xs font-bold transition-all shadow-sm cursor-pointer"
             title="Abrir Módulo Básico (Alfabeto, Números, Verbo To-Be, Oraciones)"
           >
             <i data-lucide="sparkles" class="w-3.5 h-3.5 text-emerald-400"></i>
@@ -163,7 +164,8 @@
       <button 
         id="btn-open-basic-mobile" 
         type="button" 
-        class="w-full text-left px-3 py-2.5 rounded-xl text-sm font-bold text-emerald-300 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-400/20 transition-colors flex items-center justify-between"
+        onclick="openBasicModuleModal('tab-alphabet')"
+        class="w-full text-left px-3 py-2.5 rounded-xl text-sm font-bold text-emerald-300 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-400/20 transition-colors flex items-center justify-between cursor-pointer"
       >
         <span class="flex items-center gap-2"><span>🔤</span> Módulo Básico (Alfabeto, Números, To-Be, Oraciones)</span>
         <i data-lucide="chevron-right" class="w-4 h-4 text-emerald-400"></i>
@@ -223,7 +225,8 @@
           <button 
             id="btn-open-basic-hero" 
             type="button" 
-            class="px-6 py-3.5 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-400/40 text-emerald-300 font-bold text-sm md:text-base backdrop-blur-md transition-all flex items-center gap-2 shadow-sm"
+            onclick="openBasicModuleModal('tab-alphabet')"
+            class="px-6 py-3.5 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-400/40 text-emerald-300 font-bold text-sm md:text-base backdrop-blur-md transition-all flex items-center gap-2 shadow-sm cursor-pointer"
           >
             <i data-lucide="sparkles" class="w-4 h-4 text-emerald-400"></i>
             <span>Módulo Básico (Nivelación) 🔤</span>
@@ -1621,11 +1624,11 @@
           © 2026 Universidad Bolivariana de Venezuela (UBV) — VI Cohorte Maestría de Ciencias.
         </div>
         <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-          <button type="button" id="btn-open-legal-terms" class="hover:text-cyan-400 transition-colors">Términos de Uso</button>
+          <button type="button" id="btn-open-legal-terms" onclick="openLegalModal('legal-pane-terms')" class="hover:text-cyan-400 transition-colors cursor-pointer">Términos de Uso</button>
           <span>•</span>
-          <button type="button" id="btn-open-legal-notice" class="hover:text-cyan-400 transition-colors">Términos Legales</button>
+          <button type="button" id="btn-open-legal-notice" onclick="openLegalModal('legal-pane-notice')" class="hover:text-cyan-400 transition-colors cursor-pointer">Términos Legales</button>
           <span>•</span>
-          <button type="button" id="btn-open-legal-privacy" class="hover:text-cyan-400 transition-colors">Política de Privacidad</button>
+          <button type="button" id="btn-open-legal-privacy" onclick="openLegalModal('legal-pane-privacy')" class="hover:text-cyan-400 transition-colors cursor-pointer">Política de Privacidad</button>
           <span>•</span>
           <a href="legal.html" class="hover:text-slate-300 transition-colors inline-flex items-center gap-1" title="Ver documento legal completo">
             <span>Doc Legal</span>
@@ -1646,10 +1649,10 @@
        ====================================================================== -->
   <div id="basic-module-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="basic-module-title">
     <!-- Backdrop -->
-    <div id="basic-module-backdrop" class="modal-backdrop fixed inset-0"></div>
+    <div id="basic-module-backdrop" class="modal-backdrop fixed inset-0 z-0 cursor-pointer" onclick="closeBasicModuleModal()"></div>
 
     <!-- Modal Panel -->
-    <div class="modal-content-glass relative w-full max-w-5xl max-h-[90vh] rounded-3xl overflow-hidden flex flex-col z-10 my-auto">
+    <div class="modal-content-glass relative w-full max-w-5xl max-h-[90vh] rounded-3xl overflow-hidden flex flex-col z-20 my-auto">
       
       <!-- Modal Header -->
       <div class="p-5 sm:p-6 border-b border-white/10 flex items-start justify-between gap-4 bg-slate-900/80">
@@ -1669,7 +1672,8 @@
         <button 
           id="btn-close-basic-module" 
           type="button" 
-          class="p-2.5 rounded-xl bg-white/5 hover:bg-white/15 text-slate-300 hover:text-white border border-white/10 transition-colors shrink-0"
+          onclick="closeBasicModuleModal()"
+          class="p-2.5 rounded-xl bg-white/5 hover:bg-white/15 text-slate-300 hover:text-white border border-white/10 transition-colors shrink-0 cursor-pointer"
           aria-label="Cerrar módulo básico"
           title="Cerrar ventana"
         >
@@ -1681,7 +1685,8 @@
       <div class="px-5 sm:px-6 pt-3 pb-2 border-b border-white/10 bg-slate-950/60 flex items-center gap-2 overflow-x-auto" role="tablist">
         <button 
           type="button" 
-          class="basic-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-cyan-500 text-slate-950 transition-all shrink-0 flex items-center gap-2"
+          onclick="switchBasicTab('tab-alphabet')"
+          class="basic-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-cyan-500 text-slate-950 transition-all shrink-0 flex items-center gap-2 cursor-pointer"
           data-tab="tab-alphabet"
         >
           <span>🔤</span>
@@ -1690,7 +1695,8 @@
 
         <button 
           type="button" 
-          class="basic-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 transition-all shrink-0 flex items-center gap-2"
+          onclick="switchBasicTab('tab-numbers')"
+          class="basic-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 transition-all shrink-0 flex items-center gap-2 cursor-pointer"
           data-tab="tab-numbers"
         >
           <span>🔢</span>
@@ -1699,7 +1705,8 @@
 
         <button 
           type="button" 
-          class="basic-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 transition-all shrink-0 flex items-center gap-2"
+          onclick="switchBasicTab('tab-tobe')"
+          class="basic-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 transition-all shrink-0 flex items-center gap-2 cursor-pointer"
           data-tab="tab-tobe"
         >
           <span>👤</span>
@@ -1708,7 +1715,8 @@
 
         <button 
           type="button" 
-          class="basic-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 transition-all shrink-0 flex items-center gap-2"
+          onclick="switchBasicTab('tab-sentences')"
+          class="basic-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 transition-all shrink-0 flex items-center gap-2 cursor-pointer"
           data-tab="tab-sentences"
         >
           <span>📝</span>
@@ -2540,7 +2548,7 @@
           <i data-lucide="headphones" class="w-3.5 h-3.5"></i>
           <span>Usa los iconos de audio para afinar tu fonética y ritmo en inglés.</span>
         </span>
-        <button type="button" onclick="document.getElementById('basic-module-modal').classList.add('hidden'); document.body.style.overflow='';" class="px-4 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold transition-colors">
+        <button type="button" onclick="closeBasicModuleModal()" class="px-4 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold transition-colors cursor-pointer">
           Cerrar Módulo
         </button>
       </div>
@@ -2552,9 +2560,9 @@
        MODAL LEGAL (Términos de Uso, Términos Legales y Política de Privacidad)
        ====================================================================== -->
   <div id="legal-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="legal-modal-title">
-    <div id="legal-modal-backdrop" class="modal-backdrop fixed inset-0"></div>
+    <div id="legal-modal-backdrop" class="modal-backdrop fixed inset-0 z-0 cursor-pointer" onclick="closeLegalModal()"></div>
 
-    <div class="modal-content-glass relative w-full max-w-4xl max-h-[88vh] rounded-3xl overflow-hidden flex flex-col z-10 my-auto">
+    <div class="modal-content-glass relative w-full max-w-4xl max-h-[88vh] rounded-3xl overflow-hidden flex flex-col z-20 my-auto">
       
       <!-- Legal Header -->
       <div class="p-5 sm:p-6 border-b border-white/10 flex items-start justify-between gap-4 bg-slate-900/80">
@@ -2572,7 +2580,8 @@
         <button 
           id="btn-close-legal-modal" 
           type="button" 
-          class="p-2.5 rounded-xl bg-white/5 hover:bg-white/15 text-slate-300 hover:text-white border border-white/10 transition-colors shrink-0"
+          onclick="closeLegalModal()"
+          class="p-2.5 rounded-xl bg-white/5 hover:bg-white/15 text-slate-300 hover:text-white border border-white/10 transition-colors shrink-0 cursor-pointer"
           aria-label="Cerrar modal legal"
         >
           <i data-lucide="x" class="w-5 h-5"></i>
@@ -2583,21 +2592,24 @@
       <div class="px-5 sm:px-6 pt-3 pb-2 border-b border-white/10 bg-slate-950/60 flex items-center gap-2 overflow-x-auto" role="tablist">
         <button 
           type="button" 
-          class="legal-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-cyan-500 text-slate-950 transition-all shrink-0"
+          onclick="switchLegalTab('legal-pane-terms')"
+          class="legal-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-cyan-500 text-slate-950 transition-all shrink-0 cursor-pointer"
           data-legal-tab="legal-pane-terms"
         >
           📄 Términos de Uso
         </button>
         <button 
           type="button" 
-          class="legal-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 transition-all shrink-0"
+          onclick="switchLegalTab('legal-pane-notice')"
+          class="legal-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 transition-all shrink-0 cursor-pointer"
           data-legal-tab="legal-pane-notice"
         >
           ⚖️ Términos Legales
         </button>
         <button 
           type="button" 
-          class="legal-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 transition-all shrink-0"
+          onclick="switchLegalTab('legal-pane-privacy')"
+          class="legal-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 transition-all shrink-0 cursor-pointer"
           data-legal-tab="legal-pane-privacy"
         >
           🔒 Política de Privacidad
@@ -2661,7 +2673,7 @@
           <span>Abrir documento legal completo en página independiente</span>
           <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
         </a>
-        <button type="button" onclick="document.getElementById('legal-modal').classList.add('hidden'); document.body.style.overflow='';" class="px-4 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold transition-colors">
+        <button type="button" onclick="closeLegalModal()" class="px-4 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold transition-colors cursor-pointer">
           Cerrar
         </button>
       </div>

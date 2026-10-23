@@ -322,8 +322,28 @@ body.hide-es-helpers .bilingual-helper {
 }
 
 /* Modal and Drawer Transitions */
+#basic-module-modal.hidden,
+#legal-modal.hidden {
+  display: none !important;
+}
+
+#basic-module-modal:not(.hidden),
+#legal-modal:not(.hidden) {
+  display: flex !important;
+}
+
+.basic-tab-pane.hidden,
+.legal-tab-pane.hidden {
+  display: none !important;
+}
+
+.basic-tab-pane:not(.hidden),
+.legal-tab-pane:not(.hidden) {
+  display: block !important;
+}
+
 .modal-backdrop {
-  background: rgba(11, 15, 25, 0.82);
+  background: rgba(11, 15, 25, 0.85);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.3s cubic-bezier(0.16, 1, 0.3, 1);
