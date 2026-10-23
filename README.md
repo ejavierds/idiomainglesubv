@@ -63,7 +63,7 @@ Aplicación Web Interactiva (**Single Page Application**) con arquitectura **Gla
 3. Haz clic en **"Add New..."** > **"Project"**.
 4. Importa tu repositorio `Web de Inglés`.
 5. Deja la configuración por defecto (Vercel detectará automáticamente que es un proyecto estático) y haz clic en **Deploy**.
-6. ¡Listo! Tu web estará disponible en un subdominio `https://tu-proyecto.vercel.app` en segundos.
+6. ¡Listo! Tu web estará disponible en `https://idiomainglesubvlara.vercel.app` en segundos.
 
 ### Opción 2: GitHub Pages
 1. Ve a los ajustes del repositorio en GitHub (**Settings** > **Pages**).
