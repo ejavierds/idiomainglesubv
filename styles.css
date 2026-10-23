@@ -321,6 +321,63 @@ body.hide-es-helpers .bilingual-helper {
   display: none !important;
 }
 
+/* Modal and Drawer Transitions */
+.modal-backdrop {
+  background: rgba(11, 15, 25, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-content-glass {
+  background: rgba(15, 23, 42, 0.94);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+/* Alphabet Letter Cards */
+.letter-card {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.letter-card:hover {
+  transform: translateY(-4px) scale(1.03);
+  border-color: rgba(56, 189, 248, 0.5);
+  box-shadow: 0 10px 20px -5px rgba(56, 189, 248, 0.25);
+}
+
+/* Number Cards */
+.number-card {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.number-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(168, 85, 247, 0.45);
+}
+
+/* Sentence Color Badges */
+.badge-subject {
+  background-color: rgba(14, 165, 233, 0.18);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.35);
+}
+
+.badge-verb {
+  background-color: rgba(34, 197, 94, 0.18);
+  color: #4ade80;
+  border: 1px solid rgba(74, 222, 128, 0.35);
+}
+
+.badge-complement {
+  background-color: rgba(168, 85, 247, 0.18);
+  color: #c084fc;
+  border: 1px solid rgba(192, 132, 252, 0.35);
+}
+
 /* Print Friendly Styles */
 @media print {
   .bg-mesh-container,

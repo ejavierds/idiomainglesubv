@@ -1,86 +1,68 @@
-# 🎓 UBV Lara — Guía Interactiva de Inglés Técnico e Inglés Interactivo (Clase #1)
+# 🎓 UBV Lara — VI Cohorte de la Maestría de Ciencias para el Desarrollo Estratégico
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new)
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
-![Status](https://img.shields.io/badge/Status-Production%20Ready-emerald)
-![UBV](https://img.shields.io/badge/UBV-Estudios%20Avanzados%20Lara-cyan)
+![Status](https://img.shields.io/badge/Status-100%25%20Operativo-emerald)
+![UBV](https://img.shields.io/badge/UBV-EGR%20Jos%C3%A9%20Leonardo%20Chirinos-cyan)
 
-Aplicación Web Interactiva (**Single Page Application**) con arquitectura **Glassmorphism**, diseño **Mobile-First** y baja carga cognitiva, desarrollada para apoyar la enseñanza del idioma inglés a los estudiantes de **Estudios Avanzados** de la **Universidad Bolivariana de Venezuela (UBV)** en el estado Lara.
+Plataforma interactiva diseñada para la formación académica y profesional en el dominio de idiomas extranjeros con propósitos específicos, desarrollada para la **VI Cohorte de la Maestría de Ciencias para el Desarrollo Estratégico** de la **Universidad Bolivariana de Venezuela (UBV)** en el **Eje Geopolítico Regional (EGR) Precursor José Leonardo Chirinos**, Estado Lara.
+
+🌐 **URL de Producción:** [https://idiomainglesubvlara.vercel.app/](https://idiomainglesubvlara.vercel.app/)
 
 ---
 
-## 🌟 Características Principales
+## 🌟 Características y Módulos de la Aplicación
 
-### 🎨 1. Diseño Visual UI/UX & Glassmorphism
-- **Estética Glassmorphism:** Fondos translúcidos con `backdrop-filter: blur()`, sutiles bordes translúcidos y orbes de iluminación ambiental flotantes.
-- **Mobile-First & 100% Responsivo:** Adaptado a pantallas de teléfonos móviles, tablets, laptops y monitores ultra-wide.
-- **Baja Carga Cognitiva:** Espaciado generoso, tipografías modernas (*Plus Jakarta Sans* para encabezados e *Inter* para lectura continua) e iconos intuitivos (*Lucide Icons*).
-- **Modo Asistente Bilingüe (EN/ES):** Botón para alternar la visualización de explicaciones y traducciones de apoyo en español.
+### 🔤 Módulo Básico de Fundamentos (Activado por Botón)
+Visible **únicamente al hacer clic en el botón correspondiente** (disponible en la barra de navegación superior, en el encabezado móvil y en el botón del Hero):
+1. **Alfabeto en Inglés (The Alphabet):**
+   - Las 26 letras (A-Z) con guía fonética (IPA), palabras tecnológicas de ejemplo y pronunciación de audio nativo individual y completa.
+2. **Números (Numbers):**
+   - **Cardinales:** 1 al 20, decenas, centenas, miles y millones con audio.
+   - **Ordinales:** 1st al 21st, destacando el **6th (Sixth) para la VI Cohorte de la Maestría**.
+3. **Verbo To-Be (Ser o Estar):**
+   - Cuadro comparativo completo con pronombres personales en formas afirmativa, negativa, interrogativa y contracciones (`'m`, `'re`, `'s`, `isn't`, `aren't`).
+   - Ejercicio interactivo de autoevaluación con validación inmediata.
+4. **Oraciones (Sentences in English):**
+   - **Definición:** Unidad gramatical con sentido completo que exige sujeto explícito en inglés.
+   - **Partes fundamentales:** Fórmula `S + V + C` (Subject + Verb + Complement / Object) con desglose en colores interactivo.
+   - **Características clave:** Mayúscula inicial, puntuación final, concordancia de número y persona, y rigidez en el orden.
+   - **Los 4 tipos de oraciones:** Declarativas, Interrogativas, Imperativas y Exclamativas.
 
-### 📚 2. Contenido Curricular Integrado (Clase #1)
+---
+
+### 📚 Contenido Curricular de la Clase #1
 - **Tema 1: Technical English 🛠️**
-  - Concepto y definición formal.
-  - Importancia y características clave con viñetas animadas e insignias (`✅`).
-  - **Tarjetas 3D Interactivas (Flip Cards):** Términos de Ciencias de la Computación (*Software*, *Hardware*, *Network*, *Database*, *Password*, *File*) con transcripción fonética, ejemplos prácticos y audio nativo.
+  - Concepto, importancia y características clave con viñetas animadas.
+  - **Tarjetas 3D Flip Cards:** Software, Hardware, Network, Database, Password y File con pronunciación de audio.
 - **Tema 2: Interactive English 🗣️**
-  - Concepto y canales de uso (debates, entrevistas, videollamadas, chats).
-  - Bloques visuales reducidos para baja carga cognitiva: beneficios reales y características lingüísticas esenciales.
-- **Tema 3: Importance of Interactive English Classes 🎓**
-  - Comparativa en dos paneles: **Basic Level** (saludos, presentaciones, superación del miedo a hablar) vs. **Intermediate Level** (descripciones, debates y opiniones críticas).
-- **Sección Interactiva: Quizzes y Repaso 🧠**
-  - 14 preguntas oficiales (7 de Inglés Técnico + 7 de Inglés Interactivo).
-  - Botón de **"Reveal Answer" / "Hide Answer"** con acordeón animado.
-  - Sistema de progreso personal (*"Mastered ✅"*) guardado en el navegador (`localStorage`).
-  - Audio pronunciación nativa para cada pregunta y respuesta mediante la **Web Speech API**.
-- **Instrucciones para la Tarea (Task Instructions) 📝**
-  - Recuadro destacado (*Callout con resplandor amber*) con los 6 pasos oficiales para el trabajo en parejas.
-  - **Simulador de Diálogo Interactivo:** Laboratorio de práctica en parejas con botón para **invertir roles (A ⇄ B)** y escucha de oraciones individuales o diálogo completo.
-
-### 🚀 3. Metadatos, SEO y Rendimiento
-- **Favicon SVG vectorial:** Escudo académico y tecnológico integrado.
-- **Open Graph y Twitter Cards:** Optimizado para previsualizaciones impecables al compartirse en WhatsApp, Telegram, LinkedIn, X y Facebook.
-- **Cero Dependencias de Construcción:** Funciona directamente abriendo `index.html` o desplegando en cualquier hosting estático sin necesidad de Node.js o bundlers.
+  - Concepto y canales comunicativos (debates, videollamadas, chats).
+  - Bloques de baja carga cognitiva para desarrollo de confianza y fluidez.
+- **Tema 3: Niveles Básicos e Intermedios 🎓**
+  - Paneles comparativos de práctica interactiva según el nivel de dominio.
+- **Sección Interactiva de Quizzes 🧠**
+  - 14 preguntas oficiales (7 de Inglés Técnico + 7 de Inglés Interactivo) con botones de revelación de respuesta, audio nativo y barra de progreso guardada en el navegador.
+- **Instrucciones para la Tarea & Laboratorio de Diálogo 📝**
+  - Callout con resplandor ámbar con los 6 pasos oficiales.
+  - Simulador de conversación en parejas con botón para **invertir roles (A ⇄ B)** y práctica auditiva.
 
 ---
 
-## 📂 Estructura del Proyecto
-
-```text
-├── index.html       # Estructura semántica HTML5, metadatos SEO y Open Graph
-├── styles.css       # Estilos Glassmorphism, animaciones 3D Flip Card y temas
-├── script.js        # Lógica interactiva, Web Speech API, quizzes y simulador
-├── vercel.json      # Configuración de despliegue optimizada para Vercel
-└── README.md        # Documentación del proyecto
-```
+### ⚖️ Marco Legal y Privacidad
+- **Términos de Uso:** Uso estrictamente formativo y no comercial para la VI Cohorte de la Maestría de la UBV.
+- **Términos Legales:** Fundamentación conforme a la Constitución de la República Bolivariana de Venezuela y normativas de la UBV.
+- **Política de Privacidad:** Cumplimiento de *Privacy by Design*. No se recopilan datos personales sensibles ni cookies de rastreo comercial. El progreso del estudiante se conserva únicamente en el `localStorage` de su navegador.
+- Disponible tanto en el **Modal Legal interactivo** como en la página independiente [legal.html](https://idiomainglesubvlara.vercel.app/legal.html).
 
 ---
 
-## ⚡ Cómo Desplegar
+## 👥 Créditos Institucionales
 
-### Opción 1: Despliegue en Vercel (Recomendada)
-1. Sube este repositorio a tu cuenta de GitHub.
-2. Inicia sesión en [Vercel](https://vercel.com).
-3. Haz clic en **"Add New..."** > **"Project"**.
-4. Importa tu repositorio `Web de Inglés`.
-5. Deja la configuración por defecto (Vercel detectará automáticamente que es un proyecto estático) y haz clic en **Deploy**.
-6. ¡Listo! Tu web estará disponible en `https://idiomainglesubvlara.vercel.app` en segundos.
-
-### Opción 2: GitHub Pages
-1. Ve a los ajustes del repositorio en GitHub (**Settings** > **Pages**).
-2. En **Source**, selecciona `Deploy from a branch` y elige la rama `main` (directorio `/root`).
-3. Guarda y accede a la URL pública generada.
-
-### Opción 3: Uso Local
-Simplemente abre el archivo `index.html` en cualquier navegador web moderno (Google Chrome, Microsoft Edge, Mozilla Firefox, Safari).
-
----
-
-## 👥 Créditos Académicos e Institucionales
-
-- **Institución:** Universidad Bolivariana de Venezuela (UBV) — Eje Territorial General Juan Jacinto Lara.
-- **Programa:** Estudios Avanzados.
+- **Institución:** Universidad Bolivariana de Venezuela (UBV)
+- **Eje Geopolítico Regional:** EGR Precursor José Leonardo Chirinos | Estado Lara
+- **Programa:** VI Cohorte de la Maestría de Ciencias para el Desarrollo Estratégico
 - **Profesor de la Unidad Curricular:** David Miranda
-- **Desarrollador Web Full Stack & UI/UX:** [ejavierds](https://ejavierds.vercel.app)
+- **Desarrollador:** [ejavierds](https://ejavierds.vercel.app)
 
 ---
 

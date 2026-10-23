@@ -17,6 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initDialogueStudio();
   initBilingualToggle();
   initScrollTop();
+  initBasicModule();
+  initLegalModal();
 });
 
 /* ==========================================================================
@@ -778,4 +780,218 @@ function initScrollTop() {
 
 function escapeQuotes(str) {
   return str.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+}
+
+/* ==========================================================================
+   Módulo Básico de Fundamentos (Visible Únicamente al hacer clic en el botón)
+   - Alfabeto
+   - Números
+   - Verbo To-Be
+   - Oraciones (Definición, Partes, Características)
+   ========================================================================== */
+
+function initBasicModule() {
+  const modal = document.getElementById('basic-module-modal');
+  const backdrop = document.getElementById('basic-module-backdrop');
+  const closeBtn = document.getElementById('btn-close-basic-module');
+  const tabBtns = document.querySelectorAll('.basic-tab-btn');
+  const tabPanes = document.querySelectorAll('.basic-tab-pane');
+
+  const openTriggers = [
+    document.getElementById('btn-open-basic-module'),
+    document.getElementById('btn-open-basic-hero'),
+    document.getElementById('btn-open-basic-mobile')
+  ].filter(Boolean);
+
+  if (!modal) return;
+
+  function openBasicModal(targetTab) {
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+
+    if (targetTab) {
+      switchTab(targetTab);
+    }
+
+    if (window.lucide) {
+      window.lucide.createIcons({ root: modal });
+    }
+  }
+
+  function closeBasicModal() {
+    modal.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
+  function switchTab(tabId) {
+    tabBtns.forEach(btn => {
+      const isTarget = btn.getAttribute('data-tab') === tabId;
+      if (isTarget) {
+        btn.classList.add('bg-cyan-500', 'text-slate-950', 'font-bold');
+        btn.classList.remove('bg-white/5', 'text-slate-300');
+      } else {
+        btn.classList.remove('bg-cyan-500', 'text-slate-950', 'font-bold');
+        btn.classList.add('bg-white/5', 'text-slate-300');
+      }
+    });
+
+    tabPanes.forEach(pane => {
+      if (pane.id === tabId) {
+        pane.classList.remove('hidden');
+      } else {
+        pane.classList.add('hidden');
+      }
+    });
+  }
+
+  openTriggers.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const initialTab = btn.getAttribute('data-target-tab') || 'tab-alphabet';
+      openBasicModal(initialTab);
+    });
+  });
+
+  if (closeBtn) closeBtn.addEventListener('click', closeBasicModal);
+  if (backdrop) backdrop.addEventListener('click', closeBasicModal);
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+      closeBasicModal();
+    }
+  });
+
+  // Tab click listeners
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tabId = btn.getAttribute('data-tab');
+      switchTab(tabId);
+    });
+  });
+
+  // Interactive To-Be Quick Practice Exercise
+  const tobeQuestions = document.querySelectorAll('.tobe-quiz-item');
+  tobeQuestions.forEach(item => {
+    const buttons = item.querySelectorAll('.tobe-opt-btn');
+    const feedback = item.querySelector('.tobe-feedback');
+    const correctAnswer = item.getAttribute('data-answer');
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const selected = btn.getAttribute('data-value');
+        buttons.forEach(b => {
+          b.classList.remove('bg-emerald-500', 'bg-rose-500', 'text-white', 'border-emerald-400', 'border-rose-400');
+          b.classList.add('bg-white/5', 'text-slate-300');
+        });
+
+        if (selected === correctAnswer) {
+          btn.classList.remove('bg-white/5', 'text-slate-300');
+          btn.classList.add('bg-emerald-500', 'text-slate-950', 'font-bold', 'border-emerald-400');
+          feedback.innerHTML = `
+            <span class="text-emerald-400 font-bold flex items-center gap-1.5">
+              <i data-lucide="check-circle" class="w-4 h-4"></i> ¡Correcto! "${correctAnswer}" es la forma apropiada.
+            </span>
+          `;
+          const fullSentence = item.getAttribute('data-sentence');
+          if (fullSentence) {
+            speakPhrase(fullSentence);
+          }
+        } else {
+          btn.classList.remove('bg-white/5', 'text-slate-300');
+          btn.classList.add('bg-rose-500/80', 'text-white', 'font-bold', 'border-rose-400');
+          feedback.innerHTML = `
+            <span class="text-rose-400 font-bold flex items-center gap-1.5">
+              <i data-lucide="x-circle" class="w-4 h-4"></i> Incorrecto. Revisa el sujeto de la oración.
+            </span>
+          `;
+        }
+
+        if (window.lucide) {
+          window.lucide.createIcons({ root: feedback });
+        }
+      });
+    });
+  });
+}
+
+/* ==========================================================================
+   Legal Modal (Términos de Uso, Términos Legales y Política de Privacidad)
+   ========================================================================== */
+
+function initLegalModal() {
+  const modal = document.getElementById('legal-modal');
+  const backdrop = document.getElementById('legal-modal-backdrop');
+  const closeBtn = document.getElementById('btn-close-legal-modal');
+  const tabBtns = document.querySelectorAll('.legal-tab-btn');
+  const tabPanes = document.querySelectorAll('.legal-tab-pane');
+
+  const openTriggers = [
+    { btn: document.getElementById('btn-open-legal-terms'), tab: 'legal-pane-terms' },
+    { btn: document.getElementById('btn-open-legal-notice'), tab: 'legal-pane-notice' },
+    { btn: document.getElementById('btn-open-legal-privacy'), tab: 'legal-pane-privacy' }
+  ];
+
+  if (!modal) return;
+
+  function openLegalModal(tabId) {
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    switchLegalTab(tabId || 'legal-pane-terms');
+
+    if (window.lucide) {
+      window.lucide.createIcons({ root: modal });
+    }
+  }
+
+  function closeLegalModal() {
+    modal.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
+  function switchLegalTab(tabId) {
+    tabBtns.forEach(btn => {
+      const isTarget = btn.getAttribute('data-legal-tab') === tabId;
+      if (isTarget) {
+        btn.classList.add('bg-cyan-500', 'text-slate-950', 'font-bold');
+        btn.classList.remove('bg-white/5', 'text-slate-300');
+      } else {
+        btn.classList.remove('bg-cyan-500', 'text-slate-950', 'font-bold');
+        btn.classList.add('bg-white/5', 'text-slate-300');
+      }
+    });
+
+    tabPanes.forEach(pane => {
+      if (pane.id === tabId) {
+        pane.classList.remove('hidden');
+      } else {
+        pane.classList.add('hidden');
+      }
+    });
+  }
+
+  openTriggers.forEach(({ btn, tab }) => {
+    if (btn) {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openLegalModal(tab);
+      });
+    }
+  });
+
+  if (closeBtn) closeBtn.addEventListener('click', closeLegalModal);
+  if (backdrop) backdrop.addEventListener('click', closeLegalModal);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+      closeLegalModal();
+    }
+  });
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tabId = btn.getAttribute('data-legal-tab');
+      switchLegalTab(tabId);
+    });
+  });
 }
