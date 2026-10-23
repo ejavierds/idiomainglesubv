@@ -122,8 +122,8 @@ const QUIZ_DATA = [
     num: 2,
     question: 'Is Interactive English important for your communication skills?',
     questionEs: '¿Es importante el inglés interactivo para tus habilidades comunicativas?',
-    answer: 'Yes, interactive English is important for your communication skills.',
-    answerEs: 'Sí, el inglés interactivo es importante para tus habilidades de comunicación.',
+    answer: 'Yes, interactive English is important for my communication skills.',
+    answerEs: 'Sí, el inglés interactivo es importante para mis habilidades de comunicación.',
     keyTakeaway: 'Bridges theoretical knowledge and real-time verbal fluency.'
   },
   {
