@@ -1,0 +1,350 @@
+/* ==========================================================================
+   English Interactive Guide - UBV Lara
+   Styles: Glassmorphism Design System & 3D Flip Cards
+   ========================================================================== */
+
+/* Custom Variables */
+:root {
+  --glass-bg: rgba(17, 25, 40, 0.65);
+  --glass-bg-hover: rgba(26, 38, 59, 0.78);
+  --glass-card: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-border-glow: rgba(56, 189, 248, 0.4);
+  --primary-glow: #0284c7;
+  --secondary-glow: #8b5cf6;
+  --accent-cyan: #38bdf8;
+  --accent-emerald: #34d399;
+}
+
+/* Base Smooth Scrolling & Typography */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  min-height: 100vh;
+  background-color: #0b0f19;
+  color: #f1f5f9;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Ambient Animated Background Mesh */
+.bg-mesh-container {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.mesh-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.35;
+  will-change: transform;
+  animation: floatOrb 18s ease-in-out infinite alternate;
+}
+
+.orb-1 {
+  top: -10%;
+  left: -10%;
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(circle, #0284c7 0%, rgba(2, 132, 199, 0) 70%);
+  animation-duration: 22s;
+}
+
+.orb-2 {
+  bottom: 10%;
+  right: -5%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, #7c3aed 0%, rgba(124, 58, 237, 0) 70%);
+  animation-duration: 26s;
+  animation-delay: -5s;
+}
+
+.orb-3 {
+  top: 45%;
+  left: 30%;
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, #0d9488 0%, rgba(13, 148, 136, 0) 70%);
+  animation-duration: 30s;
+  animation-delay: -10s;
+}
+
+@keyframes floatOrb {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  50% {
+    transform: translate(40px, 50px) scale(1.08);
+  }
+  100% {
+    transform: translate(-30px, 80px) scale(0.95);
+  }
+}
+
+/* Glassmorphism Containers */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(56, 189, 248, 0.35);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px -10px rgba(2, 132, 199, 0.25);
+}
+
+.glass-pill {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* 3D Flip Card Component */
+.flip-card-container {
+  perspective: 1200px;
+  min-height: 280px;
+}
+
+.flip-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  text-align: left;
+  transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  cursor: pointer;
+  border-radius: 1.25rem;
+}
+
+.flip-card.flipped {
+  transform: rotateY(180deg);
+}
+
+.flip-card:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 4px;
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.flip-card-front {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.02) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+}
+
+.flip-card-back {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 100%);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transform: rotateY(180deg);
+  box-shadow: 0 12px 30px -5px rgba(56, 189, 248, 0.25);
+}
+
+/* Audio Pronunciation Button Pulse */
+.audio-btn {
+  transition: all 0.2s ease;
+}
+
+.audio-btn:hover {
+  transform: scale(1.08);
+}
+
+.audio-btn.playing {
+  animation: pulseAudio 1.2s infinite;
+  color: #38bdf8 !important;
+}
+
+@keyframes pulseAudio {
+  0% {
+    box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(56, 189, 248, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(56, 189, 248, 0);
+  }
+}
+
+/* Quiz Reveal Animations */
+.quiz-answer-container {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  opacity: 0;
+}
+
+.quiz-answer-container.revealed {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.quiz-answer-inner {
+  overflow: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0b0f19;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(56, 189, 248, 0.45);
+}
+
+/* Glowing text and badge utilities */
+.glow-text-cyan {
+  text-shadow: 0 0 20px rgba(56, 189, 248, 0.45);
+}
+
+.glow-text-purple {
+  text-shadow: 0 0 20px rgba(168, 85, 247, 0.45);
+}
+
+/* Badge pulse animation */
+.badge-ping {
+  position: relative;
+}
+
+.badge-ping::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0.75rem;
+  width: 8px;
+  height: 8px;
+  background-color: #22c55e;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  animation: ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes ping {
+  75%, 100% {
+    transform: translateY(-50%) scale(2.2);
+    opacity: 0;
+  }
+}
+
+/* Interactive Checkmark Animations */
+.check-item {
+  transition: transform 0.25s ease, background-color 0.25s ease;
+}
+
+.check-item:hover {
+  transform: translateX(4px);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Task Callout Border Glow */
+.task-callout-glow {
+  position: relative;
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.85) 100%);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  box-shadow: 0 10px 40px -10px rgba(245, 158, 11, 0.2);
+}
+
+.task-callout-glow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, #f59e0b, #ec4899);
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
+/* Bilingual Helper Toggle */
+body.hide-es-helpers .bilingual-helper {
+  display: none !important;
+}
+
+/* Print Friendly Styles */
+@media print {
+  .bg-mesh-container,
+  #header-nav,
+  #btn-scroll-top,
+  .audio-btn,
+  .quiz-toggle-btn {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #111827 !important;
+  }
+
+  .glass-panel, .glass-card {
+    background: transparent !important;
+    border: 1px solid #d1d5db !important;
+    color: #111827 !important;
+    box-shadow: none !important;
+  }
+
+  .quiz-answer-container {
+    grid-template-rows: 1fr !important;
+    opacity: 1 !important;
+  }
+}

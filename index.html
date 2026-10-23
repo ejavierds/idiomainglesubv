@@ -1,0 +1,1618 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Primary Meta Tags -->
+  <title>UBV Lara | Curso de Inglés para Estudios Avanzados - Clase #1</title>
+  <meta name="title" content="UBV Lara | Curso de Inglés para Estudios Avanzados - Clase #1">
+  <meta name="description" content="Aplicación web interactiva para la Unidad Curricular de Inglés en Estudios Avanzados de la Universidad Bolivariana de Venezuela (UBV), Eje Territorial Lara. Clase #1: Technical English & Interactive English.">
+  <meta name="author" content="David Miranda (Profesor) | ejavierds (Desarrollador)">
+  <meta name="keywords" content="UBV, Universidad Bolivariana de Venezuela, Lara, Ingles Tecnico, Technical English, Interactive English, Estudios Avanzados, David Miranda, ejavierds">
+  <meta name="theme-color" content="#0b0f19">
+
+  <!-- Open Graph / Facebook / LinkedIn -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ubv-ingles-clase1.vercel.app/">
+  <meta property="og:title" content="UBV Lara | English for Advanced Studies - Class #1">
+  <meta property="og:description" content="Plataforma interactiva con estética Glassmorphism, tarjetas 3D, audio-pronunciación y cuestionarios para estudiantes de postgrado de la UBV Lara.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop">
+  <meta property="og:locale" content="es_VE">
+  <meta property="og:site_name" content="UBV Lara - Estudios Avanzados">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://ubv-ingles-clase1.vercel.app/">
+  <meta name="twitter:title" content="UBV Lara | English for Advanced Studies - Class #1">
+  <meta name="twitter:description" content="Guía interactiva de Inglés Técnico e Inglés Interactivo para estudiantes de Estudios Avanzados de la UBV Lara.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop">
+
+  <!-- Favicon (Modern SVG Academic & Tech Shield) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%2338bdf8'/><stop offset='100%' stop-color='%238b5cf6'/></linearGradient></defs><rect width='100' height='100' rx='25' fill='%230b0f19'/><path d='M20 35 L50 20 L80 35 L50 50 Z' fill='url(%23g)'/><path d='M30 45 L30 65 Q50 78 70 65 L70 45' stroke='%2338bdf8' stroke-width='6' fill='none' stroke-linecap='round'/><circle cx='80' cy='48' r='4' fill='%2338bdf8'/><path d='M80 48 L80 68' stroke='%2338bdf8' stroke-width='4' stroke-linecap='round'/></svg>">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              400: '#38bdf8',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              700: '#0369a1',
+              900: '#0c4a6e',
+              950: '#082f49',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-[#0b0f19] text-slate-100 antialiased selection:bg-cyan-500 selection:text-slate-950">
+
+  <!-- Ambient Animated Background Mesh -->
+  <div class="bg-mesh-container" aria-hidden="true">
+    <div class="mesh-orb orb-1"></div>
+    <div class="mesh-orb orb-2"></div>
+    <div class="mesh-orb orb-3"></div>
+  </div>
+
+  <!-- Header / Navigation Bar -->
+  <header id="header-nav" class="sticky top-0 z-50 w-full border-b border-white/10 bg-[#0b0f19]/80 backdrop-blur-xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Brand / Identity -->
+        <a href="#hero" class="flex items-center gap-3.5 group">
+          <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center p-0.5 shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+            <div class="w-full h-full bg-slate-950/70 rounded-[10px] flex items-center justify-center">
+              <span class="text-xl">🎓</span>
+            </div>
+          </div>
+          <div class="flex flex-col">
+            <span class="font-heading font-extrabold text-base md:text-lg tracking-tight text-white flex items-center gap-1.5">
+              UBV Lara <span class="text-xs px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 font-semibold">Postgrado</span>
+            </span>
+            <span class="text-xs text-slate-400 font-medium">Estudios Avanzados • Inglés I</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden lg:flex items-center gap-1.5" aria-label="Main Navigation">
+          <a href="#technical-english" class="nav-desktop-link px-3.5 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-all">
+            🛠️ Technical English
+          </a>
+          <a href="#interactive-english" class="nav-desktop-link px-3.5 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-all">
+            🗣️ Interactive English
+          </a>
+          <a href="#class-levels" class="nav-desktop-link px-3.5 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-all">
+            🎓 Levels
+          </a>
+          <a href="#quiz-section" class="nav-desktop-link px-3.5 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-all">
+            🧠 Quizzes
+          </a>
+          <a href="#task-section" class="nav-desktop-link px-3.5 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-all">
+            📝 Task #1
+          </a>
+        </nav>
+
+        <!-- Right Controls: Bilingual Helper & Mobile Toggle -->
+        <div class="flex items-center gap-2.5">
+          
+          <!-- Bilingual Helper Toggle -->
+          <button 
+            id="btn-bilingual-toggle" 
+            type="button"
+            class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-cyan-500/10 border border-cyan-400/30 text-cyan-300 text-xs font-semibold hover:bg-cyan-500/20 transition-all shadow-sm"
+            title="Alternar subtítulos y traducciones de apoyo en español"
+          >
+            <i data-lucide="languages" class="w-4 h-4"></i>
+            <span id="bilingual-status-text" class="hidden sm:inline">Bilingual (EN + ES)</span>
+          </button>
+
+          <!-- Mobile Menu Hamburger Button -->
+          <button 
+            id="btn-mobile-menu" 
+            type="button" 
+            class="lg:hidden p-2.5 rounded-xl bg-white/5 border border-white/10 text-slate-300 hover:text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+            aria-label="Abrir menú de navegación"
+            aria-expanded="false"
+          >
+            <i data-lucide="menu" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Navigation -->
+    <div id="mobile-menu" class="hidden lg:hidden border-t border-white/10 bg-slate-950/95 backdrop-blur-2xl px-4 py-4 space-y-2">
+      <a href="#technical-english" class="nav-link block px-3 py-2.5 rounded-xl text-sm font-medium text-slate-200 hover:bg-white/10 transition-colors">
+        🛠️ Tema 1: Technical English
+      </a>
+      <a href="#interactive-english" class="nav-link block px-3 py-2.5 rounded-xl text-sm font-medium text-slate-200 hover:bg-white/10 transition-colors">
+        🗣️ Tema 2: Interactive English
+      </a>
+      <a href="#class-levels" class="nav-link block px-3 py-2.5 rounded-xl text-sm font-medium text-slate-200 hover:bg-white/10 transition-colors">
+        🎓 Tema 3: Basic vs. Intermediate Levels
+      </a>
+      <a href="#quiz-section" class="nav-link block px-3 py-2.5 rounded-xl text-sm font-medium text-slate-200 hover:bg-white/10 transition-colors">
+        🧠 Cuestionario Interactivo (14 Preguntas)
+      </a>
+      <a href="#task-section" class="nav-link block px-3 py-2.5 rounded-xl text-sm font-medium text-slate-200 hover:bg-white/10 transition-colors">
+        📝 Instrucciones de la Tarea & Diálogo
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Content Layout -->
+  <main id="main-content" class="relative">
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        
+        <!-- Academic Pill Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-6 animate-pulse">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          <span class="text-xs font-semibold uppercase tracking-wider text-cyan-300">
+            Universidad Bolivariana de Venezuela • Eje Territorial Lara
+          </span>
+        </div>
+
+        <h1 class="font-heading font-extrabold text-3xl sm:text-5xl md:text-6xl tracking-tight text-white mb-6 leading-tight">
+          Guía de <span class="bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-400 bg-clip-text text-transparent glow-text-cyan">Inglés Técnico</span> e <span class="bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-400 bg-clip-text text-transparent glow-text-purple">Inglés Interactivo</span> 🚀
+        </h1>
+
+        <p class="text-slate-300 text-base sm:text-lg md:text-xl max-w-3xl mx-auto font-normal leading-relaxed mb-8">
+          Clase interactiva #1 adaptada para los estudiantes de <strong class="text-white font-semibold">Estudios Avanzados</strong>. Explora vocabulario especializado, practica tu fluidez oral con audio nativo y pon a prueba tus conocimientos con retos interactivos.
+        </p>
+
+        <!-- CTAs -->
+        <div class="flex flex-wrap items-center justify-center gap-4 mb-12">
+          <a href="#technical-english" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold text-sm md:text-base shadow-lg shadow-cyan-500/25 transition-all transform hover:-translate-y-0.5 flex items-center gap-2">
+            <span>Iniciar Clase #1</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+          <a href="#quiz-section" class="px-6 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/15 text-white font-semibold text-sm md:text-base backdrop-blur-md transition-all flex items-center gap-2">
+            <i data-lucide="brain-circuit" class="w-4 h-4 text-cyan-400"></i>
+            <span>Ir a Preguntas de Repaso</span>
+          </a>
+        </div>
+
+        <!-- Metric / Feature Highlights -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mx-auto text-left">
+          <div class="glass-card rounded-2xl p-4 border border-white/10">
+            <div class="text-2xl mb-1">🛠️</div>
+            <div class="text-xs text-slate-400 font-medium">Tema 1</div>
+            <div class="text-sm font-bold text-white">Technical English</div>
+          </div>
+          <div class="glass-card rounded-2xl p-4 border border-white/10">
+            <div class="text-2xl mb-1">🗣️</div>
+            <div class="text-xs text-slate-400 font-medium">Tema 2</div>
+            <div class="text-sm font-bold text-white">Interactive English</div>
+          </div>
+          <div class="glass-card rounded-2xl p-4 border border-white/10">
+            <div class="text-2xl mb-1">📇</div>
+            <div class="text-xs text-slate-400 font-medium">Informática</div>
+            <div class="text-sm font-bold text-white">6 3D Flip Cards</div>
+          </div>
+          <div class="glass-card rounded-2xl p-4 border border-white/10">
+            <div class="text-2xl mb-1">🧠</div>
+            <div class="text-xs text-slate-400 font-medium">Evaluación</div>
+            <div class="text-sm font-bold text-white">14 Flash Questions</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         Tema 1: Technical English 🛠️
+         ====================================================================== -->
+    <section id="technical-english" class="py-16 md:py-24 border-t border-white/5 relative">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Section Header -->
+        <div class="text-center md:text-left mb-12">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-semibold mb-3">
+            <span>Tema 1</span> • <span>Especialización Académica</span>
+          </div>
+          <h2 class="font-heading font-extrabold text-2xl sm:text-4xl text-white tracking-tight flex items-center justify-center md:justify-start gap-3">
+            <span>Technical English</span>
+            <span class="text-3xl">🛠️</span>
+          </h2>
+          <p class="text-slate-400 text-sm sm:text-base mt-2 max-w-2xl">
+            El lenguaje de precisión utilizado en la ciencia, la investigación tecnológica y los entornos profesionales avanzados.
+          </p>
+        </div>
+
+        <!-- Concept Box (Glassmorphic) -->
+        <div class="glass-panel rounded-3xl p-6 sm:p-8 mb-12 border border-white/15 relative overflow-hidden">
+          <div class="absolute -right-12 -top-12 w-48 h-48 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+          
+          <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-4 pb-4 border-b border-white/10">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-300 border border-cyan-400/30 flex items-center justify-center font-bold">
+                <i data-lucide="book-open" class="w-5 h-5"></i>
+              </div>
+              <h3 class="font-heading font-bold text-xl text-white">Concept & Definition</h3>
+            </div>
+            
+            <button 
+              type="button"
+              class="audio-btn inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/5 hover:bg-cyan-500/20 text-cyan-300 border border-white/10 text-xs font-semibold transition-all"
+              onclick="speakPhrase('Technical English is a variety of English used in specific professional, academic, scientific, and technological fields, such as engineering, medicine, computer science, technology, economics, and finance. It is not limited to learning general grammar. It also includes vocabulary, expressions, and structures related to a particular profession or area of study.', this)"
+            >
+              <i data-lucide="volume-2" class="w-4 h-4"></i>
+              <span>Escuchar Pronunciación</span>
+            </button>
+          </div>
+
+          <p class="text-base sm:text-lg text-slate-100 font-medium leading-relaxed mb-3">
+            "Technical English is a variety of English used in specific <strong class="text-cyan-300">professional, academic, scientific, and technological fields</strong>, such as engineering, medicine, computer science, technology, economics, and finance."
+          </p>
+          <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
+            It is not limited to learning general grammar. It also includes vocabulary, expressions, and structures related to a particular profession or area of study.
+          </p>
+
+          <!-- Bilingual helper explanation -->
+          <div class="bilingual-helper pt-3 border-t border-white/5 text-xs sm:text-sm text-cyan-200/80 italic flex items-start gap-2">
+            <i data-lucide="info" class="w-4 h-4 text-cyan-400 shrink-0 mt-0.5"></i>
+            <span>
+              <strong>En español:</strong> El inglés técnico es una variedad utilizada específicamente por profesionales académicos, científicos y tecnológicos. Va más allá de las reglas generales de gramática, enfocándose en el léxico e instrucciones específicas de cada campo.
+            </span>
+          </div>
+        </div>
+
+        <!-- Grid: Importance & Characteristics -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+          
+          <!-- Importance Card -->
+          <div class="glass-panel rounded-3xl p-6 sm:p-7 border border-white/10 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-3 mb-6">
+                <div class="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 flex items-center justify-center">
+                  <i data-lucide="award" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h3 class="font-heading font-bold text-lg sm:text-xl text-white">Importance 💡</h3>
+                  <p class="text-xs text-slate-400">Why Technical English is essential for postgraduate students:</p>
+                </div>
+              </div>
+
+              <ul class="space-y-3">
+                <li class="check-item p-3 rounded-xl bg-white/5 border border-white/5 flex items-start gap-3">
+                  <span class="text-emerald-400 shrink-0 text-base">✅</span>
+                  <div>
+                    <strong class="text-white text-sm">Understand specialized documents:</strong>
+                    <p class="text-xs text-slate-300 mt-0.5">Helps understand manuals, technical sheets, and operational protocols.</p>
+                  </div>
+                </li>
+                <li class="check-item p-3 rounded-xl bg-white/5 border border-white/5 flex items-start gap-3">
+                  <span class="text-emerald-400 shrink-0 text-base">✅</span>
+                  <div>
+                    <strong class="text-white text-sm">Read academic & scientific papers:</strong>
+                    <p class="text-xs text-slate-300 mt-0.5">Facilitates literature reviews, peer-reviewed journals, and thesis references.</p>
+                  </div>
+                </li>
+                <li class="check-item p-3 rounded-xl bg-white/5 border border-white/5 flex items-start gap-3">
+                  <span class="text-emerald-400 shrink-0 text-base">✅</span>
+                  <div>
+                    <strong class="text-white text-sm">Use technological tools & equipment:</strong>
+                    <p class="text-xs text-slate-300 mt-0.5">Assists in configuring software, hardware systems, and laboratory instruments.</p>
+                  </div>
+                </li>
+                <li class="check-item p-3 rounded-xl bg-white/5 border border-white/5 flex items-start gap-3">
+                  <span class="text-emerald-400 shrink-0 text-base">✅</span>
+                  <div>
+                    <strong class="text-white text-sm">International collaboration:</strong>
+                    <p class="text-xs text-slate-300 mt-0.5">Promotes clear communication among researchers and teams worldwide.</p>
+                  </div>
+                </li>
+                <li class="check-item p-3 rounded-xl bg-white/5 border border-white/5 flex items-start gap-3">
+                  <span class="text-emerald-400 shrink-0 text-base">✅</span>
+                  <div>
+                    <strong class="text-white text-sm">Career & academic growth:</strong>
+                    <p class="text-xs text-slate-300 mt-0.5">Significantly increases professional opportunities and scholarships.</p>
+                  </div>
+                </li>
+                <li class="check-item p-3 rounded-xl bg-white/5 border border-white/5 flex items-start gap-3">
+                  <span class="text-emerald-400 shrink-0 text-base">✅</span>
+                  <div>
+                    <strong class="text-white text-sm">Updated scientific updates:</strong>
+                    <p class="text-xs text-slate-300 mt-0.5">Provides direct access to the latest breakthroughs in science and technology.</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Characteristics Card -->
+          <div class="glass-panel rounded-3xl p-6 sm:p-7 border border-white/10 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-3 mb-6">
+                <div class="w-9 h-9 rounded-xl bg-sky-500/20 text-sky-300 border border-sky-400/30 flex items-center justify-center">
+                  <i data-lucide="sliders" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h3 class="font-heading font-bold text-lg sm:text-xl text-white">Characteristics 🎯</h3>
+                  <p class="text-xs text-slate-400">Core linguistic pillars of Technical English:</p>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div class="glass-card rounded-2xl p-3.5 border border-white/5">
+                  <div class="flex items-center gap-2 mb-1 text-cyan-300 font-bold text-sm">
+                    <i data-lucide="target" class="w-4 h-4"></i>
+                    <span>Precision</span>
+                  </div>
+                  <p class="text-xs text-slate-300">Uses words with specific, unambiguous meanings.</p>
+                </div>
+
+                <div class="glass-card rounded-2xl p-3.5 border border-white/5">
+                  <div class="flex items-center gap-2 mb-1 text-cyan-300 font-bold text-sm">
+                    <i data-lucide="sparkles" class="w-4 h-4"></i>
+                    <span>Clarity</span>
+                  </div>
+                  <p class="text-xs text-slate-300">Presents information in an easy-to-understand and direct way.</p>
+                </div>
+
+                <div class="glass-card rounded-2xl p-3.5 border border-white/5">
+                  <div class="flex items-center gap-2 mb-1 text-cyan-300 font-bold text-sm">
+                    <i data-lucide="scissors" class="w-4 h-4"></i>
+                    <span>Conciseness</span>
+                  </div>
+                  <p class="text-xs text-slate-300">Expresses ideas with few words, without unnecessary filler.</p>
+                </div>
+
+                <div class="glass-card rounded-2xl p-3.5 border border-white/5">
+                  <div class="flex items-center gap-2 mb-1 text-cyan-300 font-bold text-sm">
+                    <i data-lucide="scale" class="w-4 h-4"></i>
+                    <span>Objectivity</span>
+                  </div>
+                  <p class="text-xs text-slate-300">Focuses strictly on facts, processes, and measurable results.</p>
+                </div>
+
+                <div class="glass-card rounded-2xl p-3.5 border border-white/5">
+                  <div class="flex items-center gap-2 mb-1 text-cyan-300 font-bold text-sm">
+                    <i data-lucide="cpu" class="w-4 h-4"></i>
+                    <span>Specialized Vocab</span>
+                  </div>
+                  <p class="text-xs text-slate-300">Employs terms and nomenclature tied to particular disciplines.</p>
+                </div>
+
+                <div class="glass-card rounded-2xl p-3.5 border border-white/5">
+                  <div class="flex items-center gap-2 mb-1 text-cyan-300 font-bold text-sm">
+                    <i data-lucide="file-text" class="w-4 h-4"></i>
+                    <span>Instructions</span>
+                  </div>
+                  <p class="text-xs text-slate-300">Step-by-step guidance on how to perform activities or use gear.</p>
+                </div>
+
+                <div class="glass-card rounded-2xl p-3.5 border border-white/5">
+                  <div class="flex items-center gap-2 mb-1 text-cyan-300 font-bold text-sm">
+                    <i data-lucide="hash" class="w-4 h-4"></i>
+                    <span>Acronyms</span>
+                  </div>
+                  <p class="text-xs text-slate-300">Integrates standardized abbreviations commonly used in professions.</p>
+                </div>
+
+                <div class="glass-card rounded-2xl p-3.5 border border-white/5">
+                  <div class="flex items-center gap-2 mb-1 text-cyan-300 font-bold text-sm">
+                    <i data-lucide="graduation-cap" class="w-4 h-4"></i>
+                    <span>Formal Tone</span>
+                  </div>
+                  <p class="text-xs text-slate-300">Mainly applied in structured academic and technical publications.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Example (Computer Science): Interactive Flip Cards -->
+        <div class="mb-12">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-bold uppercase tracking-wider text-cyan-400 bg-cyan-500/10 px-2.5 py-1 rounded-md border border-cyan-500/20">
+                  Practical Vocabulary
+                </span>
+                <span class="text-xs text-slate-400 font-medium">Computer Science Examples</span>
+              </div>
+              <h3 class="font-heading font-bold text-xl sm:text-2xl text-white mt-1">
+                Interactive 3D Flip Cards 📇
+              </h3>
+            </div>
+            <p class="text-xs text-slate-400 flex items-center gap-1.5 self-start sm:self-auto">
+              <i data-lucide="mouse-pointer" class="w-3.5 h-3.5 text-cyan-400"></i>
+              <span>Haz clic o presiona Enter para voltear cada tarjeta</span>
+            </p>
+          </div>
+
+          <!-- Flip Cards Grid (6 terms from official guide) -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <!-- Card 1: Software -->
+            <div class="flip-card-container">
+              <div class="flip-card" tabindex="0" role="button" aria-label="Tarjeta Software">
+                <!-- Front -->
+                <div class="flip-card-front">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold uppercase tracking-wider text-cyan-300 px-2.5 py-1 rounded-md bg-cyan-500/10 border border-cyan-500/20">
+                      Term #1
+                    </span>
+                    <button 
+                      type="button" 
+                      class="audio-btn p-2 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-300 hover:text-cyan-300 border border-white/10" 
+                      title="Pronounce Software"
+                      onclick="speakPhrase('Software. Computer programs.', this)"
+                    >
+                      <i data-lucide="volume-2" class="w-4 h-4"></i>
+                    </button>
+                  </div>
+
+                  <div class="my-auto text-center py-4">
+                    <div class="w-16 h-16 mx-auto rounded-2xl bg-cyan-500/10 border border-cyan-400/20 flex items-center justify-center text-3xl mb-3 shadow-inner">
+                      💻
+                    </div>
+                    <h4 class="font-heading font-extrabold text-2xl text-white tracking-tight">Software</h4>
+                    <p class="text-xs font-mono text-cyan-300/80 mt-1">/ˈsɒftweə(r)/</p>
+                  </div>
+
+                  <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs text-slate-400">
+                    <span>Computer Science</span>
+                    <span class="text-cyan-400 font-medium flex items-center gap-1">
+                      <span>Click to Flip</span>
+                      <i data-lucide="repeat" class="w-3 h-3"></i>
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Back -->
+                <div class="flip-card-back">
+                  <div>
+                    <div class="flex items-center justify-between mb-3 pb-2 border-b border-white/10">
+                      <span class="text-xs font-bold uppercase tracking-wider text-cyan-300">Definition</span>
+                      <span class="text-xs text-slate-400 font-mono">Software</span>
+                    </div>
+
+                    <div class="space-y-3">
+                      <div>
+                        <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">English:</span>
+                        <p class="text-base font-semibold text-white mt-0.5 leading-snug">
+                          Computer programs.
+                        </p>
+                      </div>
+
+                      <div class="bilingual-helper pt-2 border-t border-white/5">
+                        <span class="text-xs font-semibold text-cyan-300/90 uppercase tracking-wider">Español:</span>
+                        <p class="text-sm text-slate-300 mt-0.5 italic">
+                          Programas del computador.
+                        </p>
+                      </div>
+
+                      <div class="p-2.5 rounded-lg bg-white/5 border border-white/5 text-xs text-slate-300">
+                        <strong class="text-white">Example:</strong> Operating systems and applications are essential software.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="pt-3 border-t border-white/10 flex items-center justify-between">
+                    <button type="button" class="btn-flip-back text-xs text-slate-400 hover:text-white flex items-center gap-1">
+                      <i data-lucide="undo-2" class="w-3.5 h-3.5"></i> Voltear
+                    </button>
+                    <span class="text-xs text-cyan-400 font-medium">Class Guide #1</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2: Hardware -->
+            <div class="flip-card-container">
+              <div class="flip-card" tabindex="0" role="button" aria-label="Tarjeta Hardware">
+                <!-- Front -->
+                <div class="flip-card-front">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold uppercase tracking-wider text-cyan-300 px-2.5 py-1 rounded-md bg-cyan-500/10 border border-cyan-500/20">
+                      Term #2
+                    </span>
+                    <button 
+                      type="button" 
+                      class="audio-btn p-2 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-300 hover:text-cyan-300 border border-white/10" 
+                      title="Pronounce Hardware"
+                      onclick="speakPhrase('Hardware. The physical parts of a computer.', this)"
+                    >
+                      <i data-lucide="volume-2" class="w-4 h-4"></i>
+                    </button>
+                  </div>
+
+                  <div class="my-auto text-center py-4">
+                    <div class="w-16 h-16 mx-auto rounded-2xl bg-cyan-500/10 border border-cyan-400/20 flex items-center justify-center text-3xl mb-3 shadow-inner">
+                      🖥️
+                    </div>
+                    <h4 class="font-heading font-extrabold text-2xl text-white tracking-tight">Hardware</h4>
+                    <p class="text-xs font-mono text-cyan-300/80 mt-1">/ˈhɑːdweə(r)/</p>
+                  </div>
+
+                  <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs text-slate-400">
+                    <span>Computer Science</span>
+                    <span class="text-cyan-400 font-medium flex items-center gap-1">
+                      <span>Click to Flip</span>
+                      <i data-lucide="repeat" class="w-3 h-3"></i>
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Back -->
+                <div class="flip-card-back">
+                  <div>
+                    <div class="flex items-center justify-between mb-3 pb-2 border-b border-white/10">
+                      <span class="text-xs font-bold uppercase tracking-wider text-cyan-300">Definition</span>
+                      <span class="text-xs text-slate-400 font-mono">Hardware</span>
+                    </div>
+
+                    <div class="space-y-3">
+                      <div>
+                        <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">English:</span>
+                        <p class="text-base font-semibold text-white mt-0.5 leading-snug">
+                          The physical parts of a computer.
+                        </p>
+                      </div>
+
+                      <div class="bilingual-helper pt-2 border-t border-white/5">
+                        <span class="text-xs font-semibold text-cyan-300/90 uppercase tracking-wider">Español:</span>
+                        <p class="text-sm text-slate-300 mt-0.5 italic">
+                          Las partes físicas del computador.
+                        </p>
+                      </div>
+
+                      <div class="p-2.5 rounded-lg bg-white/5 border border-white/5 text-xs text-slate-300">
+                        <strong class="text-white">Example:</strong> The CPU, motherboard, and monitor are hardware components.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="pt-3 border-t border-white/10 flex items-center justify-between">
+                    <button type="button" class="btn-flip-back text-xs text-slate-400 hover:text-white flex items-center gap-1">
+                      <i data-lucide="undo-2" class="w-3.5 h-3.5"></i> Voltear
+                    </button>
+                    <span class="text-xs text-cyan-400 font-medium">Class Guide #1</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3: Network -->
+            <div class="flip-card-container">
+              <div class="flip-card" tabindex="0" role="button" aria-label="Tarjeta Network">
+                <!-- Front -->
+                <div class="flip-card-front">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold uppercase tracking-wider text-cyan-300 px-2.5 py-1 rounded-md bg-cyan-500/10 border border-cyan-500/20">
+                      Term #3
+                    </span>
+                    <button 
+                      type="button" 
+                      class="audio-btn p-2 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-300 hover:text-cyan-300 border border-white/10" 
+                      title="Pronounce Network"
+                      onclick="speakPhrase('Network. A system that connects devices.', this)"
+                    >
+                      <i data-lucide="volume-2" class="w-4 h-4"></i>
+                    </button>
+                  </div>
+
+                  <div class="my-auto text-center py-4">
+                    <div class="w-16 h-16 mx-auto rounded-2xl bg-cyan-500/10 border border-cyan-400/20 flex items-center justify-center text-3xl mb-3 shadow-inner">
+                      🌐
+                    </div>
+                    <h4 class="font-heading font-extrabold text-2xl text-white tracking-tight">Network</h4>
+                    <p class="text-xs font-mono text-cyan-300/80 mt-1">/ˈnetwɜːk/</p>
+                  </div>
+
+                  <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs text-slate-400">
+                    <span>Computer Science</span>
+                    <span class="text-cyan-400 font-medium flex items-center gap-1">
+                      <span>Click to Flip</span>
+                      <i data-lucide="repeat" class="w-3 h-3"></i>
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Back -->
+                <div class="flip-card-back">
+                  <div>
+                    <div class="flex items-center justify-between mb-3 pb-2 border-b border-white/10">
+                      <span class="text-xs font-bold uppercase tracking-wider text-cyan-300">Definition</span>
+                      <span class="text-xs text-slate-400 font-mono">Network</span>
+                    </div>
+
+                    <div class="space-y-3">
+                      <div>
+                        <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">English:</span>
+                        <p class="text-base font-semibold text-white mt-0.5 leading-snug">
+                          A system that connects devices.
+                        </p>
+                      </div>
+
+                      <div class="bilingual-helper pt-2 border-t border-white/5">
+                        <span class="text-xs font-semibold text-cyan-300/90 uppercase tracking-wider">Español:</span>
+                        <p class="text-sm text-slate-300 mt-0.5 italic">
+                          Un sistema que conecta dispositivos (Red).
+                        </p>
+                      </div>
+
+                      <div class="p-2.5 rounded-lg bg-white/5 border border-white/5 text-xs text-slate-300">
+                        <strong class="text-white">Example:</strong> The computers communicate over an encrypted local network.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="pt-3 border-t border-white/10 flex items-center justify-between">
+                    <button type="button" class="btn-flip-back text-xs text-slate-400 hover:text-white flex items-center gap-1">
+                      <i data-lucide="undo-2" class="w-3.5 h-3.5"></i> Voltear
+                    </button>
+                    <span class="text-xs text-cyan-400 font-medium">Class Guide #1</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 4: Database -->
+            <div class="flip-card-container">
+              <div class="flip-card" tabindex="0" role="button" aria-label="Tarjeta Database">
+                <!-- Front -->
+                <div class="flip-card-front">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold uppercase tracking-wider text-cyan-300 px-2.5 py-1 rounded-md bg-cyan-500/10 border border-cyan-500/20">
+                      Term #4
+                    </span>
+                    <button 
+                      type="button" 
+                      class="audio-btn p-2 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-300 hover:text-cyan-300 border border-white/10" 
+                      title="Pronounce Database"
+                      onclick="speakPhrase('Database. An organized collection of information.', this)"
+                    >
+                      <i data-lucide="volume-2" class="w-4 h-4"></i>
+                    </button>
+                  </div>
+
+                  <div class="my-auto text-center py-4">
+                    <div class="w-16 h-16 mx-auto rounded-2xl bg-cyan-500/10 border border-cyan-400/20 flex items-center justify-center text-3xl mb-3 shadow-inner">
+                      🗄️
+                    </div>
+                    <h4 class="font-heading font-extrabold text-2xl text-white tracking-tight">Database</h4>
+                    <p class="text-xs font-mono text-cyan-300/80 mt-1">/ˈdeɪtəbeɪs/</p>
+                  </div>
+
+                  <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs text-slate-400">
+                    <span>Computer Science</span>
+                    <span class="text-cyan-400 font-medium flex items-center gap-1">
+                      <span>Click to Flip</span>
+                      <i data-lucide="repeat" class="w-3 h-3"></i>
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Back -->
+                <div class="flip-card-back">
+                  <div>
+                    <div class="flex items-center justify-between mb-3 pb-2 border-b border-white/10">
+                      <span class="text-xs font-bold uppercase tracking-wider text-cyan-300">Definition</span>
+                      <span class="text-xs text-slate-400 font-mono">Database</span>
+                    </div>
+
+                    <div class="space-y-3">
+                      <div>
+                        <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">English:</span>
+                        <p class="text-base font-semibold text-white mt-0.5 leading-snug">
+                          An organized collection of information.
+                        </p>
+                      </div>
+
+                      <div class="bilingual-helper pt-2 border-t border-white/5">
+                        <span class="text-xs font-semibold text-cyan-300/90 uppercase tracking-wider">Español:</span>
+                        <p class="text-sm text-slate-300 mt-0.5 italic">
+                          Una colección organizada de información (Base de Datos).
+                        </p>
+                      </div>
+
+                      <div class="p-2.5 rounded-lg bg-white/5 border border-white/5 text-xs text-slate-300">
+                        <strong class="text-white">Example:</strong> We query the university student database using SQL.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="pt-3 border-t border-white/10 flex items-center justify-between">
+                    <button type="button" class="btn-flip-back text-xs text-slate-400 hover:text-white flex items-center gap-1">
+                      <i data-lucide="undo-2" class="w-3.5 h-3.5"></i> Voltear
+                    </button>
+                    <span class="text-xs text-cyan-400 font-medium">Class Guide #1</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 5: Password -->
+            <div class="flip-card-container">
+              <div class="flip-card" tabindex="0" role="button" aria-label="Tarjeta Password">
+                <!-- Front -->
+                <div class="flip-card-front">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold uppercase tracking-wider text-cyan-300 px-2.5 py-1 rounded-md bg-cyan-500/10 border border-cyan-500/20">
+                      Term #5
+                    </span>
+                    <button 
+                      type="button" 
+                      class="audio-btn p-2 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-300 hover:text-cyan-300 border border-white/10" 
+                      title="Pronounce Password"
+                      onclick="speakPhrase('Password. A secret word or code used to access a system.', this)"
+                    >
+                      <i data-lucide="volume-2" class="w-4 h-4"></i>
+                    </button>
+                  </div>
+
+                  <div class="my-auto text-center py-4">
+                    <div class="w-16 h-16 mx-auto rounded-2xl bg-cyan-500/10 border border-cyan-400/20 flex items-center justify-center text-3xl mb-3 shadow-inner">
+                      🔑
+                    </div>
+                    <h4 class="font-heading font-extrabold text-2xl text-white tracking-tight">Password</h4>
+                    <p class="text-xs font-mono text-cyan-300/80 mt-1">/ˈpɑːswɜːd/</p>
+                  </div>
+
+                  <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs text-slate-400">
+                    <span>Computer Science</span>
+                    <span class="text-cyan-400 font-medium flex items-center gap-1">
+                      <span>Click to Flip</span>
+                      <i data-lucide="repeat" class="w-3 h-3"></i>
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Back -->
+                <div class="flip-card-back">
+                  <div>
+                    <div class="flex items-center justify-between mb-3 pb-2 border-b border-white/10">
+                      <span class="text-xs font-bold uppercase tracking-wider text-cyan-300">Definition</span>
+                      <span class="text-xs text-slate-400 font-mono">Password</span>
+                    </div>
+
+                    <div class="space-y-3">
+                      <div>
+                        <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">English:</span>
+                        <p class="text-base font-semibold text-white mt-0.5 leading-snug">
+                          A secret word or code used to access a system.
+                        </p>
+                      </div>
+
+                      <div class="bilingual-helper pt-2 border-t border-white/5">
+                        <span class="text-xs font-semibold text-cyan-300/90 uppercase tracking-wider">Español:</span>
+                        <p class="text-sm text-slate-300 mt-0.5 italic">
+                          Una palabra secreta o código utilizado para acceder a un sistema (Contraseña).
+                        </p>
+                      </div>
+
+                      <div class="p-2.5 rounded-lg bg-white/5 border border-white/5 text-xs text-slate-300">
+                        <strong class="text-white">Example:</strong> Protect your account with an alphanumeric password.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="pt-3 border-t border-white/10 flex items-center justify-between">
+                    <button type="button" class="btn-flip-back text-xs text-slate-400 hover:text-white flex items-center gap-1">
+                      <i data-lucide="undo-2" class="w-3.5 h-3.5"></i> Voltear
+                    </button>
+                    <span class="text-xs text-cyan-400 font-medium">Class Guide #1</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 6: File -->
+            <div class="flip-card-container">
+              <div class="flip-card" tabindex="0" role="button" aria-label="Tarjeta File">
+                <!-- Front -->
+                <div class="flip-card-front">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold uppercase tracking-wider text-cyan-300 px-2.5 py-1 rounded-md bg-cyan-500/10 border border-cyan-500/20">
+                      Term #6
+                    </span>
+                    <button 
+                      type="button" 
+                      class="audio-btn p-2 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-300 hover:text-cyan-300 border border-white/10" 
+                      title="Pronounce File"
+                      onclick="speakPhrase('File. A document or collection of information stored on a computer.', this)"
+                    >
+                      <i data-lucide="volume-2" class="w-4 h-4"></i>
+                    </button>
+                  </div>
+
+                  <div class="my-auto text-center py-4">
+                    <div class="w-16 h-16 mx-auto rounded-2xl bg-cyan-500/10 border border-cyan-400/20 flex items-center justify-center text-3xl mb-3 shadow-inner">
+                      📁
+                    </div>
+                    <h4 class="font-heading font-extrabold text-2xl text-white tracking-tight">File</h4>
+                    <p class="text-xs font-mono text-cyan-300/80 mt-1">/faɪl/</p>
+                  </div>
+
+                  <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs text-slate-400">
+                    <span>Computer Science</span>
+                    <span class="text-cyan-400 font-medium flex items-center gap-1">
+                      <span>Click to Flip</span>
+                      <i data-lucide="repeat" class="w-3 h-3"></i>
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Back -->
+                <div class="flip-card-back">
+                  <div>
+                    <div class="flex items-center justify-between mb-3 pb-2 border-b border-white/10">
+                      <span class="text-xs font-bold uppercase tracking-wider text-cyan-300">Definition</span>
+                      <span class="text-xs text-slate-400 font-mono">File</span>
+                    </div>
+
+                    <div class="space-y-3">
+                      <div>
+                        <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">English:</span>
+                        <p class="text-base font-semibold text-white mt-0.5 leading-snug">
+                          A document or collection of information stored on a computer.
+                        </p>
+                      </div>
+
+                      <div class="bilingual-helper pt-2 border-t border-white/5">
+                        <span class="text-xs font-semibold text-cyan-300/90 uppercase tracking-wider">Español:</span>
+                        <p class="text-sm text-slate-300 mt-0.5 italic">
+                          Un documento o colección de información almacenada en un computador (Archivo).
+                        </p>
+                      </div>
+
+                      <div class="p-2.5 rounded-lg bg-white/5 border border-white/5 text-xs text-slate-300">
+                        <strong class="text-white">Example:</strong> Download the PDF file for the postgraduate syllabus.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="pt-3 border-t border-white/10 flex items-center justify-between">
+                    <button type="button" class="btn-flip-back text-xs text-slate-400 hover:text-white flex items-center gap-1">
+                      <i data-lucide="undo-2" class="w-3.5 h-3.5"></i> Voltear
+                    </button>
+                    <span class="text-xs text-cyan-400 font-medium">Class Guide #1</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         Tema 2: Interactive English 🗣️
+         ====================================================================== -->
+    <section id="interactive-english" class="py-16 md:py-24 border-t border-white/5 relative">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Section Header -->
+        <div class="text-center md:text-left mb-12">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-semibold mb-3">
+            <span>Tema 2</span> • <span>Comunicación Dinámica</span>
+          </div>
+          <h2 class="font-heading font-extrabold text-2xl sm:text-4xl text-white tracking-tight flex items-center justify-center md:justify-start gap-3">
+            <span>Interactive English</span>
+            <span class="text-3xl">🗣️</span>
+          </h2>
+          <p class="text-slate-400 text-sm sm:text-base mt-2 max-w-2xl">
+            El uso activo del inglés para dialogar, intercambiar perspectivas y participar fluidamente en el mundo real.
+          </p>
+        </div>
+
+        <!-- Concept Box (Glassmorphic) -->
+        <div class="glass-panel rounded-3xl p-6 sm:p-8 mb-12 border border-white/15 relative overflow-hidden">
+          <div class="absolute -right-12 -top-12 w-48 h-48 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+          <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-4 pb-4 border-b border-white/10">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-300 border border-purple-400/30 flex items-center justify-center font-bold">
+                <i data-lucide="message-square-text" class="w-5 h-5"></i>
+              </div>
+              <h3 class="font-heading font-bold text-xl text-white">Concept & Definition</h3>
+            </div>
+            
+            <button 
+              type="button"
+              class="audio-btn inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/5 hover:bg-purple-500/20 text-purple-300 border border-white/10 text-xs font-semibold transition-all"
+              onclick="speakPhrase('Interactive English is the use of English to communicate actively with other people. It includes speaking, listening, asking questions, answering, expressing opinions, sharing ideas, and participating in conversations. It can be used in face-to-face conversations, chats, video calls, debates, interviews, role-plays, and group activities.', this)"
+            >
+              <i data-lucide="volume-2" class="w-4 h-4"></i>
+              <span>Escuchar Pronunciación</span>
+            </button>
+          </div>
+
+          <p class="text-base sm:text-lg text-slate-100 font-medium leading-relaxed mb-3">
+            "Interactive English is the use of English to <strong class="text-purple-300">communicate actively with other people</strong>. It includes speaking, listening, asking questions, answering, expressing opinions, sharing ideas, and participating in conversations."
+          </p>
+          <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
+            It can be used in face-to-face conversations, chats, video calls, debates, interviews, role-plays, and group activities.
+          </p>
+
+          <!-- Interaction channels pills -->
+          <div class="flex flex-wrap gap-2 pt-3 border-t border-white/5">
+            <span class="glass-pill px-3 py-1 rounded-full text-xs text-slate-300 flex items-center gap-1.5">
+              <span>👥</span> Face-to-Face
+            </span>
+            <span class="glass-pill px-3 py-1 rounded-full text-xs text-slate-300 flex items-center gap-1.5">
+              <span>💬</span> Online Chats
+            </span>
+            <span class="glass-pill px-3 py-1 rounded-full text-xs text-slate-300 flex items-center gap-1.5">
+              <span>📹</span> Video Calls
+            </span>
+            <span class="glass-pill px-3 py-1 rounded-full text-xs text-slate-300 flex items-center gap-1.5">
+              <span>🎙️</span> Debates & Symposia
+            </span>
+            <span class="glass-pill px-3 py-1 rounded-full text-xs text-slate-300 flex items-center gap-1.5">
+              <span>🎭</span> Role-Plays
+            </span>
+          </div>
+
+          <!-- Bilingual helper explanation -->
+          <div class="bilingual-helper pt-3 border-t border-white/5 text-xs sm:text-sm text-purple-200/80 italic flex items-start gap-2 mt-3">
+            <i data-lucide="info" class="w-4 h-4 text-purple-400 shrink-0 mt-0.5"></i>
+            <span>
+              <strong>En español:</strong> El inglés interactivo es el inglés aplicado para comunicarse activamente en situaciones reales. Abarca no solo la teoría, sino la interacción bidireccional, negociación de significados y trabajo en equipo.
+            </span>
+          </div>
+        </div>
+
+        <!-- Low Cognitive Load Visual Blocks: Benefits & Characteristics -->
+        <div class="space-y-8">
+          
+          <!-- Key Benefits Block -->
+          <div>
+            <div class="flex items-center gap-2 mb-4">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+              <h3 class="font-heading font-bold text-lg text-white">
+                Importance & Real-Life Benefits ✨
+              </h3>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              
+              <div class="glass-card rounded-2xl p-4 border border-white/10 hover:border-emerald-400/40">
+                <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-300 flex items-center justify-center mb-2.5">
+                  <i data-lucide="earth" class="w-4 h-4"></i>
+                </div>
+                <h4 class="font-heading font-bold text-sm text-white mb-1">Real-Life Situations</h4>
+                <p class="text-xs text-slate-300">Helps people communicate smoothly in authentic daily scenarios.</p>
+              </div>
+
+              <div class="glass-card rounded-2xl p-4 border border-white/10 hover:border-emerald-400/40">
+                <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-300 flex items-center justify-center mb-2.5">
+                  <i data-lucide="mic" class="w-4 h-4"></i>
+                </div>
+                <h4 class="font-heading font-bold text-sm text-white mb-1">Speaking & Listening</h4>
+                <p class="text-xs text-slate-300">Develops sharp comprehension and clear verbal articulation.</p>
+              </div>
+
+              <div class="glass-card rounded-2xl p-4 border border-white/10 hover:border-emerald-400/40">
+                <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-300 flex items-center justify-center mb-2.5">
+                  <i data-lucide="heart" class="w-4 h-4"></i>
+                </div>
+                <h4 class="font-heading font-bold text-sm text-white mb-1">Boosts Confidence</h4>
+                <p class="text-xs text-slate-300">Empowers students to overcome the psychological barrier and fear of speaking.</p>
+              </div>
+
+              <div class="glass-card rounded-2xl p-4 border border-white/10 hover:border-emerald-400/40">
+                <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-300 flex items-center justify-center mb-2.5">
+                  <i data-lucide="users" class="w-4 h-4"></i>
+                </div>
+                <h4 class="font-heading font-bold text-sm text-white mb-1">Teamwork & Fluency</h4>
+                <p class="text-xs text-slate-300">Encourages cooperation, active participation, and natural rhythm.</p>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Characteristics Block -->
+          <div>
+            <div class="flex items-center gap-2 mb-4">
+              <span class="w-2.5 h-2.5 rounded-full bg-purple-400"></span>
+              <h3 class="font-heading font-bold text-lg text-white">
+                Core Interactive Characteristics ⚡
+              </h3>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+              
+              <div class="glass-card rounded-2xl p-4 border border-white/10">
+                <div class="text-xl mb-1.5">🙋</div>
+                <h5 class="text-xs font-bold text-purple-300 uppercase tracking-wider">Active Participation</h5>
+                <p class="text-xs text-slate-300 mt-1">Students take an active part in their learning process.</p>
+              </div>
+
+              <div class="glass-card rounded-2xl p-4 border border-white/10">
+                <div class="text-xl mb-1.5">🔄</div>
+                <h5 class="text-xs font-bold text-purple-300 uppercase tracking-wider">Two-Way Flow</h5>
+                <p class="text-xs text-slate-300 mt-1">People speak, listen, and negotiate meaning collaboratively.</p>
+              </div>
+
+              <div class="glass-card rounded-2xl p-4 border border-white/10">
+                <div class="text-xl mb-1.5">⚡</div>
+                <h5 class="text-xs font-bold text-purple-300 uppercase tracking-wider">Spontaneity</h5>
+                <p class="text-xs text-slate-300 mt-1">Responses are natural and given quickly in context.</p>
+              </div>
+
+              <div class="glass-card rounded-2xl p-4 border border-white/10">
+                <div class="text-xl mb-1.5">🧭</div>
+                <h5 class="text-xs font-bold text-purple-300 uppercase tracking-wider">Adaptability</h5>
+                <p class="text-xs text-slate-300 mt-1">Language flexes according to the situation and person.</p>
+              </div>
+
+              <div class="glass-card rounded-2xl p-4 border border-white/10">
+                <div class="text-xl mb-1.5">🗣️</div>
+                <h5 class="text-xs font-bold text-purple-300 uppercase tracking-wider">Everyday Expressions</h5>
+                <p class="text-xs text-slate-300 mt-1">Includes natural idioms and common conversational phrases.</p>
+              </div>
+
+              <div class="glass-card rounded-2xl p-4 border border-white/10">
+                <div class="text-xl mb-1.5">🤝</div>
+                <h5 class="text-xs font-bold text-purple-300 uppercase tracking-wider">Collaborative Work</h5>
+                <p class="text-xs text-slate-300 mt-1">Promotes productive activities in pairs or small groups.</p>
+              </div>
+
+              <div class="glass-card rounded-2xl p-4 border border-white/10">
+                <div class="text-xl mb-1.5">🎯</div>
+                <h5 class="text-xs font-bold text-purple-300 uppercase tracking-wider">Immediate Feedback</h5>
+                <p class="text-xs text-slate-300 mt-1">Allows correcting and refining the use of English instantly.</p>
+              </div>
+
+              <div class="glass-card rounded-2xl p-4 border border-white/10">
+                <div class="text-xl mb-1.5">🌐</div>
+                <h5 class="text-xs font-bold text-purple-300 uppercase tracking-wider">Real-Life Contexts</h5>
+                <p class="text-xs text-slate-300 mt-1">Connects class exercises with real world application.</p>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         Tema 3: Importance of Interactive English Classes 🎓
+         ====================================================================== -->
+    <section id="class-levels" class="py-16 md:py-24 border-t border-white/5 relative">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Section Header -->
+        <div class="text-center md:text-left mb-12">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-semibold mb-3">
+            <span>Tema 3</span> • <span>Metodología Pedagógica</span>
+          </div>
+          <h2 class="font-heading font-extrabold text-2xl sm:text-4xl text-white tracking-tight flex items-center justify-center md:justify-start gap-3">
+            <span>Importance of Interactive English Classes</span>
+            <span class="text-3xl">🎓</span>
+          </h2>
+          <p class="text-slate-300 text-sm sm:text-base mt-2 max-w-2xl">
+            "English classes should be interactive at every educational level because <strong class="text-white">students need to practice the language, not only memorize grammar rules</strong>."
+          </p>
+        </div>
+
+        <!-- Comparative Columns: Basic Level vs Intermediate Level -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          
+          <!-- Column 1: Basic Level -->
+          <div class="glass-panel rounded-3xl p-6 sm:p-8 border border-cyan-500/30 bg-gradient-to-b from-cyan-950/20 to-slate-900/60 relative">
+            <div class="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-2xl bg-cyan-500/20 text-cyan-300 border border-cyan-400/30 flex items-center justify-center font-bold">
+                  🌱
+                </div>
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-cyan-400">Foundational Stage</span>
+                  <h3 class="font-heading font-bold text-xl text-white">At the Basic Level</h3>
+                </div>
+              </div>
+              <span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">
+                A1 - A2
+              </span>
+            </div>
+
+            <p class="text-xs sm:text-sm text-slate-300 mb-6">
+              Interactive activities help students build core linguistic confidence and overcome the fear of speaking:
+            </p>
+
+            <ul class="space-y-3.5 mb-6">
+              <li class="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/5">
+                <i data-lucide="hand-metal" class="w-4 h-4 text-cyan-400 shrink-0"></i>
+                <div class="text-xs sm:text-sm">
+                  <strong class="text-white">Greetings and farewells:</strong>
+                  <span class="text-slate-300"> Good morning, See you soon, Take care.</span>
+                </div>
+              </li>
+              <li class="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/5">
+                <i data-lucide="user-check" class="w-4 h-4 text-cyan-400 shrink-0"></i>
+                <div class="text-xs sm:text-sm">
+                  <strong class="text-white">Personal introductions:</strong>
+                  <span class="text-slate-300"> Name, profession, background, academic interest.</span>
+                </div>
+              </li>
+              <li class="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/5">
+                <i data-lucide="binary" class="w-4 h-4 text-cyan-400 shrink-0"></i>
+                <div class="text-xs sm:text-sm">
+                  <strong class="text-white">Numbers and colors:</strong>
+                  <span class="text-slate-300"> Counts, percentages, technical specs, visual identifiers.</span>
+                </div>
+              </li>
+              <li class="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/5">
+                <i data-lucide="help-circle" class="w-4 h-4 text-cyan-400 shrink-0"></i>
+                <div class="text-xs sm:text-sm">
+                  <strong class="text-white">Simple questions:</strong>
+                  <span class="text-slate-300"> What is this? Where is the file? How does it work?</span>
+                </div>
+              </li>
+              <li class="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/5">
+                <i data-lucide="book" class="w-4 h-4 text-cyan-400 shrink-0"></i>
+                <div class="text-xs sm:text-sm">
+                  <strong class="text-white">Everyday vocabulary:</strong>
+                  <span class="text-slate-300"> Essential terms for daily social and academic interaction.</span>
+                </div>
+              </li>
+              <li class="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/5">
+                <i data-lucide="align-left" class="w-4 h-4 text-cyan-400 shrink-0"></i>
+                <div class="text-xs sm:text-sm">
+                  <strong class="text-white">Basic sentences:</strong>
+                  <span class="text-slate-300"> Subject + Verb + Complement structures.</span>
+                </div>
+              </li>
+            </ul>
+
+            <div class="p-4 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 text-xs text-cyan-200">
+              <strong class="text-white flex items-center gap-1.5 mb-1">
+                <i data-lucide="shield-check" class="w-4 h-4 text-cyan-400"></i> Main Goal:
+              </strong>
+              Help students overcome their fear of speaking English and establish initial conversational instincts.
+            </div>
+          </div>
+
+          <!-- Column 2: Intermediate Level -->
+          <div class="glass-panel rounded-3xl p-6 sm:p-8 border border-purple-500/30 bg-gradient-to-b from-purple-950/20 to-slate-900/60 relative">
+            <div class="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-2xl bg-purple-500/20 text-purple-300 border border-purple-400/30 flex items-center justify-center font-bold">
+                  🚀
+                </div>
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-purple-400">Advanced Academic Stage</span>
+                  <h3 class="font-heading font-bold text-xl text-white">At the Intermediate Level</h3>
+                </div>
+              </div>
+              <span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-purple-500/10 text-purple-300 border border-purple-500/20">
+                B1 - B2+
+              </span>
+            </div>
+
+            <p class="text-xs sm:text-sm text-slate-300 mb-6">
+              Students move beyond basic survival speech and transition into critical academic analysis:
+            </p>
+
+            <ul class="space-y-3.5 mb-6">
+              <li class="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/5">
+                <i data-lucide="map-pin" class="w-4 h-4 text-purple-400 shrink-0"></i>
+                <div class="text-xs sm:text-sm">
+                  <strong class="text-white">Describe people, places & experiences:</strong>
+                  <span class="text-slate-300"> Articulating detailed contexts, fieldwork, and team dynamics.</span>
+                </div>
+              </li>
+              <li class="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/5">
+                <i data-lucide="message-circle" class="w-4 h-4 text-purple-400 shrink-0"></i>
+                <div class="text-xs sm:text-sm">
+                  <strong class="text-white">Express opinions & critical arguments:</strong>
+                  <span class="text-slate-300"> Justifying methodological choices, hypotheses, and solutions.</span>
+                </div>
+              </li>
+              <li class="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/5">
+                <i data-lucide="presentation" class="w-4 h-4 text-purple-400 shrink-0"></i>
+                <div class="text-xs sm:text-sm">
+                  <strong class="text-white">Participate actively in activities:</strong>
+                  <span class="text-slate-300"> Leading debates, academic seminars, and symposium discussions.</span>
+                </div>
+              </li>
+              <li class="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/5">
+                <i data-lucide="git-pull-request" class="w-4 h-4 text-purple-400 shrink-0"></i>
+                <div class="text-xs sm:text-sm">
+                  <strong class="text-white">Negotiation of meaning:</strong>
+                  <span class="text-slate-300"> Clarifying ambiguous points and resolving complex inquiries.</span>
+                </div>
+              </li>
+              <li class="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/5">
+                <i data-lucide="file-check" class="w-4 h-4 text-purple-400 shrink-0"></i>
+                <div class="text-xs sm:text-sm">
+                  <strong class="text-white">Synthesize technical texts:</strong>
+                  <span class="text-slate-300"> Summarizing research findings and articulating conclusions verbally.</span>
+                </div>
+              </li>
+              <li class="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/5">
+                <i data-lucide="sparkles" class="w-4 h-4 text-purple-400 shrink-0"></i>
+                <div class="text-xs sm:text-sm">
+                  <strong class="text-white">Fluency & Spontaneity:</strong>
+                  <span class="text-slate-300"> Conversing without prolonged pauses or excessive mental translation.</span>
+                </div>
+              </li>
+            </ul>
+
+            <div class="p-4 rounded-2xl bg-purple-500/10 border border-purple-500/20 text-xs text-purple-200">
+              <strong class="text-white flex items-center gap-1.5 mb-1">
+                <i data-lucide="target" class="w-4 h-4 text-purple-400"></i> Main Goal:
+              </strong>
+              Achieve professional autonomy and academic defense capabilities in bilingual environments.
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         Sección Interactiva: Quizzes y Preguntas de Repaso 🧠
+         ====================================================================== -->
+    <section id="quiz-section" class="py-16 md:py-24 border-t border-white/5 relative">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Section Header -->
+        <div class="text-center mb-10">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-semibold mb-3">
+            <span>Cuestionario de Comprensión</span> • <span>14 Preguntas Oficiales</span>
+          </div>
+          <h2 class="font-heading font-extrabold text-2xl sm:text-4xl text-white tracking-tight flex items-center justify-center gap-3">
+            <span>Sección Interactiva: Quizzes</span>
+            <span class="text-3xl">🧠</span>
+          </h2>
+          <p class="text-slate-400 text-sm sm:text-base mt-2 max-w-xl mx-auto">
+            Lee cada pregunta, elabora tu respuesta mentalmente en oraciones completas y haz clic en <strong class="text-cyan-300">"Reveal Answer"</strong> para verificar.
+          </p>
+        </div>
+
+        <!-- Progress Bar & Quick Controls -->
+        <div class="glass-panel rounded-2xl p-4 sm:p-5 mb-8 border border-white/10">
+          <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-3">
+            <div class="flex items-center gap-2.5">
+              <i data-lucide="trophy" class="w-5 h-5 text-amber-400"></i>
+              <span class="text-sm font-semibold text-white">Tu Progreso de Repaso:</span>
+              <span id="quiz-mastered-count" class="text-xs font-bold text-cyan-400 bg-cyan-500/10 px-2.5 py-0.5 rounded-full border border-cyan-500/20">
+                0/14 Mastered (0%)
+              </span>
+            </div>
+
+            <!-- Global Action: Toggle all answers -->
+            <button 
+              id="btn-toggle-all-answers" 
+              type="button" 
+              class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-semibold text-slate-300 transition-all"
+            >
+              <i data-lucide="eye" class="w-4 h-4"></i>
+              <span>Reveal All</span>
+            </button>
+          </div>
+
+          <!-- Progress track -->
+          <div class="w-full h-2 rounded-full bg-white/10 overflow-hidden">
+            <div id="quiz-progress-bar" class="h-full bg-gradient-to-r from-cyan-400 to-emerald-400 transition-all duration-500" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <!-- Category Filters -->
+        <div class="flex flex-wrap items-center justify-center gap-2 mb-8" role="tablist">
+          <button 
+            type="button" 
+            class="quiz-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-cyan-500 text-slate-950 transition-all"
+            data-filter="all"
+          >
+            All Questions (14)
+          </button>
+          <button 
+            type="button" 
+            class="quiz-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 transition-all"
+            data-filter="technical"
+          >
+            🛠️ Technical English (7)
+          </button>
+          <button 
+            type="button" 
+            class="quiz-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 transition-all"
+            data-filter="interactive"
+          >
+            🗣️ Interactive English (7)
+          </button>
+        </div>
+
+        <!-- Container dynamically populated by script.js -->
+        <div id="quiz-cards-container" class="space-y-4">
+          <!-- Quiz cards inserted by script.js -->
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         Instrucciones para la Tarea (Task Instructions) 📝
+         ====================================================================== -->
+    <section id="task-section" class="py-16 md:py-24 border-t border-white/5 relative">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Task Callout Container -->
+        <div class="task-callout-glow rounded-3xl p-6 sm:p-10 border border-amber-500/30 relative overflow-hidden mb-12">
+          
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8 pb-6 border-b border-white/10">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-300 border border-amber-400/30 flex items-center justify-center text-2xl font-bold shadow-lg shadow-amber-500/20">
+                📝
+              </div>
+              <div>
+                <span class="text-xs font-bold uppercase tracking-wider text-amber-400">Actividad Práctica Evaluada</span>
+                <h2 class="font-heading font-extrabold text-2xl sm:text-3xl text-white">
+                  Instrucciones para la Tarea (Task Instructions)
+                </h2>
+              </div>
+            </div>
+
+            <span class="px-3.5 py-1.5 rounded-full text-xs font-bold bg-amber-500/10 text-amber-300 border border-amber-500/30 flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+              En Parejas (Pair Work)
+            </span>
+          </div>
+
+          <!-- 6 Official Steps -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+            
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/5 flex items-start gap-3.5">
+              <div class="w-8 h-8 rounded-xl bg-amber-400/20 text-amber-300 font-bold text-sm flex items-center justify-center shrink-0">
+                1
+              </div>
+              <div>
+                <strong class="text-white text-sm sm:text-base">Formen parejas</strong>
+                <p class="text-xs text-slate-300 mt-0.5">Elige un compañero de clase para trabajar en equipo colaborativo.</p>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/5 flex items-start gap-3.5">
+              <div class="w-8 h-8 rounded-xl bg-amber-400/20 text-amber-300 font-bold text-sm flex items-center justify-center shrink-0">
+                2
+              </div>
+              <div>
+                <strong class="text-white text-sm sm:text-base">Lean el diálogo en voz alta</strong>
+                <p class="text-xs text-slate-300 mt-0.5">Lean las líneas completas para familiarizarse con las palabras técnicas.</p>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/5 flex items-start gap-3.5">
+              <div class="w-8 h-8 rounded-xl bg-amber-400/20 text-amber-300 font-bold text-sm flex items-center justify-center shrink-0">
+                3
+              </div>
+              <div>
+                <strong class="text-white text-sm sm:text-base">Practiquen la pronunciación y entonación</strong>
+                <p class="text-xs text-slate-300 mt-0.5">Utiliza los botones de audio para calibrar los acentos y la melodía del idioma.</p>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/5 flex items-start gap-3.5">
+              <div class="w-8 h-8 rounded-xl bg-amber-400/20 text-amber-300 font-bold text-sm flex items-center justify-center shrink-0">
+                4
+              </div>
+              <div>
+                <strong class="text-white text-sm sm:text-base">Intercambien los personajes</strong>
+                <p class="text-xs text-slate-300 mt-0.5">El Estudiante A pasa al rol B, y el B al A para dominar ambas partes.</p>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/5 flex items-start gap-3.5">
+              <div class="w-8 h-8 rounded-xl bg-amber-400/20 text-amber-300 font-bold text-sm flex items-center justify-center shrink-0">
+                5
+              </div>
+              <div>
+                <strong class="text-white text-sm sm:text-base">Presenten el diálogo frente a la clase</strong>
+                <p class="text-xs text-slate-300 mt-0.5">Demuestren la fluidez adquirida ante el profesor y sus compañeros.</p>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/5 flex items-start gap-3.5">
+              <div class="w-8 h-8 rounded-xl bg-amber-400/20 text-amber-300 font-bold text-sm flex items-center justify-center shrink-0">
+                6
+              </div>
+              <div>
+                <strong class="text-white text-sm sm:text-base">Agreguen gestos y expresiones</strong>
+                <p class="text-xs text-slate-300 mt-0.5">Incorporen lenguaje corporal natural para hacer la conversación realista y viva.</p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Interactive Dialogue Simulator (Roleplay Studio) -->
+          <div class="rounded-2xl bg-slate-950/80 border border-white/10 p-5 sm:p-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-white/10">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-xs font-bold uppercase tracking-wider text-cyan-400">Simulador de Conversación</span>
+                  <span class="text-xs text-slate-400 font-mono">Sample Tech Dialogue</span>
+                </div>
+                <h3 class="font-heading font-bold text-lg text-white mt-1">
+                  Laboratorio de Práctica en Parejas 🎭
+                </h3>
+              </div>
+
+              <!-- Controls -->
+              <div class="flex items-center gap-2">
+                <button 
+                  id="btn-switch-roles" 
+                  type="button" 
+                  class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-semibold text-amber-300 transition-all"
+                  title="Intercambiar personajes A y B"
+                >
+                  <i data-lucide="repeat" class="w-3.5 h-3.5"></i>
+                  <span>Invertir Roles (Paso 4)</span>
+                </button>
+
+                <button 
+                  id="btn-read-dialogue" 
+                  type="button" 
+                  class="audio-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-400/30 text-xs font-semibold text-cyan-300 transition-all"
+                  title="Escuchar diálogo completo"
+                >
+                  <i data-lucide="headphones" class="w-3.5 h-3.5"></i>
+                  <span>Escuchar Todo</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Dynamic Chat Container populated by script.js -->
+            <div id="dialogue-chat-container" class="space-y-4 mb-4">
+              <!-- Dialogues rendered dynamically -->
+            </div>
+
+            <div class="pt-4 border-t border-white/10 text-xs text-slate-400 flex flex-wrap items-center justify-between gap-2">
+              <span class="flex items-center gap-1 text-cyan-300">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                <span>Términos técnicos resaltados: Hardware, Software, Network, Database, Password, File.</span>
+              </span>
+              <span>¡Presiona el ícono del altavoz en cada línea para afinar tu pronunciación!</span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================================================================
+       Footer / Créditos Institucionales
+       ====================================================================== -->
+  <footer class="border-t border-white/10 bg-[#090d15] text-slate-400 pt-16 pb-12 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
+        
+        <!-- Column 1: Academic Institution Context -->
+        <div class="space-y-3">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center p-0.5">
+              <div class="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center text-lg">
+                🏛️
+              </div>
+            </div>
+            <div>
+              <h4 class="font-heading font-bold text-white text-base">Universidad Bolivariana de Venezuela</h4>
+              <p class="text-xs text-cyan-400 font-medium">Eje Territorial General Juan Jacinto Lara</p>
+            </div>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Coordinación de Estudios Avanzados. Plataforma interactiva diseñada para la formación académica y profesional en el dominio de idiomas extranjeros con propósitos específicos.
+          </p>
+        </div>
+
+        <!-- Column 2: Course Information & Teacher -->
+        <div class="space-y-3">
+          <h5 class="text-xs font-bold uppercase tracking-wider text-slate-200">Unidad Curricular</h5>
+          <div class="p-4 rounded-2xl bg-white/5 border border-white/5 space-y-2">
+            <div class="text-sm font-semibold text-white">
+              Inglés para Estudios Avanzados • Clase #1
+            </div>
+            <div class="text-xs text-slate-300 flex items-center gap-2">
+              <i data-lucide="user" class="w-4 h-4 text-cyan-400"></i>
+              <span>Profesor de la Unidad Curricular: <strong class="text-white">David Miranda</strong></span>
+            </div>
+            <div class="text-xs text-slate-400 flex items-center gap-2">
+              <i data-lucide="calendar" class="w-4 h-4 text-slate-400"></i>
+              <span>Período Académico 2026 • Estado Lara</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 3: Developer & Tech Stack -->
+        <div class="space-y-3">
+          <h5 class="text-xs font-bold uppercase tracking-wider text-slate-200">Desarrollo & Créditos</h5>
+          <div class="p-4 rounded-2xl bg-white/5 border border-white/5 space-y-2">
+            <div class="text-xs text-slate-300">
+              Desarrollador: 
+              <a 
+                href="https://ejavierds.vercel.app" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="text-cyan-400 font-bold hover:underline hover:text-cyan-300 transition-colors inline-flex items-center gap-1 ml-1"
+              >
+                <span>ejavierds</span>
+                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+              </a>
+            </div>
+            <p class="text-xs text-slate-400">
+              Single Page Application construida con Glassmorphism UI, Mobile-First, Tailwind CSS, Web Speech API y JavaScript Vanilla.
+            </p>
+            <div class="pt-2 border-t border-white/5 flex items-center gap-2">
+              <span class="text-[11px] px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 font-mono">Ready for Vercel</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20 font-mono">Zero Config</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <div>
+          © 2026 Universidad Bolivariana de Venezuela (UBV) — Estado Lara. Todos los derechos reservados.
+        </div>
+        <div class="flex items-center gap-4">
+          <a href="#hero" class="hover:text-slate-300 transition-colors">Volver arriba</a>
+          <span>•</span>
+          <a href="https://ejavierds.vercel.app" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400 transition-colors">Portfolio ejavierds</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Floating Scroll to Top Button -->
+  <button 
+    id="btn-scroll-top" 
+    type="button" 
+    class="fixed bottom-6 right-6 z-40 p-3 rounded-2xl bg-cyan-500 text-slate-950 font-bold shadow-xl shadow-cyan-500/30 hover:bg-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-300 transition-all duration-300 transform opacity-0 pointer-events-none translate-y-4"
+    aria-label="Volver al inicio de la página"
+    title="Subir al inicio"
+  >
+    <i data-lucide="arrow-up" class="w-5 h-5"></i>
+  </button>
+
+  <!-- Main JavaScript File -->
+  <script src="script.js"></script>
+</body>
+</html>
